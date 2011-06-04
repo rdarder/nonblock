@@ -90,15 +90,15 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;02;CASEROS;370 ;CHABAS;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000008;  0,17                                                                         
 2011/05/22;02;CASEROS;370 ;CHABAS;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                                        
 2011/05/22;02;CASEROS;370 ;CHABAS;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0004756;  0,00                                                                           
-2011/05/22;02;CASEROS;371 ;CHA&Ntilde;AR LADEADO;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;SERRA RAUL ANGEL;0001208;100,00                                
-2011/05/22;02;CASEROS;371 ;CHA&Ntilde;AR LADEADO;COMUNA;C.COMUNAL;0017;UNION POR EL PROGRESO DE CHA#AR;PRIOTTI HUGO ENRIQUE;0001758;100,00                                
-2011/05/22;02;CASEROS;371 ;CHA&Ntilde;AR LADEADO;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000336;  9,18                                                                    
-2011/05/22;02;CASEROS;371 ;CHA&Ntilde;AR LADEADO;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000351;  9,59                                                                     
-2011/05/22;02;CASEROS;371 ;CHA&Ntilde;AR LADEADO;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                   
-2011/05/22;02;CASEROS;371 ;CHA&Ntilde;AR LADEADO;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                   
-2011/05/22;02;CASEROS;371 ;CHA&Ntilde;AR LADEADO;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000008;  0,22                                                          
-2011/05/22;02;CASEROS;371 ;CHA&Ntilde;AR LADEADO;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                         
-2011/05/22;02;CASEROS;371 ;CHA&Ntilde;AR LADEADO;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0003661;  0,00                                                            
+2011/05/22;02;CASEROS;371 ;CHAAR LADEADO;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;SERRA RAUL ANGEL;0001208;100,00                                
+2011/05/22;02;CASEROS;371 ;CHAAR LADEADO;COMUNA;C.COMUNAL;0017;UNION POR EL PROGRESO DE CHA#AR;PRIOTTI HUGO ENRIQUE;0001758;100,00                                
+2011/05/22;02;CASEROS;371 ;CHAAR LADEADO;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000336;  9,18                                                                    
+2011/05/22;02;CASEROS;371 ;CHAAR LADEADO;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000351;  9,59                                                                     
+2011/05/22;02;CASEROS;371 ;CHAAR LADEADO;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                   
+2011/05/22;02;CASEROS;371 ;CHAAR LADEADO;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                   
+2011/05/22;02;CASEROS;371 ;CHAAR LADEADO;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000008;  0,22                                                          
+2011/05/22;02;CASEROS;371 ;CHAAR LADEADO;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                         
+2011/05/22;02;CASEROS;371 ;CHAAR LADEADO;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0003661;  0,00                                                            
 2011/05/22;02;CASEROS;372 ;GODEKEN;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;ROSSELL JORGE ALBERTO;0000660;100,00                                                  
 2011/05/22;02;CASEROS;372 ;GODEKEN;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000249; 23,34                                                                                  
 2011/05/22;02;CASEROS;372 ;GODEKEN;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000146; 13,68                                                                                   
@@ -577,7 +577,7 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;04;CONSTITUCION;378C;SARGENTO CABRAL;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                          
 2011/05/22;04;CONSTITUCION;378C;SARGENTO CABRAL;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000753;  0,00                                                             
 2011/05/22;04;CONSTITUCION;378D;RUEDA;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;MAFFEI DANIEL JESUS;0000222;100,00                                                 
-2011/05/22;04;CONSTITUCION;378D;RUEDA;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;MI&Ntilde;O RICARDO DANIEL;0000147;100,00                                 
+2011/05/22;04;CONSTITUCION;378D;RUEDA;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;MIO RICARDO DANIEL;0000147;100,00                                 
 2011/05/22;04;CONSTITUCION;378D;RUEDA;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000015;  3,83                                                                               
 2011/05/22;04;CONSTITUCION;378D;RUEDA;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000008;  2,04                                                                                
 2011/05/22;04;CONSTITUCION;378D;RUEDA;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                              
@@ -605,15 +605,15 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;04;CONSTITUCION;379B;GENERAL GELLY;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000001;  0,20                                                             
 2011/05/22;04;CONSTITUCION;379B;GENERAL GELLY;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                            
 2011/05/22;04;CONSTITUCION;379B;GENERAL GELLY;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000503;  0,00                                                               
-2011/05/22;04;CONSTITUCION;379C;CA&Ntilde;ADA RICA;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;BELLESI ANGEL NAZARENO;0000289;100,00                                 
-2011/05/22;04;CONSTITUCION;379C;CA&Ntilde;ADA RICA;COMUNA;C.COMUNAL;0027;FRENTE PARA EL CAMBIO;CARDOZO JUAN ESTEBAN;0000144;100,00                                        
-2011/05/22;04;CONSTITUCION;379C;CA&Ntilde;ADA RICA;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000031;  6,53                                                                  
-2011/05/22;04;CONSTITUCION;379C;CA&Ntilde;ADA RICA;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000008;  1,68                                                                   
-2011/05/22;04;CONSTITUCION;379C;CA&Ntilde;ADA RICA;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                 
-2011/05/22;04;CONSTITUCION;379C;CA&Ntilde;ADA RICA;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                 
-2011/05/22;04;CONSTITUCION;379C;CA&Ntilde;ADA RICA;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000003;  0,63                                                        
-2011/05/22;04;CONSTITUCION;379C;CA&Ntilde;ADA RICA;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                       
-2011/05/22;04;CONSTITUCION;379C;CA&Ntilde;ADA RICA;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000475;  0,00                                                          
+2011/05/22;04;CONSTITUCION;379C;CAADA RICA;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;BELLESI ANGEL NAZARENO;0000289;100,00                                 
+2011/05/22;04;CONSTITUCION;379C;CAADA RICA;COMUNA;C.COMUNAL;0027;FRENTE PARA EL CAMBIO;CARDOZO JUAN ESTEBAN;0000144;100,00                                        
+2011/05/22;04;CONSTITUCION;379C;CAADA RICA;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000031;  6,53                                                                  
+2011/05/22;04;CONSTITUCION;379C;CAADA RICA;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000008;  1,68                                                                   
+2011/05/22;04;CONSTITUCION;379C;CAADA RICA;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                 
+2011/05/22;04;CONSTITUCION;379C;CAADA RICA;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                 
+2011/05/22;04;CONSTITUCION;379C;CAADA RICA;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000003;  0,63                                                        
+2011/05/22;04;CONSTITUCION;379C;CAADA RICA;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                       
+2011/05/22;04;CONSTITUCION;379C;CAADA RICA;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000475;  0,00                                                          
 2011/05/22;04;CONSTITUCION;380 ;MAXIMO PAZ;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;BINOLFI CECILIA INES;0000525;100,00                                           
 2011/05/22;04;CONSTITUCION;380 ;MAXIMO PAZ;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;VILLALBA JULIO FEDERICO;0000370;100,00                               
 2011/05/22;04;CONSTITUCION;380 ;MAXIMO PAZ;COMUNA;C.COMUNAL;0039;MOVIMIENTO VECINALISTA SANTAFESINO;CAMATS IVAN JOSE;0001069;100,00                                       
@@ -762,7 +762,7 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;06;GENERAL LOPEZ;385C;LA CHISPA;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;MOREYRA DANIEL OSCAR;0000138; 61,88                                           
 2011/05/22;06;GENERAL LOPEZ;385C;LA CHISPA;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;ENRI CLAUDIO MARCELO;0000085; 38,12                                           
 2011/05/22;06;GENERAL LOPEZ;385C;LA CHISPA;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;BUSTAMANTE CRISTIAN ALBERTO;0000055; 52,38                           
-2011/05/22;06;GENERAL LOPEZ;385C;LA CHISPA;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;MUI&Ntilde;A JOSE AGUSTIN;0000050; 47,62                             
+2011/05/22;06;GENERAL LOPEZ;385C;LA CHISPA;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;MUIA JOSE AGUSTIN;0000050; 47,62                             
 2011/05/22;06;GENERAL LOPEZ;385C;LA CHISPA;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000004;  1,16                                                                          
 2011/05/22;06;GENERAL LOPEZ;385C;LA CHISPA;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000007;  2,03                                                                           
 2011/05/22;06;GENERAL LOPEZ;385C;LA CHISPA;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                         
@@ -850,17 +850,17 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;06;GENERAL LOPEZ;390B;CHOVET;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000003;  0,18                                                                   
 2011/05/22;06;GENERAL LOPEZ;390B;CHOVET;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                                  
 2011/05/22;06;GENERAL LOPEZ;390B;CHOVET;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0001657;  0,00                                                                     
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;ARCANGIOLI ARMINDA ANITA;0000176; 77,19                          
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;LEZANA DARIO ENRIQUE JAVIER;0000052; 22,81                       
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;CARAM ARIEL CARLOS;0000266; 65,68                       
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;JOZAMI DANIEL HORACIO;0000139; 34,32                    
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000010;  1,52                                                             
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000013;  1,98                                                              
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                            
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                            
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000001;  0,15                                                   
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                  
-2011/05/22;06;GENERAL LOPEZ;390C;CA&Ntilde;ADA DEL UCLE;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000657;  0,00                                                     
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;ARCANGIOLI ARMINDA ANITA;0000176; 77,19                          
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;LEZANA DARIO ENRIQUE JAVIER;0000052; 22,81                       
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;CARAM ARIEL CARLOS;0000266; 65,68                       
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;JOZAMI DANIEL HORACIO;0000139; 34,32                    
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000010;  1,52                                                             
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000013;  1,98                                                              
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                            
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                            
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000001;  0,15                                                   
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                  
+2011/05/22;06;GENERAL LOPEZ;390C;CAADA DEL UCLE;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000657;  0,00                                                     
 2011/05/22;06;GENERAL LOPEZ;390D;MIGUEL TORRES;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;GALARZA ROSSANA BEATRIZ R;0000148;100,00                                  
 2011/05/22;06;GENERAL LOPEZ;390D;MIGUEL TORRES;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;PICCIRILLI GUSTAVO GABRIEL;0000119;100,00                        
 2011/05/22;06;GENERAL LOPEZ;390D;MIGUEL TORRES;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000023;  7,40                                                                      
@@ -1733,15 +1733,15 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;12;9 DE JULIO;283 ;ESTEBAN RAMS;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000000;  0,00                                                                
 2011/05/22;12;9 DE JULIO;283 ;ESTEBAN RAMS;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000008;  5,13                                                               
 2011/05/22;12;9 DE JULIO;283 ;ESTEBAN RAMS;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000156;  0,00                                                                  
-2011/05/22;12;9 DE JULIO;284 ;LOGRO&Ntilde;O;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;PONCE VICTOR HUGO;0000189;100,00                                            
-2011/05/22;12;9 DE JULIO;284 ;LOGRO&Ntilde;O;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;DUTTO CARLOS DANTE OSCAR;0000226;100,00                            
-2011/05/22;12;9 DE JULIO;284 ;LOGRO&Ntilde;O;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000008;  1,88                                                                        
-2011/05/22;12;9 DE JULIO;284 ;LOGRO&Ntilde;O;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000003;  0,70                                                                         
-2011/05/22;12;9 DE JULIO;284 ;LOGRO&Ntilde;O;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                       
-2011/05/22;12;9 DE JULIO;284 ;LOGRO&Ntilde;O;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                       
-2011/05/22;12;9 DE JULIO;284 ;LOGRO&Ntilde;O;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000000;  0,00                                                              
-2011/05/22;12;9 DE JULIO;284 ;LOGRO&Ntilde;O;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                             
-2011/05/22;12;9 DE JULIO;284 ;LOGRO&Ntilde;O;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000426;  0,00                                                                
+2011/05/22;12;9 DE JULIO;284 ;LOGROO;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;PONCE VICTOR HUGO;0000189;100,00                                            
+2011/05/22;12;9 DE JULIO;284 ;LOGROO;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;DUTTO CARLOS DANTE OSCAR;0000226;100,00                            
+2011/05/22;12;9 DE JULIO;284 ;LOGROO;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000008;  1,88                                                                        
+2011/05/22;12;9 DE JULIO;284 ;LOGROO;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000003;  0,70                                                                         
+2011/05/22;12;9 DE JULIO;284 ;LOGROO;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                       
+2011/05/22;12;9 DE JULIO;284 ;LOGROO;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                       
+2011/05/22;12;9 DE JULIO;284 ;LOGROO;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000000;  0,00                                                              
+2011/05/22;12;9 DE JULIO;284 ;LOGROO;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                             
+2011/05/22;12;9 DE JULIO;284 ;LOGROO;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000426;  0,00                                                                
 2011/05/22;12;9 DE JULIO;285A;POZO BORRADO;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;CORNERO SANTINI SEBASTIAN IGNACIO;0000451;100,00                              
 2011/05/22;12;9 DE JULIO;285A;POZO BORRADO;COMUNA;C.COMUNAL;0064;CONFLUENCIA SANTAFESINA;TOLKACHIER RICARDO CESAR;0000230;100,00                                          
 2011/05/22;12;9 DE JULIO;285A;POZO BORRADO;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000015;  2,11                                                                          
@@ -1826,15 +1826,15 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;15;ROSARIO;341 ;ACEBAL;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000000;  0,00                                                                         
 2011/05/22;15;ROSARIO;341 ;ACEBAL;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                                        
 2011/05/22;15;ROSARIO;341 ;ACEBAL;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0003309;  0,00                                                                           
-2011/05/22;15;ROSARIO;341A;PUEBLO MU&Ntilde;OZ;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;MARCONI CARLOS ALBERTO;0000136;100,00                                     
-2011/05/22;15;ROSARIO;341A;PUEBLO MU&Ntilde;OZ;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;GUNEGONDI ALBERTO FEDERICO;0000195;100,00                        
-2011/05/22;15;ROSARIO;341A;PUEBLO MU&Ntilde;OZ;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000029;  7,84                                                                      
-2011/05/22;15;ROSARIO;341A;PUEBLO MU&Ntilde;OZ;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000010;  2,70                                                                       
-2011/05/22;15;ROSARIO;341A;PUEBLO MU&Ntilde;OZ;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                     
-2011/05/22;15;ROSARIO;341A;PUEBLO MU&Ntilde;OZ;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                     
-2011/05/22;15;ROSARIO;341A;PUEBLO MU&Ntilde;OZ;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000000;  0,00                                                            
-2011/05/22;15;ROSARIO;341A;PUEBLO MU&Ntilde;OZ;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                           
-2011/05/22;15;ROSARIO;341A;PUEBLO MU&Ntilde;OZ;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000370;  0,00                                                              
+2011/05/22;15;ROSARIO;341A;PUEBLO MUOZ;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;MARCONI CARLOS ALBERTO;0000136;100,00                                     
+2011/05/22;15;ROSARIO;341A;PUEBLO MUOZ;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;GUNEGONDI ALBERTO FEDERICO;0000195;100,00                        
+2011/05/22;15;ROSARIO;341A;PUEBLO MUOZ;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000029;  7,84                                                                      
+2011/05/22;15;ROSARIO;341A;PUEBLO MUOZ;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000010;  2,70                                                                       
+2011/05/22;15;ROSARIO;341A;PUEBLO MUOZ;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                     
+2011/05/22;15;ROSARIO;341A;PUEBLO MUOZ;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                     
+2011/05/22;15;ROSARIO;341A;PUEBLO MUOZ;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000000;  0,00                                                            
+2011/05/22;15;ROSARIO;341A;PUEBLO MUOZ;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                           
+2011/05/22;15;ROSARIO;341A;PUEBLO MUOZ;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000370;  0,00                                                              
 2011/05/22;15;ROSARIO;341B;ARMINDA;COMUNA;C.COMUNAL;0037;UNION VECINAL DE ARMINDA;PELAGAGGE JUAN MANUEL;0000170;100,00                                                    
 2011/05/22;15;ROSARIO;341B;ARMINDA;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000042; 17,87                                                                                  
 2011/05/22;15;ROSARIO;341B;ARMINDA;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000020;  8,51                                                                                   
@@ -1854,16 +1854,16 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;15;ROSARIO;343 ;ALVAREZ;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000009;  0,24                                                                        
 2011/05/22;15;ROSARIO;343 ;ALVAREZ;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                                       
 2011/05/22;15;ROSARIO;343 ;ALVAREZ;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0003789;  0,00                                                                          
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;0002;UNION PRO FEDERAL;GOROSITO JOSE ADALBERTO;0000096;100,00                                                   
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;0008;NUEVO ENCUENTRO POPULAR Y SOLIDARIO;CORDA JUAN JOSE;0000200;100,00                                         
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;0064;CONFLUENCIA SANTAFESINA;CARENZO WALTER OMAR;0000493;100,00                                                 
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000070;  6,82                                                                            
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000162; 15,79                                                                             
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                           
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                           
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000005;  0,49                                                                  
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                                 
-2011/05/22;15;ROSARIO;343A;PI&Ntilde;ERO;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0001026;  0,00                                                                    
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;0002;UNION PRO FEDERAL;GOROSITO JOSE ADALBERTO;0000096;100,00                                                   
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;0008;NUEVO ENCUENTRO POPULAR Y SOLIDARIO;CORDA JUAN JOSE;0000200;100,00                                         
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;0064;CONFLUENCIA SANTAFESINA;CARENZO WALTER OMAR;0000493;100,00                                                 
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000070;  6,82                                                                            
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000162; 15,79                                                                             
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                           
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                           
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000005;  0,49                                                                  
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                                 
+2011/05/22;15;ROSARIO;343A;PIERO;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0001026;  0,00                                                                    
 2011/05/22;15;ROSARIO;345A;FIGHIERA;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;PANELLI PEDRO;0001280;100,00                                                         
 2011/05/22;15;ROSARIO;345A;FIGHIERA;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;MARIANI CARLOS ALBERTO;0001589;100,00                                       
 2011/05/22;15;ROSARIO;345A;FIGHIERA;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000164;  4,95                                                                                 
@@ -2088,14 +2088,14 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;16;SAN CRISTOBAL;184 ;ARRUFO;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000006;  0,42                                                                   
 2011/05/22;16;SAN CRISTOBAL;184 ;ARRUFO;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                                  
 2011/05/22;16;SAN CRISTOBAL;184 ;ARRUFO;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0001437;  0,00                                                                     
-2011/05/22;16;SAN CRISTOBAL;186 ;&Ntilde;ANDUCITA;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;BARONI RUBEN HUGO;0000083;100,00                              
-2011/05/22;16;SAN CRISTOBAL;186 ;&Ntilde;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000023; 21,30                                                                   
-2011/05/22;16;SAN CRISTOBAL;186 ;&Ntilde;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000000;  0,00                                                                    
-2011/05/22;16;SAN CRISTOBAL;186 ;&Ntilde;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                  
-2011/05/22;16;SAN CRISTOBAL;186 ;&Ntilde;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                  
-2011/05/22;16;SAN CRISTOBAL;186 ;&Ntilde;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000002;  1,85                                                         
-2011/05/22;16;SAN CRISTOBAL;186 ;&Ntilde;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                        
-2011/05/22;16;SAN CRISTOBAL;186 ;&Ntilde;ANDUCITA;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000108;  0,00                                                           
+2011/05/22;16;SAN CRISTOBAL;186 ;ANDUCITA;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;BARONI RUBEN HUGO;0000083;100,00                              
+2011/05/22;16;SAN CRISTOBAL;186 ;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000023; 21,30                                                                   
+2011/05/22;16;SAN CRISTOBAL;186 ;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000000;  0,00                                                                    
+2011/05/22;16;SAN CRISTOBAL;186 ;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                  
+2011/05/22;16;SAN CRISTOBAL;186 ;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                  
+2011/05/22;16;SAN CRISTOBAL;186 ;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000002;  1,85                                                         
+2011/05/22;16;SAN CRISTOBAL;186 ;ANDUCITA;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                        
+2011/05/22;16;SAN CRISTOBAL;186 ;ANDUCITA;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000108;  0,00                                                           
 2011/05/22;16;SAN CRISTOBAL;187 ;COLONIA ROSA;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;ZEBALLO MARIA LAURA;0000169;100,00                                         
 2011/05/22;16;SAN CRISTOBAL;187 ;COLONIA ROSA;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;DIAZ JUAN ANTONIO;0000465;100,00                                  
 2011/05/22;16;SAN CRISTOBAL;187 ;COLONIA ROSA;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000032;  4,68                                                                       
@@ -2783,16 +2783,16 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;21;SAN MARTIN;160 ;CARLOS PELLEGRINI;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000004;  0,13                                                           
 2011/05/22;21;SAN MARTIN;160 ;CARLOS PELLEGRINI;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                          
 2011/05/22;21;SAN MARTIN;160 ;CARLOS PELLEGRINI;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0003130;  0,00                                                             
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;ANDROVETTO EZEQUIEL ALBERTO;0000517;100,00                           
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;TARQUINI JORGE RICARDO;0001374;100,00                       
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;0061;MOV. VEC. CAÐADA ROSQUIN;PERETTI NESTOR JACINTO;0001045;100,00                                  
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000144;  4,51                                                                 
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000107;  3,35                                                                  
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000004;  0,13                                                       
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                      
-2011/05/22;21;SAN MARTIN;161 ;CA&Ntilde;ADA ROSQUIN;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0003191;  0,00                                                         
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;ANDROVETTO EZEQUIEL ALBERTO;0000517;100,00                           
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;TARQUINI JORGE RICARDO;0001374;100,00                       
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;0061;MOV. VEC. CAÐADA ROSQUIN;PERETTI NESTOR JACINTO;0001045;100,00                                  
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000144;  4,51                                                                 
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000107;  3,35                                                                  
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000004;  0,13                                                       
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                      
+2011/05/22;21;SAN MARTIN;161 ;CAADA ROSQUIN;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0003191;  0,00                                                         
 2011/05/22;21;SAN MARTIN;162 ;CASAS;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;ROMERO ANDRES E R;0000269;100,00                                                     
 2011/05/22;21;SAN MARTIN;162 ;CASAS;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;VITTONE NORBERTO RAMON;0000228;100,00                                       
 2011/05/22;21;SAN MARTIN;162 ;CASAS;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000019;  3,59                                                                                 
@@ -2887,7 +2887,7 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;22;VERA;256 ;TOBA;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000003;  0,79                                                                              
 2011/05/22;22;VERA;256 ;TOBA;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                                             
 2011/05/22;22;VERA;256 ;TOBA;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000381;  0,00                                                                                
-2011/05/22;22;VERA;257 ;GARABATO;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;MU&Ntilde;OZ MANUEL LUIS;0000734;100,00                                                 
+2011/05/22;22;VERA;257 ;GARABATO;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;MUOZ MANUEL LUIS;0000734;100,00                                                 
 2011/05/22;22;VERA;257 ;GARABATO;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;OEHRLI JOSE OSMAR;0000269; 73,70                                               
 2011/05/22;22;VERA;257 ;GARABATO;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;BASTACINI GUILLERMO ANTONIO;0000096; 26,30                                     
 2011/05/22;22;VERA;257 ;GARABATO;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000023;  1,96                                                                                    
@@ -2931,15 +2931,15 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;22;VERA;261 ;GOLONDRINA;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000002;  0,55                                                                        
 2011/05/22;22;VERA;261 ;GOLONDRINA;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                                       
 2011/05/22;22;VERA;261 ;GOLONDRINA;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000366;  0,00                                                                          
-2011/05/22;22;VERA;262 ;CA&Ntilde;ADA OMBU;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;PAULA DAS NEVES JOSE LUIS;0000234;100,00                                      
-2011/05/22;22;VERA;262 ;CA&Ntilde;ADA OMBU;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;BOLA&Ntilde;O ANA MARIA;0000086;100,00                               
-2011/05/22;22;VERA;262 ;CA&Ntilde;ADA OMBU;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000007;  2,03                                                                          
-2011/05/22;22;VERA;262 ;CA&Ntilde;ADA OMBU;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000010;  2,90                                                                           
-2011/05/22;22;VERA;262 ;CA&Ntilde;ADA OMBU;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                         
-2011/05/22;22;VERA;262 ;CA&Ntilde;ADA OMBU;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                         
-2011/05/22;22;VERA;262 ;CA&Ntilde;ADA OMBU;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000008;  2,32                                                                
-2011/05/22;22;VERA;262 ;CA&Ntilde;ADA OMBU;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                               
-2011/05/22;22;VERA;262 ;CA&Ntilde;ADA OMBU;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000345;  0,00                                                                  
+2011/05/22;22;VERA;262 ;CAADA OMBU;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;PAULA DAS NEVES JOSE LUIS;0000234;100,00                                      
+2011/05/22;22;VERA;262 ;CAADA OMBU;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;BOLAO ANA MARIA;0000086;100,00                               
+2011/05/22;22;VERA;262 ;CAADA OMBU;COMUNA;C.COMUNAL;    ;Votos en Blanco;;0000007;  2,03                                                                          
+2011/05/22;22;VERA;262 ;CAADA OMBU;COMUNA;C.COMUNAL;    ;Votos Anulados;;0000010;  2,90                                                                           
+2011/05/22;22;VERA;262 ;CAADA OMBU;COMUNA;C.COMUNAL;    ;Votos Recurridos;;0000000;  0,00                                                                         
+2011/05/22;22;VERA;262 ;CAADA OMBU;COMUNA;C.COMUNAL;    ;Votos Impugnados;;0000000;  0,00                                                                         
+2011/05/22;22;VERA;262 ;CAADA OMBU;COMUNA;C.COMUNAL;    ;Votos Fuerza de Seguridad;;0000008;  2,32                                                                
+2011/05/22;22;VERA;262 ;CAADA OMBU;COMUNA;C.COMUNAL;    ;Votos Electores Observados;;0000000;  0,00                                                               
+2011/05/22;22;VERA;262 ;CAADA OMBU;COMUNA;C.COMUNAL;    ;Total de votos emitidos;;0000345;  0,00                                                                  
 2011/05/22;22;VERA;263 ;LOS AMORES;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;ACOSTA BLANCA ROSANA;0000136; 50,18                                                   
 2011/05/22;22;VERA;263 ;LOS AMORES;COMUNA;C.COMUNAL;0003;FRENTE SANTA FE PARA TODOS;BRASSART ANGEL EDGARDO;0000135; 49,82                                                 
 2011/05/22;22;VERA;263 ;LOS AMORES;COMUNA;C.COMUNAL;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;WALKER OMAR VICTORINO;0000052;100,00                                         

@@ -985,7 +985,7 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;10;LA CAPITAL;020 ;;DEPTO ;INTENDENTE;    ;Votos Fuerza de Seguridad;;0000052;  0,15                                                                           
 2011/05/22;10;LA CAPITAL;020 ;;DEPTO ;INTENDENTE;    ;Votos Electores Observados;;0000000;  0,00                                                                          
 2011/05/22;10;LA CAPITAL;020 ;;DEPTO ;INTENDENTE;    ;Total de votos emitidos;;0034685;  0,00                                                                             
-2011/05/22;10;LA CAPITAL;027 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;GUDI&Ntilde;O RICARDO ANTONIO;0001593; 58,85                                             
+2011/05/22;10;LA CAPITAL;027 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;GUDIO RICARDO ANTONIO;0001593; 58,85                                             
 2011/05/22;10;LA CAPITAL;027 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;DONADIO HUGO GABRIEL;0001114; 41,15                                                      
 2011/05/22;10;LA CAPITAL;027 ;;DEPTO ;INTENDENTE;0039;MOVIMIENTO VECINALISTA SANTAFESINO;FERNANDEZ RODRIGO MARTIN;0003786;100,00                                          
 2011/05/22;10;LA CAPITAL;027 ;;DEPTO ;INTENDENTE;    ;Votos en Blanco;;0000285;  3,99                                                                                     
@@ -1007,7 +1007,7 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;11;LAS COLONIAS;055 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;MEINERS ANA MARIA DE LOS A;0007427; 62,43                                              
 2011/05/22;11;LAS COLONIAS;055 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;ANDREOLI JOSE CARLOS;0003380; 28,41                                                    
 2011/05/22;11;LAS COLONIAS;055 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;ROSSI BRUNO IVAN;0000933;  7,84                                                        
-2011/05/22;11;LAS COLONIAS;055 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;SA&Ntilde;UDO JUAN EDUARDO;0000156;  1,31                                              
+2011/05/22;11;LAS COLONIAS;055 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;SAUDO JUAN EDUARDO;0000156;  1,31                                              
 2011/05/22;11;LAS COLONIAS;055 ;;DEPTO ;INTENDENTE;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;GRENON DANIEL DELFIN;0001003; 53,01                                           
 2011/05/22;11;LAS COLONIAS;055 ;;DEPTO ;INTENDENTE;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;ERBETTA HUGO ARMANDO J.;0000889; 46,99                                        
 2011/05/22;11;LAS COLONIAS;055 ;;DEPTO ;INTENDENTE;0027;FRENTE PARA EL CAMBIO;DE PACE RAFAEL ANTONIO;0008141;100,00                                                       
@@ -2804,7 +2804,7 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;15;ROSARIO;352 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;REINOSO LUIS ALBERTO;0000329; 21,74                                                         
 2011/05/22;15;ROSARIO;352 ;;DEPTO ;INTENDENTE;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;TOMEI MONICA ALICIA;0004137; 51,72                                                 
 2011/05/22;15;ROSARIO;352 ;;DEPTO ;INTENDENTE;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;RIMINI JUVENAL CARLOS;0003127; 39,09                                               
-2011/05/22;15;ROSARIO;352 ;;DEPTO ;INTENDENTE;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;CA&Ntilde;AS ROLANDO ADALBERTO;0000631;  7,89                                      
+2011/05/22;15;ROSARIO;352 ;;DEPTO ;INTENDENTE;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;CAAS ROLANDO ADALBERTO;0000631;  7,89                                      
 2011/05/22;15;ROSARIO;352 ;;DEPTO ;INTENDENTE;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;MORELLO MARIO AMADO;0000104;  1,30                                                 
 2011/05/22;15;ROSARIO;352 ;;DEPTO ;INTENDENTE;0020;MOVIMIENTO PROYECTO SUR;PEREA CARLOS HORACIO;0000205;100,00                                                            
 2011/05/22;15;ROSARIO;352 ;;DEPTO ;INTENDENTE;0042;CENTRO DE COINCIDENCIAS FUNENSES;FONT ALBERTO ISIDRO;0000072;100,00                                                    
@@ -2898,7 +2898,7 @@ Fecha;Depto;Nombre Departamento;Localidad;Nombre Localidad;Tipo Loc;Cargo;Partid
 2011/05/22;17;SAN JAVIER;275 ;;DEPTO ;INTENDENTE;    ;Total de votos emitidos;;0009209;  0,00                                                                             
 2011/05/22;18;SAN JERONIMO;079 ;;DEPTO ;INTENDENTE;0002;UNION PRO FEDERAL;GAGLIANO LEANDRO RAFAEL;0000211;100,00                                                          
 2011/05/22;18;SAN JERONIMO;079 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;CHILLEMI GUILLERMO JUAN;0001992; 37,73                                                 
-2011/05/22;18;SAN JERONIMO;079 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;NU&Ntilde;EZ PATRICIA INES;0001697; 32,14                                              
+2011/05/22;18;SAN JERONIMO;079 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;NUEZ PATRICIA INES;0001697; 32,14                                              
 2011/05/22;18;SAN JERONIMO;079 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;LAFUENTE JUAN MANUEL;0001056; 20,00                                                    
 2011/05/22;18;SAN JERONIMO;079 ;;DEPTO ;INTENDENTE;0003;FRENTE SANTA FE PARA TODOS;MARINO CLAUDIO SERGIO;0000535; 10,13                                                   
 2011/05/22;18;SAN JERONIMO;079 ;;DEPTO ;INTENDENTE;0004;FRENTE PROGRESISTA, CIVICO Y SOCIAL;BORTOLOTTO CRISTIAN MARIANO;0001922; 79,29                                    
