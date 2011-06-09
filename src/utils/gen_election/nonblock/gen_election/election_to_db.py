@@ -3,56 +3,13 @@ from sqlalchemy import sql, orm
 import yaml
 import logging
 import argparse
+from .. import db
 
 def spec_levels(spec):
   return [l['level'] for l in spec['levels']]
 
 def spec_titles(spec):
   return [l['title'] for l in spec['levels']]
-
-def add_geo_columns(spec, table):
-  last = spec_levels[-1]
-
-def create_n_tables(spec, election, metadata):
-  levels = spec_levels(spec)
-  positions = spec['positions']
-  sa.Table('geo', metadata,
-           sa.Column('id', sa.Integer, primary_key=True),
-           sa.Column('name', sa.String(64), nullable=False),
-           sa.Column('type', sa.Enum(*levels), nullable=False),
-           sa.Column('container_id', sa.Integer,
-                     sa.ForeignKey('geo.id'))
-          )
-  sa.Table('parties', metadata,
-           sa.Column('id', sa.Integer, primary_key=True),
-           sa.Column('name', sa.String(64), nullable=False),
-          )
-  sa.Table('positions', metadata,
-           sa.Column('id', sa.Integer, primary_key=True),
-           sa.Column('name', sa.String(64), nullable=False),
-          )
-  sa.Table('candidates', metadata,
-           sa.Column('id', sa.Integer, primary_key=True),
-           sa.Column('name', sa.String(64), nullable=False),
-           sa.Column('party_id', sa.Integer, sa.ForeignKey('parties.id')),
-           sa.Column('position', sa.Enum(*positions), nullable=False),
-           sa.Column('container_id', sa.Integer,
-                     sa.ForeignKey('geo.id'))
-          )
-  votes_check = sa.Table('votes_check', metadata,
-                         sa.Column('total_votes', sa.Integer, nullable=False),
-                         sa.Column('voting_center_id',
-                                   sa.Integer, sa.ForeignKey('geo.id'))
-                        )
-  votes = sa.Table('votes', metadata,
-                   sa.Column('voting_center_id',
-                             sa.Integer, sa.ForeignKey('geo.id'),
-                             primary_key=True),
-                   sa.Column('candidate_id', sa.Integer,
-                             sa.ForeignKey('candidates.id'),
-                             primary_key=True),
-                   sa.Column('votes', sa.Integer, nullable=False)
-                  )
 
 class ElectionDB(object):
   def __init__(self, metadata, spec, session):
@@ -95,6 +52,7 @@ class ElectionDB(object):
   def load(self, election):
     self.fill_parties()
     self.fill_geo(election)
+    self.session.commit()
 
 def main():
   parser = argparse.ArgumentParser(description='create election database')
@@ -124,7 +82,7 @@ def main():
   session = session_maker()
 
   logging.info('building table structure')
-  create_n_tables(election_spec, election, metadata)
+  db.declare_tables(election_spec, metadata)
 
   logging.info('cleaning previous tables')
   metadata.drop_all()
