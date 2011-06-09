@@ -1,0 +1,59 @@
+levels:
+  - level: provincia
+    title: provincias
+    positions: 
+      - gobernador
+    avg: 1
+    mu: 0
+    name_gen: places
+  - level: departamento
+    title: departamentos
+    avg: 5
+    mu: 1
+    positions:
+      - diputado
+      - senador
+    name_gen: places
+  - level: localidad
+    title: localidades
+    avg: 5
+    mu: 3
+    positions:
+      - intendente
+      - concejal
+    name_gen: places
+  - level: seccional
+    title: seccionales
+    avg: 4
+    mu: 1
+    name_gen: pattern
+    name_pattern: "Seccional {local_index}"
+  - level: local
+    title: locales
+    avg: 4 
+    mu: 1
+    name_gen: pattern
+    name_pattern: "Local {local_index}"
+  - level: mesa
+    title: mesas
+    avg: 3
+    mu: 1
+    name_gen: pattern
+    name_pattern: "{global_index}"
+    voters: 
+      avg: 200
+      mu: 100
+
+
+parties:
+  - Partido Obrero
+  - Partido Liberal
+  - Partido Conservador
+  - Partido Comunista
+
+positions:
+  - gobernador
+  - concejal
+  - diputado
+  - senador
+  - intendente

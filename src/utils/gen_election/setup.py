@@ -6,17 +6,20 @@ setup(
     #scripts = ['gen_geo.py'],
     entry_points = {
       'console_scripts': [
-          'gen_geo = nonblock.gen_election.gen_geo:main'
+          'random_election = nonblock.gen_election.random_election:main',
+          'election_to_db = nonblock.gen_election.db:main',
+          #'gen_geo = nonblock.gen_election.gen_geo:main',
       ]
     },
 
     # Project uses reStructuredText, so ensure that the docutils get
     # installed or upgraded on the target machine
-    install_requires = ['docutils', 'sqlalchemy'],
+    install_requires = ['docutils', 'sqlalchemy', 'pyyaml', 'oursql'],
 
     package_data = {
         # If any package contains *.txt or *.rst files, include them:
-        'nonblock': ['data/2011-prim-conc-santafe.csv']
+        'nonblock.gen_election': ['data/people_names.yml',
+                                  'data/places_names.yml']
 
         # And include any *.msg files found in the 'hello' package, too:
     },
