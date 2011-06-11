@@ -10,6 +10,8 @@ import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import com.globant.nonblock.netty.server.config.HttpServerOptions;
 import com.globant.nonblock.netty.server.pipeline.DefaultChannelPipelineFactory;
 import com.globant.nonblock.netty.server.pipeline.RawSocketChannelPipelineFactory;
+import com.globant.nonblock.netty.server.pipeline.handler.config.URLHandlerOptions;
+import com.globant.nonblock.netty.server.pipeline.handler.resource.config.StaticContentConfig;
 import com.globant.nonblock.netty.server.service.geo.GeoTree;
 import com.globant.nonblock.netty.server.service.location.LocationService;
 import com.google.inject.Guice;
@@ -24,7 +26,10 @@ public class MainServer {
 
 		Module optionsModule = new OptionsModule(cmdLine).options(HttpServerOptions.class);
 
-		Injector mainInjector = Guice.createInjector(new MainServerModule(), optionsModule);
+		Module staticOptionsModule = new OptionsModule(cmdLine).options(StaticContentConfig.class);
+		Module urlOptionsModule = new OptionsModule(cmdLine).options(URLHandlerOptions.class);
+
+		Injector mainInjector = Guice.createInjector(new MainServerModule(), optionsModule, staticOptionsModule, urlOptionsModule);
 
 		mainInjector.getInstance(PersistService.class).start();
 		mainInjector.getInstance(LocationService.class).start();

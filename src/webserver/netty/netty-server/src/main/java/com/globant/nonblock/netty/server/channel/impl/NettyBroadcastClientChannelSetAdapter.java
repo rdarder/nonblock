@@ -6,24 +6,22 @@ import java.util.Iterator;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.group.ChannelGroup;
 import org.jboss.netty.channel.group.DefaultChannelGroup;
-import org.jboss.netty.handler.codec.http.websocket.DefaultWebSocketFrame;
 
 import com.globant.nonblock.netty.server.channel.BroadcastClientChannelSet;
 import com.globant.nonblock.netty.server.channel.ClientChannel;
 
-public class NettyBroadcastClientChannelSetAdapter implements BroadcastClientChannelSet {
+public final class NettyBroadcastClientChannelSetAdapter implements BroadcastClientChannelSet {
 
-	private ChannelGroup channelGroup = new DefaultChannelGroup();
+	private final ChannelGroup channelGroup = new DefaultChannelGroup();
 
 	@Override
 	public void writeToAll(final String message) {
-//		this.channelGroup.write(new DefaultWebSocketFrame(message));
 		this.channelGroup.write(message);
 	}
 
 	@Override
 	public boolean add(final ClientChannel e) {
-		NettyClientChannelAdapter ncc = (NettyClientChannelAdapter) e;
+		final NettyClientChannelAdapter ncc = (NettyClientChannelAdapter) e;
 		return this.channelGroup.add(ncc.getWrappedChannel());
 	}
 

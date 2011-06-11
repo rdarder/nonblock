@@ -8,7 +8,10 @@ import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
 import org.jboss.netty.handler.codec.http.HttpRequest;
 import org.jboss.netty.handler.stream.ChunkedWriteHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.globant.nonblock.netty.server.pipeline.handler.config.URLHandlerOptions;
 import com.globant.nonblock.netty.server.pipeline.handler.request.NewDataPostHandler;
 import com.globant.nonblock.netty.server.pipeline.handler.resource.HttpStaticFileServerHandler;
 import com.globant.nonblock.netty.server.pipeline.handler.websocket.WebSocketMessageEncoderHandler;
@@ -17,14 +20,21 @@ import com.google.inject.Provider;
 
 public class UriBasedPipelineSwitcher extends SimpleChannelUpstreamHandler {
 
-	private Provider<MessageManagerHandler> messageBrokerHanlderProvider;
-	private Provider<NewDataPostHandler> newDataPostHandlerProvider;
-
+	private final Provider<MessageManagerHandler> messageBrokerHanlderProvider;
+	private final Provider<NewDataPostHandler> newDataPostHandlerProvider;
+	private final Provider<HttpStaticFileServerHandler> staticContentHanlderProvider;
+	private final URLHandlerOptions urlHandlerOptions;
+	
+	private final static Logger logger = LoggerFactory.getLogger(UriBasedPipelineSwitcher.class);
+	
 	@Inject
-	public UriBasedPipelineSwitcher(Provider<MessageManagerHandler> messageBrokerHanlderProvider, Provider<NewDataPostHandler> newDataPostHandlerProvider) {
+	public UriBasedPipelineSwitcher(Provider<MessageManagerHandler> messageBrokerHanlderProvider, Provider<NewDataPostHandler> newDataPostHandlerProvider,
+			Provider<HttpStaticFileServerHandler> staticContentHandlerProvider, URLHandlerOptions urlHandlerOptions) {
 		super();
 		this.messageBrokerHanlderProvider = messageBrokerHanlderProvider;
 		this.newDataPostHandlerProvider = newDataPostHandlerProvider;
+		this.staticContentHanlderProvider = staticContentHandlerProvider;
+		this.urlHandlerOptions = urlHandlerOptions;
 	}
 
 	@Override
@@ -32,25 +42,25 @@ public class UriBasedPipelineSwitcher extends SimpleChannelUpstreamHandler {
 
 		HttpRequest httpMessage = (HttpRequest) e.getMessage();
 
-		if (httpMessage.getUri().startsWith("/ws")) {
-			System.out.println("Serving web sockets");
-			ChannelPipeline p = ctx.getPipeline();
+		logger.info("Procesing http request at URI " + httpMessage.getUri());
+		
+		if (httpMessage.getUri().startsWith("/" + urlHandlerOptions.webSocketUrl())) {
+			final ChannelPipeline p = ctx.getPipeline();
 			p.addLast("webSocketHandler", new WebSocketServerHandler());
 			p.addLast("messageEncoder", new WebSocketMessageEncoderHandler());
-			p.addLast("messageBroker", this.messageBrokerHanlderProvider.get());
+			p.addLast("messageBroker", messageBrokerHanlderProvider.get());
 			p.remove(this);
-			System.out.println("");
-		} else if (httpMessage.getUri().startsWith("/static")) {
-			System.out.println("Serving static resources");
-			ChannelPipeline p = ctx.getPipeline();
+		} else if (httpMessage.getUri().startsWith("/" + urlHandlerOptions.appUrl())) {
+			final ChannelPipeline p = ctx.getPipeline();
 			p.addLast("chunkedWriter", new ChunkedWriteHandler());
-			p.addLast("staticFilesHandler", new HttpStaticFileServerHandler());
+			p.addLast("staticFilesHandler", staticContentHanlderProvider.get());
 			p.remove(this);
-		} else if (httpMessage.getUri().startsWith("/post")) {
-			System.out.println("Serving post service");
-			ChannelPipeline p = ctx.getPipeline();
+		} else if (httpMessage.getUri().startsWith("/" + urlHandlerOptions.loadServiceUrl())) {
+			final ChannelPipeline p = ctx.getPipeline();
 			p.addLast("postMessageBroker", newDataPostHandlerProvider.get());
 			p.remove(this);
+		} else {
+			//TODO error handler
 		}
 
 		ctx.sendUpstream(e);

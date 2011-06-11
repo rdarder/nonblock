@@ -32,7 +32,7 @@
   <classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.8.0/jackson-mapper-asl-1.8.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/javassist/javassist/3.12.0.GA/javassist-3.12.0.GA.jar" sourcepath="M2_REPO/javassist/javassist/3.12.0.GA/javassist-3.12.0.GA-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/kohsuke/stapler/json-lib/2.1/json-lib-2.1-jdk15.jar"/>
-  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" sourcepath="M2_REPO/junit/junit/3.8.1/junit-3.8.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/4.0/junit-4.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/mvel/mvel2/2.0.18/mvel2-2.0.18.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/netty/netty/3.2.4.Final/netty-3.2.4.Final.jar" sourcepath="M2_REPO/org/jboss/netty/netty/3.2.4.Final/netty-3.2.4.Final-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/sitebricks/sitebricks-converter/0.8.5/sitebricks-converter-0.8.5.jar"/>

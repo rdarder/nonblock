@@ -15,17 +15,25 @@
  */
 package com.globant.nonblock.netty.server.pipeline.handler.resource;
 
-import static org.jboss.netty.handler.codec.http.HttpHeaders.*;
-import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.*;
-import static org.jboss.netty.handler.codec.http.HttpMethod.*;
-import static org.jboss.netty.handler.codec.http.HttpResponseStatus.*;
-import static org.jboss.netty.handler.codec.http.HttpVersion.*;
+import static org.jboss.netty.handler.codec.http.HttpHeaders.isKeepAlive;
+import static org.jboss.netty.handler.codec.http.HttpHeaders.setContentLength;
+import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE;
+import static org.jboss.netty.handler.codec.http.HttpMethod.GET;
+import static org.jboss.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
+import static org.jboss.netty.handler.codec.http.HttpResponseStatus.FORBIDDEN;
+import static org.jboss.netty.handler.codec.http.HttpResponseStatus.INTERNAL_SERVER_ERROR;
+import static org.jboss.netty.handler.codec.http.HttpResponseStatus.METHOD_NOT_ALLOWED;
+import static org.jboss.netty.handler.codec.http.HttpResponseStatus.NOT_FOUND;
+import static org.jboss.netty.handler.codec.http.HttpResponseStatus.OK;
+import static org.jboss.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+
+import javax.inject.Inject;
 
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.Channel;
@@ -47,21 +55,34 @@ import org.jboss.netty.handler.ssl.SslHandler;
 import org.jboss.netty.handler.stream.ChunkedFile;
 import org.jboss.netty.util.CharsetUtil;
 
+import com.globant.nonblock.netty.server.pipeline.handler.config.URLHandlerOptions;
+import com.globant.nonblock.netty.server.pipeline.handler.resource.config.StaticContentConfig;
+
 /**
  * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
  * @author <a href="http://gleamynode.net/">Trustin Lee</a>
  */
 public class HttpStaticFileServerHandler extends SimpleChannelUpstreamHandler {
 
-    @Override
-    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
+	private final StaticContentConfig staticContentConfig;
+	private final URLHandlerOptions urlHandlerOptions;
+	
+	@Inject
+    public HttpStaticFileServerHandler(final StaticContentConfig staticContentConfig, final URLHandlerOptions urlHandlerOptions) {
+		super();
+		this.staticContentConfig = staticContentConfig;
+		this.urlHandlerOptions = urlHandlerOptions;
+	}
+
+	@Override
+    public void messageReceived(final ChannelHandlerContext ctx, final MessageEvent e) throws Exception {
         HttpRequest request = (HttpRequest) e.getMessage();
         if (request.getMethod() != GET) {
             sendError(ctx, METHOD_NOT_ALLOWED);
             return;
         }
 
-        final String path = sanitizeUri(request.getUri().replaceFirst("/static", ""));
+        final String path = sanitizeUri(request.getUri());
         if (path == null) {
             sendError(ctx, FORBIDDEN);
             return;
@@ -124,8 +145,7 @@ public class HttpStaticFileServerHandler extends SimpleChannelUpstreamHandler {
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e)
-            throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
         Channel ch = e.getChannel();
         Throwable cause = e.getCause();
         if (cause instanceof TooLongFrameException) {
@@ -151,6 +171,8 @@ public class HttpStaticFileServerHandler extends SimpleChannelUpstreamHandler {
             }
         }
 
+        uri = uri.replaceFirst(this.urlHandlerOptions.appUrl(), "");
+        
         // Convert file separators.
         uri = uri.replace('/', File.separatorChar);
 
@@ -161,9 +183,9 @@ public class HttpStaticFileServerHandler extends SimpleChannelUpstreamHandler {
             uri.startsWith(".") || uri.endsWith(".")) {
             return null;
         }
-        
+
         // Convert to absolute path.
-        return System.getProperty("user.dir")  + uri;
+        return this.staticContentConfig.rootPath()  + uri;
     }
 
     private void sendError(ChannelHandlerContext ctx, HttpResponseStatus status) {

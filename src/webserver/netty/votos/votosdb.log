@@ -1,2 +1,15 @@
 /*C3*/SET SCHEMA PUBLIC
-DISCONNECT
+INSERT INTO VOTO VALUES(99,'Jules','General Lopez','EET 317','San Gregorio','Mesa 1','PSD','Santa Fe','Intendente','Zona norte',1)
+COMMIT
+INSERT INTO VOTO VALUES(100,'Jules','General Lopez','EET 317','San Gregorio','Mesa 1','PSD','Santa Fe','Intendente','Zona norte',1)
+COMMIT
+INSERT INTO VOTO VALUES(101,'Jules','General Lopez','EET 317','San Gregorio','Mesa 1','PSD','Santa Fe','Intendente','Zona norte',1)
+COMMIT
+INSERT INTO VOTO VALUES(102,'Jules','General Lopez','EET 317','San Gregorio','Mesa 1','PSD','Santa Fe','Intendente','Zona norte',1)
+COMMIT
+INSERT INTO VOTO VALUES(103,'Jules','General Lopez','EET 317','San Gregorio','Mesa 1','PSD','Santa Fe','Intendente','Zona norte',1)
+COMMIT
+INSERT INTO VOTO VALUES(104,'Jules','General Lopez','EET 317','San Gregorio','Mesa 1','PSD','Santa Fe','Intendente','Zona norte',1)
+COMMIT
+INSERT INTO VOTO VALUES(105,'Jules','General Lopez','EET 317','San Gregorio','Mesa 1','PSD','Santa Fe','Intendente','Zona norte',1)
+COMMIT

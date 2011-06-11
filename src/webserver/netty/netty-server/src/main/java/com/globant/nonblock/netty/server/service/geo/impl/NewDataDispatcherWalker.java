@@ -22,7 +22,7 @@ public class NewDataDispatcherWalker implements GeoTreeWalker {
 		for (final SubscribeMessage sm : geoNode.getAllSubscriberMessages()) {
 			final BroadcastClientChannelSet channelGroup = geoNode.getChannelGroup(sm);
 			final NewDataMessage message = this.voteService.calculateStatus(sm);
-			channelGroup.writeToAll(message.toJson());
+			channelGroup.writeToAll(message.toJson() + "\n");
 		}
 	}
 
