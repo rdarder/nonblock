@@ -1,16 +1,8 @@
-from itertools import izip, chain, repeat
-from pkg_resources import resource_filename
 import logging
 import yaml
-import pprint
 import random
 import argparse
 
-"""
-Election tables:
-provincia, departamento, localidad, seccional, mesa, votos
-
-"""
 def seq_name(level, index):
   return "%s_%i" % (level, index)
 
@@ -28,7 +20,7 @@ class RandomCandidates(object):
                         election_spec['levels'][-1]['voters']['mu'])
     self.parties = election_spec['parties']
     self.name_factory = name_factory
-  def __call__(self, level, index, name, base ):
+  def __call__(self, level, index, name, base):
     election = {}
     for position in self.positions.get(level,[]):
       candidates = []
@@ -90,7 +82,6 @@ class RandomPlaceNames(object):
 
 def election_from_spec(election_spec_file, people_names_file,
                        places_names_file):
-
 
   logging.info('loading yaml specs')
   election_spec = yaml.load(election_spec_file)
