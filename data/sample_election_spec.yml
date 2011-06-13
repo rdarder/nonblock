@@ -8,15 +8,15 @@ levels:
     name_gen: places
   - level: departamento
     title: departamentos
-    avg: 5
-    mu: 1
+    avg: 4
+    mu: 2
     positions:
       - diputado
       - senador
     name_gen: places
   - level: localidad
     title: localidades
-    avg: 5
+    avg: 4
     mu: 3
     positions:
       - intendente
@@ -25,31 +25,39 @@ levels:
   - level: seccional
     title: seccionales
     avg: 4
-    mu: 1
+    mu: 3
     name_gen: pattern
     name_pattern: "Seccional {local_index}"
   - level: local
     title: locales
     avg: 4 
-    mu: 1
+    mu: 2
     name_gen: pattern
     name_pattern: "Local {local_index}"
   - level: mesa
     title: mesas
-    avg: 3
-    mu: 1
+    avg: 4
+    mu: 3
     name_gen: pattern
-    name_pattern: "{global_index}"
+    name_pattern: "Mesa {global_index}"
     voters: 
       avg: 200
       mu: 100
 
 
 parties:
-  - Partido Obrero
-  - Partido Liberal
-  - Partido Conservador
-  - Partido Comunista
+  - name: Partido Obrero
+    avg: 30
+    mu: 15
+  - name: Partido Liberal
+    avg: 25
+    mu: 5
+  - name: Partido Conservador
+    avg: 25
+    mu: 5
+  - name: Partido Comunista
+    avg: 20
+    mu: 15
 
 positions:
   - gobernador
