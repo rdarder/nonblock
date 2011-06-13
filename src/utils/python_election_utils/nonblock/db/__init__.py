@@ -1,4 +1,10 @@
 import sqlalchemy as sa
+from sqlalchemy import sql, orm
+import logging
+
+metadata = sa.MetaData()
+session_maker = orm.sessionmaker()
+session = session_maker()
 
 def spec_levels(spec):
   return [l['level'] for l in spec['levels']]
@@ -43,4 +49,33 @@ def declare_tables(spec, metadata):
                              primary_key=True),
                    sa.Column('votes', sa.Integer, nullable=False)
                   )
+
+def setup_mapper(spec, tables, classes):
+  pass
+
+def setup(election_spec, url, clean_db=False, echo=False):
+  global spec, engine, metadata, session_maker, session
+
+  spec = election_spec
+
+  logging.info('connecting to db')
+  engine = sa.create_engine(url,echo=echo)
+  metadata.bind = engine
+  session_maker.bind = engine
+  session = session_maker()
+
+  logging.info('building table structure')
+  declare_tables(spec, metadata)
+  if clean_db:
+    logging.info('cleaning previous tables')
+    metadata.drop_all()
+    logging.info('creating new tables')
+    metadata.create_all()
+
+
+
+def configure_mapper(spec, tables, classes):
+  pass
+
+
 

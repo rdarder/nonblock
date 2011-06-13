@@ -18,8 +18,6 @@ def shuffle_vote_centers(session, metadata, spec):
   random.shuffle(vote_places)
   return vote_places
 
-def 
-
 def main():
   parser = argparse.ArgumentParser(description='create election database')
   parser.add_argument('-s', '--election-spec', type=argparse.FileType('r'),

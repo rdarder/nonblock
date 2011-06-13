@@ -12,13 +12,13 @@ def spec_titles(spec):
   return [l['title'] for l in spec['levels']]
 
 class ElectionDB(object):
-  def __init__(self, metadata, spec, session):
-    self.tables = metadata.tables
-    self.spec = spec
+  def __init__(self, config):
+    self.tables = config.metadata.tables
+    self.spec = config.spec
     self.levels = spec_levels(self.spec)
     self.titles = spec_titles(self.spec)
     self.parties = {}
-    self.session = session
+    self.session = config.session
   def fill_geo(self, election, i=0, parent_container_id=None):
     level = self.levels[i]
     title = self.titles[i]
@@ -47,8 +47,8 @@ class ElectionDB(object):
   def fill_parties(self):
     for party in self.spec['parties']:
       r1 = self.session.execute(sql.insert(self.tables['parties'],
-                                          values=dict(name=party)))
-      self.parties[party] = r1.inserted_primary_key[0]
+                                          values=dict(name=party['name'])))
+      self.parties[party['name']] = r1.inserted_primary_key[0]
   def load(self, election):
     self.fill_parties()
     self.fill_geo(election)
@@ -69,29 +69,17 @@ def main():
 
   if args.verbose:
     logging.basicConfig(level=logging.INFO)
+
   logging.info('loading election spec')
   election_spec = yaml.load(args.election_spec)
 
   logging.info('loading election')
-  election =  yaml.load(args.election)
+  election = yaml.load(args.election)
 
-  logging.info('connecting to db')
-  engine = sa.create_engine(args.db, echo=args.debug)
-  metadata = sa.MetaData(bind=engine)
-  session_maker = orm.sessionmaker(bind=engine)
-  session = session_maker()
-
-  logging.info('building table structure')
-  db.declare_tables(election_spec, metadata)
-
-  logging.info('cleaning previous tables')
-  metadata.drop_all()
-
-  logging.info('creating new tables')
-  metadata.create_all()
+  db.setup(election_spec, args.db, True, args.debug)
 
   logging.info('loading election into the db')
-  election_db = ElectionDB(metadata, election_spec, session)
+  election_db = ElectionDB(db)
   election_db.load(election)
   logging.info('finished')
 

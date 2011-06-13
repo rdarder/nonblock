@@ -11,14 +11,13 @@ def empty_level(level, index, name, slot):
 
 class RandomCandidates(object):
   def __init__(self, election_spec, name_factory):
-    self.parties = election_spec['parties']
+    self.parties = [p['name'] for p in election_spec['parties']]
     self.positions = {}
     for level in election_spec['levels']:
       self.positions[level['level']] = level.get('positions',[])
     self.votes_label = election_spec['levels'][-1]['level']
     self.votes_random = (election_spec['levels'][-1]['voters']['avg'],
                         election_spec['levels'][-1]['voters']['mu'])
-    self.parties = election_spec['parties']
     self.name_factory = name_factory
   def __call__(self, level, index, name, base):
     election = {}
@@ -47,8 +46,8 @@ def gen_election(spec, name_factory, item_factory):
       base[level['title']] = insert_into
       for r in range(to_gen):
         autoincrement += 1
-        lname = name_factory(level['level'], i, autoincrement)
-        entry = item_factory(level['level'], i, lname, {})
+        lname = name_factory(level['level'], r, autoincrement)
+        entry = item_factory(level['level'], r, lname, {})
         insert_into[lname] = entry
         next_bases.append(entry)
     bases = next_bases
