@@ -45,6 +45,21 @@ def declare_tables(spec, metadata):
                              primary_key=True),
                    sa.Column('votos', sa.Integer, nullable=False)
                   )
+  x_votes = sa.Table('votos_expandidos', metadata,
+                     sa.Column(levels[-1] + '_id',
+                               sa.Integer, sa.ForeignKey('geo.id'),
+                               primary_key=True),
+                     sa.Column(levels[-1], sa.String(64)),
+                     sa.Column('candidato_id', sa.Integer,
+                               sa.ForeignKey('candidatos.id'),
+                               primary_key=True),
+                     sa.Column('votos', sa.Integer, nullable=False)
+                    )
+
+  for level in levels[:-1]:
+    x_votes.append_column(sa.Column(level + '_id', sa.Integer,
+                                    sa.ForeignKey('geo.id')))
+    x_votes.append_column(sa.Column(level , sa.String(64)))
 
 def setup_mapper(spec, tables, classes):
   pass
