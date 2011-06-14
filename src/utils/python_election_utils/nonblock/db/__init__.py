@@ -53,6 +53,11 @@ def declare_tables(spec, metadata):
                      sa.Column('candidato_id', sa.Integer,
                                sa.ForeignKey('candidatos.id'),
                                primary_key=True),
+                     sa.Column('partido_id', sa.Integer,
+                               sa.ForeignKey('partidos.id'),
+                               primary_key=True),
+                     sa.Column('candidato', sa.String(64)),
+                     sa.Column('partido', sa.String(64)),
                      sa.Column('votos', sa.Integer, nullable=False)
                     )
 
