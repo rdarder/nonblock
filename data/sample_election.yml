@@ -1,1520 +1,677 @@
 provincias:
-  BELICHA HUAICO:
-    candidates:
+  PIEDRA LARGA:
+    candidatos:
       gobernador:
-      - {name: "Quir\xF3s, Am\xE9rico", party: Partido Obrero}
-      - {name: "Feillu, \xC1lvaro", party: Partido Liberal}
-      - {name: 'Feillu, Belisario', party: Partido Conservador}
-      - {name: "Gillespie, \xC1ngel", party: Partido Comunista}
+      - {nombre: 'Nell, Guillermo', partido: Partido Obrero}
+      - {nombre: "Gir\xF3n, Itziar", partido: Partido Liberal}
+      - {nombre: 'Berezutskiy, Gisela', partido: Partido Conservador}
+      - {nombre: 'Brainin, Aquiles', partido: Partido Comunista}
     departamentos:
-      CAINGUAS:
-        candidates:
+      FALUCHO:
+        candidatos:
           diputado:
-          - {name: 'Ortigoza, Rosario', party: Partido Obrero}
-          - {name: "Jankovi\u0107, Clemente", party: Partido Liberal}
-          - {name: "Pineau, Zacar\xEDas", party: Partido Conservador}
-          - {name: "Parra, Lo\xEFc", party: Partido Comunista}
+          - {nombre: 'Masad, Casio', partido: Partido Obrero}
+          - {nombre: 'Pozo, Lionel', partido: Partido Liberal}
+          - {nombre: "Fern\xE1ndez Maldonado, Mart\xEDn", partido: Partido Conservador}
+          - {nombre: 'Botero, Aladino', partido: Partido Comunista}
           senador:
-          - {name: 'Jankauskas, Ciriaco', party: Partido Obrero}
-          - {name: 'Galliano, Henrik', party: Partido Liberal}
-          - {name: 'Pimentel, Carolina', party: Partido Conservador}
-          - {name: 'Bujalance, Bhima', party: Partido Comunista}
+          - {nombre: 'Venturi, Bosco', partido: Partido Obrero}
+          - {nombre: "Am\xE9rico, Am\xE9rico", partido: Partido Liberal}
+          - {nombre: 'Mosconi, Canuto', partido: Partido Conservador}
+          - {nombre: 'Torrijos, Gilberto', partido: Partido Comunista}
         localidades:
-          CEIBALITO:
-            candidates:
+          AGUSTINA:
+            candidatos:
               concejal:
-              - {name: 'Vivas, Arnaldo', party: Partido Obrero}
-              - {name: "Sikorski, Ur\xEDas", party: Partido Liberal}
-              - {name: 'Feillu, Agatoclio', party: Partido Conservador}
-              - {name: 'Freire, Adela', party: Partido Comunista}
+              - {nombre: 'Weiss, Karen', partido: Partido Obrero}
+              - {nombre: "Guti\xE9rrez de Barqu\xEDn, Marta", partido: Partido Liberal}
+              - {nombre: 'Estallo, Brian', partido: Partido Conservador}
+              - {nombre: "S\xE1enz de Santamar\xEDa, Carmelo", partido: Partido Comunista}
               intendente:
-              - {name: "Ram\xEDrez, Aurelio", party: Partido Obrero}
-              - {name: 'Perelman, Itziar', party: Partido Liberal}
-              - {name: "Sol\xEDs, Benito", party: Partido Conservador}
-              - {name: 'Bathich, Nicole', party: Partido Comunista}
+              - {nombre: 'Vicioso, Cosme', partido: Partido Obrero}
+              - {nombre: 'Contini, Benedicto', partido: Partido Liberal}
+              - {nombre: 'Otero, Enzo', partido: Partido Conservador}
+              - {nombre: 'Germano, Ariadna', partido: Partido Comunista}
             seccionales:
               Seccional 0:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 392: {voters: 97}
+                      Mesa 273: {votantes: 189}
+                      Mesa 274: {votantes: 216}
+                      Mesa 275: {votantes: 194}
                   Local 1:
                     mesas:
-                      Mesa 393: {voters: 180}
+                      Mesa 276: {votantes: 167}
+                  Local 2:
+                    mesas:
+                      Mesa 277: {votantes: 58}
+                      Mesa 278: {votantes: 177}
+                      Mesa 279: {votantes: 69}
+                      Mesa 280: {votantes: 252}
+                      Mesa 281: {votantes: 259}
+                      Mesa 282: {votantes: 314}
+                  Local 3:
+                    mesas:
+                      Mesa 283: {votantes: 178}
+                      Mesa 284: {votantes: 133}
               Seccional 1:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 394: {voters: 180}
-                  Local 1:
-                    mesas:
-                      Mesa 395: {voters: 218}
-          EL LENGUARAZ:
-            candidates:
-              concejal:
-              - {name: 'Townsend, Herman', party: Partido Obrero}
-              - {name: "Arnillas, Bego\xF1a", party: Partido Liberal}
-              - {name: 'Guasch, Alfredo', party: Partido Conservador}
-              - {name: 'Delibes, Angustias', party: Partido Comunista}
-              intendente:
-              - {name: 'Townsend, Vadim', party: Partido Obrero}
-              - {name: 'Busquets, Felipe', party: Partido Liberal}
-              - {name: 'Vidangos, Leila Leticia', party: Partido Conservador}
-              - {name: "S\xE1nchez de Toca, Armando", party: Partido Comunista}
-            seccionales:
-              Seccional 0:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 396: {voters: 263}
-                  Local 1:
-                    mesas:
-                      Mesa 397: {voters: 247}
-                  Local 2:
-                    mesas:
-                      Mesa 398: {voters: 192}
-                      Mesa 399: {voters: 203}
-                      Mesa 400: {voters: 223}
-                      Mesa 401: {voters: 354}
-                      Mesa 402: {voters: 323}
-                      Mesa 403: {voters: 117}
-                      Mesa 404: {voters: 147}
-                      Mesa 405: {voters: 199}
-                  Local 3:
-                    mesas:
-                      Mesa 406: {voters: 179}
-                      Mesa 407: {voters: 258}
-          SANTA VICTORIA:
-            candidates:
-              concejal:
-              - {name: 'Boissieu, Gisela', party: Partido Obrero}
-              - {name: 'Krivtsov, Betuel', party: Partido Liberal}
-              - {name: 'Bujalance, Agripina', party: Partido Conservador}
-              - {name: "Wiggins, Jos\xE9", party: Partido Comunista}
-              intendente:
-              - {name: 'Perelman, Publio', party: Partido Obrero}
-              - {name: 'De Clercq, Amancio', party: Partido Liberal}
-              - {name: 'Andrade, Slawomir', party: Partido Conservador}
-              - {name: "Zumpt, \xC1frica", party: Partido Comunista}
-            seccionales:
-              Seccional 0:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 289: {voters: 110}
-                      Mesa 290: {voters: 121}
-                      Mesa 291: {voters: 202}
-                      Mesa 292: {voters: 328}
-                      Mesa 293: {voters: 148}
-                      Mesa 294: {voters: 428}
-              Seccional 1:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 295: {voters: 222}
-                      Mesa 296: {voters: 233}
-                      Mesa 297: {voters: 278}
-                  Local 1:
-                    mesas:
-                      Mesa 298: {voters: 215}
-                  Local 2:
-                    mesas:
-                      Mesa 299: {voters: 143}
-                      Mesa 300: {voters: 210}
-                      Mesa 301: {voters: 119}
-                  Local 3:
-                    mesas:
-                      Mesa 302: {voters: 190}
-                      Mesa 303: {voters: 40}
-                      Mesa 304: {voters: 253}
-                      Mesa 305: {voters: 307}
-                      Mesa 306: {voters: 221}
-                      Mesa 307: {voters: 288}
+                      Mesa 285: {votantes: 154}
+                      Mesa 286: {votantes: 267}
+                      Mesa 287: {votantes: 142}
+                      Mesa 288: {votantes: 362}
+                      Mesa 289: {votantes: 245}
               Seccional 2:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 308: {voters: 152}
+                      Mesa 290: {votantes: 101}
+                      Mesa 291: {votantes: 314}
+                      Mesa 292: {votantes: 297}
+                      Mesa 293: {votantes: 188}
                   Local 1:
                     mesas:
-                      Mesa 309: {voters: 221}
+                      Mesa 294: {votantes: 136}
                   Local 2:
                     mesas:
-                      Mesa 310: {voters: 158}
-                      Mesa 311: {voters: 348}
+                      Mesa 295: {votantes: 201}
+                      Mesa 296: {votantes: 186}
+                      Mesa 297: {votantes: 304}
+                      Mesa 298: {votantes: 334}
+                      Mesa 299: {votantes: 105}
+                      Mesa 300: {votantes: 274}
+                      Mesa 301: {votantes: 84}
+                      Mesa 302: {votantes: 246}
                   Local 3:
                     mesas:
-                      Mesa 312: {voters: 250}
-                  Local 4:
-                    mesas:
-                      Mesa 313: {voters: 262}
-                      Mesa 314: {voters: 125}
-                      Mesa 315: {voters: 155}
-                      Mesa 316: {voters: 170}
-                  Local 5:
-                    mesas:
-                      Mesa 317: {voters: 197}
-                  Local 6:
-                    mesas:
-                      Mesa 318: {voters: 98}
-                      Mesa 319: {voters: 91}
+                      Mesa 303: {votantes: 75}
+                      Mesa 304: {votantes: 35}
+                      Mesa 305: {votantes: 182}
+                      Mesa 306: {votantes: 182}
               Seccional 3:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 320: {voters: 273}
-                      Mesa 321: {voters: 41}
-                      Mesa 322: {voters: 1}
-                      Mesa 323: {voters: 41}
-                      Mesa 324: {voters: 114}
-                      Mesa 325: {voters: 100}
-                      Mesa 326: {voters: 303}
+                      Mesa 307: {votantes: 346}
                   Local 1:
                     mesas:
-                      Mesa 327: {voters: 221}
-                      Mesa 328: {voters: 89}
-                      Mesa 329: {voters: 245}
-                      Mesa 330: {voters: 234}
-                      Mesa 331: {voters: 188}
-                      Mesa 332: {voters: 238}
-                      Mesa 333: {voters: 187}
-                      Mesa 334: {voters: 99}
-                  Local 2:
-                    mesas:
-                      Mesa 335: {voters: 284}
-                      Mesa 336: {voters: 208}
-                      Mesa 337: {voters: 179}
-                      Mesa 338: {voters: 110}
-                      Mesa 339: {voters: 1}
+                      Mesa 308: {votantes: 270}
               Seccional 4:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 340: {voters: 295}
-                      Mesa 341: {voters: 90}
+                      Mesa 309: {votantes: 152}
+                      Mesa 310: {votantes: 226}
+                      Mesa 311: {votantes: 245}
+                      Mesa 312: {votantes: 248}
                   Local 1:
                     mesas:
-                      Mesa 342: {voters: 216}
-                      Mesa 343: {voters: 177}
-                      Mesa 344: {voters: 308}
-                      Mesa 345: {voters: 312}
-                      Mesa 346: {voters: 101}
+                      Mesa 313: {votantes: 1}
+                      Mesa 314: {votantes: 331}
+                      Mesa 315: {votantes: 26}
+                      Mesa 316: {votantes: 225}
+                      Mesa 317: {votantes: 326}
+                      Mesa 318: {votantes: 120}
+                      Mesa 319: {votantes: 176}
+                  Local 2:
+                    mesas:
+                      Mesa 320: {votantes: 145}
+                      Mesa 321: {votantes: 211}
+                      Mesa 322: {votantes: 169}
+                      Mesa 323: {votantes: 313}
+                      Mesa 324: {votantes: 141}
+                      Mesa 325: {votantes: 302}
+                      Mesa 326: {votantes: 186}
+                      Mesa 327: {votantes: 188}
+                  Local 3:
+                    mesas:
+                      Mesa 328: {votantes: 271}
+                      Mesa 329: {votantes: 124}
               Seccional 5:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 347: {voters: 248}
+                      Mesa 330: {votantes: 1}
+                  Local 1:
+                    mesas:
+                      Mesa 331: {votantes: 371}
+                      Mesa 332: {votantes: 70}
+                      Mesa 333: {votantes: 104}
+                      Mesa 334: {votantes: 212}
+                  Local 2:
+                    mesas:
+                      Mesa 335: {votantes: 236}
               Seccional 6:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 348: {voters: 338}
-                      Mesa 349: {voters: 256}
-                      Mesa 350: {voters: 204}
+                      Mesa 336: {votantes: 80}
+                      Mesa 337: {votantes: 172}
+                      Mesa 338: {votantes: 370}
+                      Mesa 339: {votantes: 218}
+                      Mesa 340: {votantes: 97}
                   Local 1:
                     mesas:
-                      Mesa 351: {voters: 188}
-                      Mesa 352: {voters: 101}
-                      Mesa 353: {voters: 374}
-                      Mesa 354: {voters: 399}
-              Seccional 7:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 355: {voters: 299}
-                  Local 1:
-                    mesas:
-                      Mesa 356: {voters: 223}
-                      Mesa 357: {voters: 239}
-                      Mesa 358: {voters: 210}
-                      Mesa 359: {voters: 53}
-                      Mesa 360: {voters: 74}
-                      Mesa 361: {voters: 270}
+                      Mesa 341: {votantes: 464}
+                      Mesa 342: {votantes: 172}
+                      Mesa 343: {votantes: 285}
+                      Mesa 344: {votantes: 153}
                   Local 2:
                     mesas:
-                      Mesa 362: {voters: 247}
-                      Mesa 363: {voters: 209}
-                      Mesa 364: {voters: 107}
+                      Mesa 345: {votantes: 220}
+                      Mesa 346: {votantes: 176}
                   Local 3:
                     mesas:
-                      Mesa 365: {voters: 179}
+                      Mesa 347: {votantes: 183}
+                      Mesa 348: {votantes: 203}
+                      Mesa 349: {votantes: 152}
                   Local 4:
                     mesas:
-                      Mesa 366: {voters: 238}
-                      Mesa 367: {voters: 123}
-                      Mesa 368: {voters: 403}
-                      Mesa 369: {voters: 262}
-                      Mesa 370: {voters: 246}
-              Seccional 8:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 371: {voters: 95}
-                      Mesa 372: {voters: 267}
-                      Mesa 373: {voters: 142}
-                  Local 1:
-                    mesas:
-                      Mesa 374: {voters: 116}
-                  Local 2:
-                    mesas:
-                      Mesa 375: {voters: 78}
-                      Mesa 376: {voters: 173}
-                      Mesa 377: {voters: 197}
-                      Mesa 378: {voters: 151}
-                  Local 3:
-                    mesas:
-                      Mesa 379: {voters: 261}
-                      Mesa 380: {voters: 191}
-                      Mesa 381: {voters: 359}
-                      Mesa 382: {voters: 276}
-                      Mesa 383: {voters: 87}
-                  Local 4:
-                    mesas:
-                      Mesa 384: {voters: 75}
-                      Mesa 385: {voters: 134}
-                      Mesa 386: {voters: 113}
-                      Mesa 387: {voters: 295}
-                      Mesa 388: {voters: 270}
-              Seccional 9:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 389: {voters: 171}
-                  Local 1:
-                    mesas:
-                      Mesa 390: {voters: 117}
-                      Mesa 391: {voters: 138}
-      COMANDANTE NICANOR OTAMENDI:
-        candidates:
-          diputado:
-          - {name: "Fern\xE1ndez, Elena", party: Partido Obrero}
-          - {name: "Mor\xF3n, Apolinar", party: Partido Liberal}
-          - {name: 'Manrique, Boulus', party: Partido Conservador}
-          - {name: 'Escosura, Balbino', party: Partido Comunista}
-          senador:
-          - {name: 'Hillary, Covadonga', party: Partido Obrero}
-          - {name: 'Townsend, Pedro', party: Partido Liberal}
-          - {name: 'Covarrubias, Celso', party: Partido Conservador}
-          - {name: 'Bauman, Nancy', party: Partido Comunista}
-        localidades:
-          CAPILLITAS:
-            candidates:
+                      Mesa 350: {votantes: 104}
+                      Mesa 351: {votantes: 55}
+                      Mesa 352: {votantes: 122}
+          ATILES:
+            candidatos:
               concejal:
-              - {name: 'Popescu, Dafne', party: Partido Obrero}
-              - {name: 'Perkins, Vladislao', party: Partido Liberal}
-              - {name: "Quir\xF3s, Emma", party: Partido Conservador}
-              - {name: "Mor\xF3n, Borja", party: Partido Comunista}
+              - {nombre: 'Dicimanzi, Afrodisio', partido: Partido Obrero}
+              - {nombre: "Rosenzweig, Ang\xE9lica", partido: Partido Liberal}
+              - {nombre: "Mor\xF3n, Bego\xF1a", partido: Partido Conservador}
+              - {nombre: "Charpentier, Gor\u014D", partido: Partido Comunista}
               intendente:
-              - {name: 'Montenegro, Premislao', party: Partido Obrero}
-              - {name: 'Frechoso, Camilo', party: Partido Liberal}
-              - {name: 'Valadares, Marta', party: Partido Conservador}
-              - {name: 'Berezutskiy, Jennifer', party: Partido Comunista}
+              - {nombre: 'Gazzola, Ludovico', partido: Partido Obrero}
+              - {nombre: "Mihura, Jes\xFAs", partido: Partido Liberal}
+              - {nombre: "Zberg, Agamen\xF3n", partido: Partido Conservador}
+              - {nombre: "Escand\xF3n, Isidro", partido: Partido Comunista}
             seccionales:
               Seccional 0:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 844: {voters: 216}
-                      Mesa 845: {voters: 193}
-                      Mesa 846: {voters: 159}
-                  Local 1:
-                    mesas:
-                      Mesa 847: {voters: 212}
-                      Mesa 848: {voters: 178}
-                  Local 2:
-                    mesas:
-                      Mesa 849: {voters: 280}
-                      Mesa 850: {voters: 74}
-                  Local 3:
-                    mesas:
-                      Mesa 851: {voters: 162}
-                      Mesa 852: {voters: 261}
-                      Mesa 853: {voters: 169}
-                      Mesa 854: {voters: 327}
-                  Local 4:
-                    mesas:
-                      Mesa 855: {voters: 111}
-                  Local 5:
-                    mesas:
-                      Mesa 856: {voters: 275}
-                      Mesa 857: {voters: 16}
-                      Mesa 858: {voters: 456}
-                  Local 6:
-                    mesas:
-                      Mesa 859: {voters: 223}
-                      Mesa 860: {voters: 176}
-                  Local 7:
-                    mesas:
-                      Mesa 861: {voters: 131}
-          DEL CARRIL:
-            candidates:
+                      Mesa 364: {votantes: 383}
+                      Mesa 365: {votantes: 363}
+          EL PARAISO:
+            candidatos:
               concejal:
-              - {name: 'Luttenberger, Etelfrido', party: Partido Obrero}
-              - {name: 'Townsend, Constanza', party: Partido Liberal}
-              - {name: 'Llaguno, Benigno', party: Partido Conservador}
-              - {name: "Guti\xE9rrez, Ciro", party: Partido Comunista}
+              - {nombre: 'Mestral, Casimiro', partido: Partido Obrero}
+              - {nombre: 'Kusanovic, Rainer', partido: Partido Liberal}
+              - {nombre: "Bartoli, Sabur\u014D", partido: Partido Conservador}
+              - {nombre: 'Fujimori, Deodato', partido: Partido Comunista}
               intendente:
-              - {name: 'Massera, Hitomi', party: Partido Obrero}
-              - {name: 'Picard, Francina', party: Partido Liberal}
-              - {name: 'Frutos, Mstislav', party: Partido Conservador}
-              - {name: 'Hermann, Bhima', party: Partido Comunista}
+              - {nombre: "Masluc\xE1n, Samuel", partido: Partido Obrero}
+              - {nombre: "Benav\xEDdez, Bhaga", partido: Partido Liberal}
+              - {nombre: 'Dunbar, Casandra', partido: Partido Conservador}
+              - {nombre: 'Cornu, Diego', partido: Partido Comunista}
             seccionales:
               Seccional 0:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 963: {voters: 157}
+                      Mesa 353: {votantes: 172}
                   Local 1:
                     mesas:
-                      Mesa 964: {voters: 219}
-                      Mesa 965: {voters: 102}
-                      Mesa 966: {voters: 1}
-                      Mesa 967: {voters: 182}
-                      Mesa 968: {voters: 223}
-                      Mesa 969: {voters: 79}
+                      Mesa 354: {votantes: 359}
                   Local 2:
                     mesas:
-                      Mesa 970: {voters: 86}
-                      Mesa 971: {voters: 266}
-                      Mesa 972: {voters: 316}
-                  Local 3:
-                    mesas:
-                      Mesa 973: {voters: 248}
-                      Mesa 974: {voters: 158}
-                      Mesa 975: {voters: 146}
-                      Mesa 976: {voters: 194}
-                      Mesa 977: {voters: 129}
-                  Local 4:
-                    mesas:
-                      Mesa 978: {voters: 262}
-                      Mesa 979: {voters: 211}
-                      Mesa 980: {voters: 140}
-                      Mesa 981: {voters: 493}
-                  Local 5:
-                    mesas:
-                      Mesa 982: {voters: 116}
-                      Mesa 983: {voters: 218}
-                      Mesa 984: {voters: 292}
-                      Mesa 985: {voters: 274}
-                      Mesa 986: {voters: 292}
-                      Mesa 987: {voters: 131}
-                      Mesa 988: {voters: 205}
+                      Mesa 355: {votantes: 255}
               Seccional 1:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 989: {voters: 304}
-                      Mesa 990: {voters: 194}
-                      Mesa 991: {voters: 65}
-                      Mesa 992: {voters: 285}
-                      Mesa 993: {voters: 78}
-                      Mesa 994: {voters: 97}
-                      Mesa 995: {voters: 54}
-                      Mesa 996: {voters: 95}
-                      Mesa 997: {voters: 130}
-                      Mesa 998: {voters: 512}
-                      Mesa 999: {voters: 305}
+                      Mesa 356: {votantes: 286}
+                      Mesa 357: {votantes: 117}
+                      Mesa 358: {votantes: 163}
                   Local 1:
                     mesas:
-                      Mesa 1000: {voters: 312}
+                      Mesa 359: {votantes: 429}
                   Local 2:
                     mesas:
-                      Mesa 1001: {voters: 306}
-                      Mesa 1002: {voters: 443}
-                      Mesa 1003: {voters: 283}
-                  Local 3:
-                    mesas:
-                      Mesa 1004: {voters: 91}
-                      Mesa 1005: {voters: 273}
-                      Mesa 1006: {voters: 264}
-                      Mesa 1007: {voters: 260}
-                  Local 4:
-                    mesas:
-                      Mesa 1008: {voters: 281}
-              Seccional 2:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 1009: {voters: 309}
-                      Mesa 1010: {voters: 151}
-                  Local 1:
-                    mesas:
-                      Mesa 1011: {voters: 164}
-                      Mesa 1012: {voters: 278}
-                      Mesa 1013: {voters: 256}
-                  Local 2:
-                    mesas:
-                      Mesa 1014: {voters: 1}
-                      Mesa 1015: {voters: 63}
-                      Mesa 1016: {voters: 264}
-                      Mesa 1017: {voters: 181}
-                  Local 3:
-                    mesas:
-                      Mesa 1018: {voters: 215}
-                      Mesa 1019: {voters: 148}
-                      Mesa 1020: {voters: 281}
-                      Mesa 1021: {voters: 314}
-                      Mesa 1022: {voters: 259}
-                      Mesa 1023: {voters: 302}
-                      Mesa 1024: {voters: 69}
-                      Mesa 1025: {voters: 206}
-                  Local 4:
-                    mesas:
-                      Mesa 1026: {voters: 21}
-                      Mesa 1027: {voters: 286}
-          ENCON:
-            candidates:
+                      Mesa 360: {votantes: 186}
+                      Mesa 361: {votantes: 13}
+                      Mesa 362: {votantes: 160}
+                      Mesa 363: {votantes: 248}
+          SAN LUIS DEL PALMAR:
+            candidatos:
               concejal:
-              - {name: 'Gelman, Kemuel', party: Partido Obrero}
-              - {name: "Ballan, Jos\xE9", party: Partido Liberal}
-              - {name: "Echag\xFCe, David", party: Partido Conservador}
-              - {name: "Valladares, Abd\xEDas", party: Partido Comunista}
+              - {nombre: 'Cornu, Amelia', partido: Partido Obrero}
+              - {nombre: 'Escobar, Sadako', partido: Partido Liberal}
+              - {nombre: "Silloniz, Arist\xF3teles", partido: Partido Conservador}
+              - {nombre: "Hern\xE1ndez, Adela", partido: Partido Comunista}
               intendente:
-              - {name: "Ito, D\xE1maris", party: Partido Obrero}
-              - {name: 'Gilbert, Millaray', party: Partido Liberal}
-              - {name: 'Venturi, Margarita', party: Partido Conservador}
-              - {name: "Piccard, Alcib\xEDades", party: Partido Comunista}
+              - {nombre: "Ljubi\u010Di\u0107, Concepci\xF3n", partido: Partido Obrero}
+              - {nombre: "Mart\xEDn, Dolores", partido: Partido Liberal}
+              - {nombre: 'Jalabert, Isidro', partido: Partido Conservador}
+              - {nombre: 'Bonington, Axel', partido: Partido Comunista}
             seccionales:
               Seccional 0:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 796: {voters: 292}
+                      Mesa 366: {votantes: 240}
+                      Mesa 367: {votantes: 294}
+                      Mesa 368: {votantes: 283}
+                      Mesa 369: {votantes: 204}
+                      Mesa 370: {votantes: 185}
+                      Mesa 371: {votantes: 166}
                   Local 1:
                     mesas:
-                      Mesa 797: {voters: 174}
-                      Mesa 798: {voters: 224}
-                  Local 2:
-                    mesas:
-                      Mesa 799: {voters: 186}
-                      Mesa 800: {voters: 292}
-                      Mesa 801: {voters: 184}
-                      Mesa 802: {voters: 320}
-                      Mesa 803: {voters: 357}
+                      Mesa 372: {votantes: 426}
+                      Mesa 373: {votantes: 196}
               Seccional 1:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 804: {voters: 246}
-                      Mesa 805: {voters: 88}
-                      Mesa 806: {voters: 115}
-                      Mesa 807: {voters: 208}
-                      Mesa 808: {voters: 281}
-                      Mesa 809: {voters: 108}
+                      Mesa 374: {votantes: 234}
+                      Mesa 375: {votantes: 232}
+                      Mesa 376: {votantes: 215}
+                      Mesa 377: {votantes: 300}
+                      Mesa 378: {votantes: 213}
+                      Mesa 379: {votantes: 301}
+                      Mesa 380: {votantes: 286}
+                      Mesa 381: {votantes: 281}
+                      Mesa 382: {votantes: 94}
                   Local 1:
                     mesas:
-                      Mesa 810: {voters: 264}
-                      Mesa 811: {voters: 69}
-                      Mesa 812: {voters: 333}
-                      Mesa 813: {voters: 229}
-                  Local 2:
-                    mesas:
-                      Mesa 814: {voters: 94}
-                      Mesa 815: {voters: 240}
+                      Mesa 383: {votantes: 86}
+                      Mesa 384: {votantes: 153}
+                      Mesa 385: {votantes: 178}
+                      Mesa 386: {votantes: 115}
+                      Mesa 387: {votantes: 211}
               Seccional 2:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 816: {voters: 57}
-                      Mesa 817: {voters: 114}
-                      Mesa 818: {voters: 322}
-                      Mesa 819: {voters: 177}
-                      Mesa 820: {voters: 139}
-                      Mesa 821: {voters: 231}
+                      Mesa 388: {votantes: 177}
+                      Mesa 389: {votantes: 59}
+                      Mesa 390: {votantes: 274}
+                      Mesa 391: {votantes: 48}
                   Local 1:
                     mesas:
-                      Mesa 822: {voters: 125}
-                      Mesa 823: {voters: 220}
-                      Mesa 824: {voters: 311}
-                      Mesa 825: {voters: 264}
+                      Mesa 392: {votantes: 169}
                   Local 2:
                     mesas:
-                      Mesa 826: {voters: 334}
+                      Mesa 393: {votantes: 96}
+                      Mesa 394: {votantes: 157}
+                      Mesa 395: {votantes: 142}
+                      Mesa 396: {votantes: 385}
+                      Mesa 397: {votantes: 325}
                   Local 3:
                     mesas:
-                      Mesa 827: {voters: 152}
-                      Mesa 828: {voters: 241}
+                      Mesa 398: {votantes: 277}
+                      Mesa 399: {votantes: 72}
+                      Mesa 400: {votantes: 230}
                   Local 4:
                     mesas:
-                      Mesa 829: {voters: 225}
+                      Mesa 401: {votantes: 265}
               Seccional 3:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 830: {voters: 160}
-                      Mesa 831: {voters: 367}
-                      Mesa 832: {voters: 295}
+                      Mesa 402: {votantes: 288}
+                      Mesa 403: {votantes: 1}
+                      Mesa 404: {votantes: 320}
+                      Mesa 405: {votantes: 336}
+                      Mesa 406: {votantes: 124}
+                      Mesa 407: {votantes: 187}
+                      Mesa 408: {votantes: 160}
                   Local 1:
                     mesas:
-                      Mesa 833: {voters: 125}
-                      Mesa 834: {voters: 200}
-                      Mesa 835: {voters: 89}
+                      Mesa 409: {votantes: 120}
                   Local 2:
                     mesas:
-                      Mesa 836: {voters: 249}
-                      Mesa 837: {voters: 247}
-                      Mesa 838: {voters: 258}
-                      Mesa 839: {voters: 325}
-                      Mesa 840: {voters: 240}
-                      Mesa 841: {voters: 126}
-                      Mesa 842: {voters: 338}
+                      Mesa 410: {votantes: 205}
+                      Mesa 411: {votantes: 272}
+                      Mesa 412: {votantes: 190}
+                      Mesa 413: {votantes: 346}
                   Local 3:
                     mesas:
-                      Mesa 843: {voters: 208}
-          LA CLOTILDE:
-            candidates:
-              concejal:
-              - {name: 'Pestano, Kemuel', party: Partido Obrero}
-              - {name: 'Feillu, Cipriano', party: Partido Liberal}
-              - {name: "Queipo, Marti\xF1o", party: Partido Conservador}
-              - {name: 'Carranza, Demetrio', party: Partido Comunista}
-              intendente:
-              - {name: 'Zberg, Antonella', party: Partido Obrero}
-              - {name: 'Serkin, Herman', party: Partido Liberal}
-              - {name: 'Weiss, Canuto', party: Partido Conservador}
-              - {name: "S\xE1nchez de Toca, Cayo", party: Partido Comunista}
-            seccionales:
-              Seccional 0:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 734: {voters: 309}
-                  Local 1:
-                    mesas:
-                      Mesa 735: {voters: 248}
-                      Mesa 736: {voters: 283}
-                  Local 2:
-                    mesas:
-                      Mesa 737: {voters: 177}
-                      Mesa 738: {voters: 99}
-                      Mesa 739: {voters: 231}
-                      Mesa 740: {voters: 223}
-                      Mesa 741: {voters: 57}
-                      Mesa 742: {voters: 115}
-                  Local 3:
-                    mesas:
-                      Mesa 743: {voters: 349}
-                  Local 4:
-                    mesas:
-                      Mesa 744: {voters: 279}
-                      Mesa 745: {voters: 121}
-              Seccional 1:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 746: {voters: 281}
-                      Mesa 747: {voters: 201}
-                      Mesa 748: {voters: 230}
-                      Mesa 749: {voters: 85}
-                      Mesa 750: {voters: 159}
-                  Local 1:
-                    mesas:
-                      Mesa 751: {voters: 203}
-                      Mesa 752: {voters: 250}
-                      Mesa 753: {voters: 175}
-                  Local 2:
-                    mesas:
-                      Mesa 754: {voters: 158}
-                  Local 3:
-                    mesas:
-                      Mesa 755: {voters: 126}
-                      Mesa 756: {voters: 141}
-                  Local 4:
-                    mesas:
-                      Mesa 757: {voters: 227}
-                      Mesa 758: {voters: 279}
-                      Mesa 759: {voters: 129}
-                      Mesa 760: {voters: 350}
-              Seccional 2:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 761: {voters: 45}
-                      Mesa 762: {voters: 157}
-                      Mesa 763: {voters: 95}
-                      Mesa 764: {voters: 271}
-                      Mesa 765: {voters: 448}
-                      Mesa 766: {voters: 216}
-                      Mesa 767: {voters: 207}
-                      Mesa 768: {voters: 1}
-                  Local 1:
-                    mesas:
-                      Mesa 769: {voters: 277}
-                  Local 2:
-                    mesas:
-                      Mesa 770: {voters: 301}
-                      Mesa 771: {voters: 286}
-                      Mesa 772: {voters: 154}
-                      Mesa 773: {voters: 244}
-                  Local 3:
-                    mesas:
-                      Mesa 774: {voters: 1}
-              Seccional 3:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 775: {voters: 364}
+                      Mesa 414: {votantes: 256}
+                      Mesa 415: {votantes: 213}
               Seccional 4:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 776: {voters: 293}
-                      Mesa 777: {voters: 124}
-                      Mesa 778: {voters: 77}
+                      Mesa 416: {votantes: 288}
+                      Mesa 417: {votantes: 271}
+                      Mesa 418: {votantes: 292}
+                      Mesa 419: {votantes: 186}
+                      Mesa 420: {votantes: 136}
+                  Local 1:
+                    mesas:
+                      Mesa 421: {votantes: 183}
+                      Mesa 422: {votantes: 262}
+                      Mesa 423: {votantes: 63}
+                      Mesa 424: {votantes: 379}
+                      Mesa 425: {votantes: 276}
+                  Local 2:
+                    mesas:
+                      Mesa 426: {votantes: 374}
+                      Mesa 427: {votantes: 302}
               Seccional 5:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 779: {voters: 229}
-                      Mesa 780: {voters: 137}
-                      Mesa 781: {voters: 151}
-                      Mesa 782: {voters: 346}
-                      Mesa 783: {voters: 301}
-                      Mesa 784: {voters: 341}
-                      Mesa 785: {voters: 223}
-                      Mesa 786: {voters: 169}
-                  Local 1:
-                    mesas:
-                      Mesa 787: {voters: 562}
-                      Mesa 788: {voters: 40}
-                  Local 2:
-                    mesas:
-                      Mesa 789: {voters: 73}
-                  Local 3:
-                    mesas:
-                      Mesa 790: {voters: 126}
-                  Local 4:
-                    mesas:
-                      Mesa 791: {voters: 241}
-                      Mesa 792: {voters: 146}
-                      Mesa 793: {voters: 74}
-                      Mesa 794: {voters: 300}
-                      Mesa 795: {voters: 221}
-          "ROSARIO VERA PE\xD1ALOZA":
-            candidates:
-              concejal:
-              - {name: 'Castellblanch, Marguerite', party: Partido Obrero}
-              - {name: 'Canio, Aryaman', party: Partido Liberal}
-              - {name: "Beanato, Hayd\xE9e", party: Partido Conservador}
-              - {name: 'Hayashi, Karen', party: Partido Comunista}
-              intendente:
-              - {name: "Sabato, Gede\xF3n", party: Partido Obrero}
-              - {name: "S\xE1nchez de Toca, Alfonso", party: Partido Liberal}
-              - {name: 'Gayoso, Bernardino', party: Partido Conservador}
-              - {name: "Gonz\xE1lez, Nuria", party: Partido Comunista}
-            seccionales:
-              Seccional 0:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 909: {voters: 298}
-                      Mesa 910: {voters: 164}
-                      Mesa 911: {voters: 257}
-                      Mesa 912: {voters: 112}
-                      Mesa 913: {voters: 170}
-                      Mesa 914: {voters: 300}
-                      Mesa 915: {voters: 86}
-                      Mesa 916: {voters: 208}
-                      Mesa 917: {voters: 178}
-                  Local 1:
-                    mesas:
-                      Mesa 918: {voters: 297}
-                      Mesa 919: {voters: 307}
-                      Mesa 920: {voters: 214}
-                      Mesa 921: {voters: 146}
-                      Mesa 922: {voters: 32}
-                  Local 2:
-                    mesas:
-                      Mesa 923: {voters: 158}
-                      Mesa 924: {voters: 206}
-                      Mesa 925: {voters: 152}
-                      Mesa 926: {voters: 237}
-                  Local 3:
-                    mesas:
-                      Mesa 927: {voters: 138}
-                      Mesa 928: {voters: 130}
-                      Mesa 929: {voters: 250}
-                      Mesa 930: {voters: 127}
-              Seccional 1:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 931: {voters: 262}
-                  Local 1:
-                    mesas:
-                      Mesa 932: {voters: 138}
-                      Mesa 933: {voters: 142}
-                      Mesa 934: {voters: 203}
-                      Mesa 935: {voters: 168}
-                      Mesa 936: {voters: 144}
-                  Local 2:
-                    mesas:
-                      Mesa 937: {voters: 168}
-                      Mesa 938: {voters: 18}
-                      Mesa 939: {voters: 112}
-                      Mesa 940: {voters: 272}
-              Seccional 2:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 941: {voters: 131}
-                      Mesa 942: {voters: 274}
-                      Mesa 943: {voters: 182}
-                      Mesa 944: {voters: 282}
-                      Mesa 945: {voters: 328}
-                  Local 1:
-                    mesas:
-                      Mesa 946: {voters: 165}
-                      Mesa 947: {voters: 285}
-                      Mesa 948: {voters: 142}
-                      Mesa 949: {voters: 234}
-                      Mesa 950: {voters: 141}
-                      Mesa 951: {voters: 393}
-                      Mesa 952: {voters: 181}
-                      Mesa 953: {voters: 224}
-                      Mesa 954: {voters: 246}
-                      Mesa 955: {voters: 200}
-              Seccional 3:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 956: {voters: 247}
-                      Mesa 957: {voters: 173}
-                      Mesa 958: {voters: 142}
-                      Mesa 959: {voters: 102}
-                      Mesa 960: {voters: 227}
-                      Mesa 961: {voters: 123}
-                      Mesa 962: {voters: 203}
-          SAN JUSTO:
-            candidates:
-              concejal:
-              - {name: 'Sberna, Jorge', party: Partido Obrero}
-              - {name: 'Mihura, Edmundo', party: Partido Liberal}
-              - {name: "M\xE4kinen, Amenhotep", party: Partido Conservador}
-              - {name: 'Serkin, Acacio', party: Partido Comunista}
-              intendente:
-              - {name: 'Zberg, Keila', party: Partido Obrero}
-              - {name: "Guzm\xE1n, Adoraci\xF3n", party: Partido Liberal}
-              - {name: "Bathich, Gor\u014D", party: Partido Conservador}
-              - {name: 'Valadares, Benedicto', party: Partido Comunista}
-            seccionales:
-              Seccional 0:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 862: {voters: 345}
-                      Mesa 863: {voters: 37}
-                      Mesa 864: {voters: 21}
-                      Mesa 865: {voters: 182}
-                      Mesa 866: {voters: 201}
-                  Local 1:
-                    mesas:
-                      Mesa 867: {voters: 233}
-                      Mesa 868: {voters: 218}
-                      Mesa 869: {voters: 198}
-                      Mesa 870: {voters: 207}
-                      Mesa 871: {voters: 245}
-                      Mesa 872: {voters: 183}
-                      Mesa 873: {voters: 381}
-                  Local 2:
-                    mesas:
-                      Mesa 874: {voters: 179}
-                  Local 3:
-                    mesas:
-                      Mesa 875: {voters: 166}
-                      Mesa 876: {voters: 176}
-                      Mesa 877: {voters: 260}
-                      Mesa 878: {voters: 127}
-                      Mesa 879: {voters: 199}
-              Seccional 1:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 880: {voters: 78}
-                      Mesa 881: {voters: 58}
-                      Mesa 882: {voters: 213}
-                      Mesa 883: {voters: 347}
-                      Mesa 884: {voters: 255}
-                      Mesa 885: {voters: 213}
-                      Mesa 886: {voters: 384}
-                      Mesa 887: {voters: 134}
-                      Mesa 888: {voters: 242}
-                      Mesa 889: {voters: 330}
-                  Local 1:
-                    mesas:
-                      Mesa 890: {voters: 68}
-                      Mesa 891: {voters: 268}
-                      Mesa 892: {voters: 347}
-                      Mesa 893: {voters: 238}
-                  Local 2:
-                    mesas:
-                      Mesa 894: {voters: 262}
-                      Mesa 895: {voters: 363}
-                      Mesa 896: {voters: 192}
-                  Local 3:
-                    mesas:
-                      Mesa 897: {voters: 1}
-                      Mesa 898: {voters: 257}
-                      Mesa 899: {voters: 270}
-                      Mesa 900: {voters: 153}
-                      Mesa 901: {voters: 149}
-                      Mesa 902: {voters: 265}
-                      Mesa 903: {voters: 155}
-                      Mesa 904: {voters: 1}
-                      Mesa 905: {voters: 152}
-                      Mesa 906: {voters: 147}
-              Seccional 2:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 907: {voters: 219}
-                  Local 1:
-                    mesas:
-                      Mesa 908: {voters: 131}
-      CUATRO VIENTOS:
-        candidates:
-          diputado:
-          - {name: 'Guardini, Casandra', party: Partido Obrero}
-          - {name: 'Escobar, Indalecio', party: Partido Liberal}
-          - {name: 'Koch, Claudio', party: Partido Conservador}
-          - {name: "Eliano, Betsab\xE9", party: Partido Comunista}
-          senador:
-          - {name: 'Emerson, Jacobo', party: Partido Obrero}
-          - {name: 'Llaguno, Olinta', party: Partido Liberal}
-          - {name: "Carr, Am\xF3s", party: Partido Conservador}
-          - {name: "Mart\xEDn, Iker", party: Partido Comunista}
-        localidades:
-          SAN CLEMENTE:
-            candidates:
-              concejal:
-              - {name: 'Mayor, Aladino', party: Partido Obrero}
-              - {name: 'Ramos, Ladislao', party: Partido Liberal}
-              - {name: 'Cunha, Edgar', party: Partido Conservador}
-              - {name: 'Masson, Ana', party: Partido Comunista}
-              intendente:
-              - {name: 'Picard, Anatolio', party: Partido Obrero}
-              - {name: 'Spengler, Edmundo', party: Partido Liberal}
-              - {name: "G\xF3ngora, Itziar", party: Partido Conservador}
-              - {name: 'Bieber, Publio', party: Partido Comunista}
-            seccionales:
-              Seccional 0:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 408: {voters: 266}
-                      Mesa 409: {voters: 233}
-                      Mesa 410: {voters: 341}
-                      Mesa 411: {voters: 97}
-                      Mesa 412: {voters: 91}
-                      Mesa 413: {voters: 240}
-                  Local 1:
-                    mesas:
-                      Mesa 414: {voters: 333}
-                      Mesa 415: {voters: 96}
-                      Mesa 416: {voters: 202}
-                  Local 2:
-                    mesas:
-                      Mesa 417: {voters: 1}
-                      Mesa 418: {voters: 154}
-                      Mesa 419: {voters: 111}
-              Seccional 1:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 420: {voters: 274}
-                      Mesa 421: {voters: 90}
-                      Mesa 422: {voters: 1}
-                      Mesa 423: {voters: 224}
-                      Mesa 424: {voters: 379}
-                  Local 1:
-                    mesas:
-                      Mesa 425: {voters: 347}
-                      Mesa 426: {voters: 194}
-                      Mesa 427: {voters: 310}
-                      Mesa 428: {voters: 153}
-                      Mesa 429: {voters: 76}
-                      Mesa 430: {voters: 316}
-                  Local 2:
-                    mesas:
-                      Mesa 431: {voters: 321}
-                      Mesa 432: {voters: 212}
-                      Mesa 433: {voters: 328}
-                      Mesa 434: {voters: 177}
-                      Mesa 435: {voters: 151}
-                  Local 3:
-                    mesas:
-                      Mesa 436: {voters: 76}
-                      Mesa 437: {voters: 247}
-                      Mesa 438: {voters: 62}
-                      Mesa 439: {voters: 302}
-                      Mesa 440: {voters: 1}
-                      Mesa 441: {voters: 171}
-                  Local 4:
-                    mesas:
-                      Mesa 442: {voters: 167}
-                  Local 5:
-                    mesas:
-                      Mesa 443: {voters: 340}
-                      Mesa 444: {voters: 201}
-                      Mesa 445: {voters: 224}
-                      Mesa 446: {voters: 337}
-                      Mesa 447: {voters: 77}
-                      Mesa 448: {voters: 110}
-                      Mesa 449: {voters: 183}
-                      Mesa 450: {voters: 1}
-              Seccional 2:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 451: {voters: 425}
-              Seccional 3:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 452: {voters: 166}
-                      Mesa 453: {voters: 205}
-                      Mesa 454: {voters: 240}
-                      Mesa 455: {voters: 373}
-                  Local 1:
-                    mesas:
-                      Mesa 456: {voters: 139}
-                      Mesa 457: {voters: 150}
-                      Mesa 458: {voters: 268}
-                      Mesa 459: {voters: 333}
-                  Local 2:
-                    mesas:
-                      Mesa 460: {voters: 170}
-                  Local 3:
-                    mesas:
-                      Mesa 461: {voters: 173}
-                  Local 4:
-                    mesas:
-                      Mesa 462: {voters: 403}
-                  Local 5:
-                    mesas:
-                      Mesa 463: {voters: 149}
-                      Mesa 464: {voters: 134}
-                      Mesa 465: {voters: 344}
-                      Mesa 466: {voters: 112}
-                      Mesa 467: {voters: 176}
-                      Mesa 468: {voters: 289}
-                      Mesa 469: {voters: 350}
-                      Mesa 470: {voters: 158}
-              Seccional 4:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 471: {voters: 207}
-                      Mesa 472: {voters: 226}
-                      Mesa 473: {voters: 247}
-                  Local 1:
-                    mesas:
-                      Mesa 474: {voters: 227}
-                      Mesa 475: {voters: 150}
-              Seccional 5:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 476: {voters: 236}
-                  Local 1:
-                    mesas:
-                      Mesa 477: {voters: 90}
-                      Mesa 478: {voters: 178}
-                  Local 2:
-                    mesas:
-                      Mesa 479: {voters: 258}
-                      Mesa 480: {voters: 377}
-                  Local 3:
-                    mesas:
-                      Mesa 481: {voters: 205}
-                      Mesa 482: {voters: 117}
+                      Mesa 428: {votantes: 427}
               Seccional 6:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 483: {voters: 71}
-                      Mesa 484: {voters: 87}
-                      Mesa 485: {voters: 208}
-                      Mesa 486: {voters: 177}
-                      Mesa 487: {voters: 74}
-                      Mesa 488: {voters: 382}
-                      Mesa 489: {voters: 262}
-                      Mesa 490: {voters: 270}
-                      Mesa 491: {voters: 15}
-                      Mesa 492: {voters: 6}
-                      Mesa 493: {voters: 291}
-              Seccional 7:
-                locales:
-                  Local 0:
+                      Mesa 429: {votantes: 298}
+                  Local 1:
                     mesas:
-                      Mesa 494: {voters: 144}
-                      Mesa 495: {voters: 347}
-                      Mesa 496: {voters: 218}
-                      Mesa 497: {voters: 275}
-                      Mesa 498: {voters: 282}
-                      Mesa 499: {voters: 224}
-      VILLA DOLORES:
-        candidates:
+                      Mesa 430: {votantes: 209}
+                      Mesa 431: {votantes: 306}
+                      Mesa 432: {votantes: 144}
+                      Mesa 433: {votantes: 188}
+                      Mesa 434: {votantes: 151}
+                  Local 2:
+                    mesas:
+                      Mesa 435: {votantes: 205}
+                      Mesa 436: {votantes: 52}
+                      Mesa 437: {votantes: 145}
+                      Mesa 438: {votantes: 344}
+                      Mesa 439: {votantes: 257}
+                      Mesa 440: {votantes: 300}
+                      Mesa 441: {votantes: 287}
+                      Mesa 442: {votantes: 149}
+                      Mesa 443: {votantes: 146}
+                      Mesa 444: {votantes: 232}
+                      Mesa 445: {votantes: 247}
+      "\xD1ORQUIN":
+        candidatos:
           diputado:
-          - {name: 'Aznar, Wojciech', party: Partido Obrero}
-          - {name: 'Llamazares, Paola', party: Partido Liberal}
-          - {name: 'Riancho, Amelia', party: Partido Conservador}
-          - {name: 'Grueiro, Borja', party: Partido Comunista}
+          - {nombre: 'Mounier, Facundo', partido: Partido Obrero}
+          - {nombre: 'Guay, Atanasio', partido: Partido Liberal}
+          - {nombre: "Kany, Ur\xEDas", partido: Partido Conservador}
+          - {nombre: 'Feldman, Quirico', partido: Partido Comunista}
           senador:
-          - {name: "Dur\xE1n, Nuria", party: Partido Obrero}
-          - {name: 'Nell, Omar', party: Partido Liberal}
-          - {name: 'Bloch, Zaqueo', party: Partido Conservador}
-          - {name: 'Calder, Aldo', party: Partido Comunista}
+          - {nombre: "Mor\xF3n, Maite", partido: Partido Obrero}
+          - {nombre: 'Gago, Karina', partido: Partido Liberal}
+          - {nombre: 'Cid, Montserrat', partido: Partido Conservador}
+          - {nombre: "Biondini, A\xEDda", partido: Partido Comunista}
         localidades:
-          BELGRANO:
-            candidates:
+          CANAL SAN FERNANDO ,EST.:
+            candidatos:
               concejal:
-              - {name: 'Koch, Alejo', party: Partido Obrero}
-              - {name: 'Romero, Nahum', party: Partido Liberal}
-              - {name: "Hibs\xE4, Bosco", party: Partido Conservador}
-              - {name: 'Carduccio, Keiko', party: Partido Comunista}
+              - {nombre: 'Cano, Edurne', partido: Partido Obrero}
+              - {nombre: "Massera, Mar\xEDa Ana", partido: Partido Liberal}
+              - {nombre: "Ivanovi\u0107, Renato", partido: Partido Conservador}
+              - {nombre: "Carranza, Agust\xEDn", partido: Partido Comunista}
               intendente:
-              - {name: 'Aznar, Imagina', party: Partido Obrero}
-              - {name: 'Pons, Boulus', party: Partido Liberal}
-              - {name: 'Voigt, Boleslao', party: Partido Conservador}
-              - {name: "Cano, Menc\xEDa", party: Partido Comunista}
+              - {nombre: 'Pighin, Bruno', partido: Partido Obrero}
+              - {nombre: 'Montenegro, Joel', partido: Partido Liberal}
+              - {nombre: "L\xE1ngara, Carmelo", partido: Partido Conservador}
+              - {nombre: 'Romano, Ascanio', partido: Partido Comunista}
             seccionales:
               Seccional 0:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 665: {voters: 186}
-                      Mesa 666: {voters: 249}
-                      Mesa 667: {voters: 303}
-                      Mesa 668: {voters: 180}
-                      Mesa 669: {voters: 307}
-                      Mesa 670: {voters: 143}
-                  Local 1:
-                    mesas:
-                      Mesa 671: {voters: 172}
-                      Mesa 672: {voters: 71}
-                  Local 2:
-                    mesas:
-                      Mesa 673: {voters: 44}
-                      Mesa 674: {voters: 251}
-                      Mesa 675: {voters: 153}
-                  Local 3:
-                    mesas:
-                      Mesa 676: {voters: 53}
-                      Mesa 677: {voters: 149}
-                      Mesa 678: {voters: 194}
-                  Local 4:
-                    mesas:
-                      Mesa 679: {voters: 244}
+                      Mesa 222: {votantes: 55}
+                      Mesa 223: {votantes: 286}
+                      Mesa 224: {votantes: 78}
+                      Mesa 225: {votantes: 74}
+                      Mesa 226: {votantes: 299}
               Seccional 1:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 680: {voters: 179}
-                      Mesa 681: {voters: 80}
-                      Mesa 682: {voters: 24}
-                      Mesa 683: {voters: 294}
-                      Mesa 684: {voters: 342}
-                      Mesa 685: {voters: 217}
+                      Mesa 227: {votantes: 193}
                   Local 1:
                     mesas:
-                      Mesa 686: {voters: 107}
+                      Mesa 228: {votantes: 369}
+                  Local 2:
+                    mesas:
+                      Mesa 229: {votantes: 231}
+                      Mesa 230: {votantes: 391}
+                      Mesa 231: {votantes: 190}
+                      Mesa 232: {votantes: 237}
+                      Mesa 233: {votantes: 173}
+                  Local 3:
+                    mesas:
+                      Mesa 234: {votantes: 221}
+                      Mesa 235: {votantes: 293}
+                      Mesa 236: {votantes: 176}
+                  Local 4:
+                    mesas:
+                      Mesa 237: {votantes: 308}
               Seccional 2:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 687: {voters: 142}
-                      Mesa 688: {voters: 127}
-                      Mesa 689: {voters: 211}
+                      Mesa 238: {votantes: 254}
+                      Mesa 239: {votantes: 54}
+                      Mesa 240: {votantes: 77}
+                      Mesa 241: {votantes: 220}
+                      Mesa 242: {votantes: 98}
                   Local 1:
                     mesas:
-                      Mesa 690: {voters: 268}
+                      Mesa 243: {votantes: 266}
+                      Mesa 244: {votantes: 205}
                   Local 2:
                     mesas:
-                      Mesa 691: {voters: 56}
+                      Mesa 245: {votantes: 192}
+                      Mesa 246: {votantes: 286}
+                      Mesa 247: {votantes: 165}
+                      Mesa 248: {votantes: 321}
+                  Local 3:
+                    mesas:
+                      Mesa 249: {votantes: 144}
+                  Local 4:
+                    mesas:
+                      Mesa 250: {votantes: 362}
+                      Mesa 251: {votantes: 164}
+                      Mesa 252: {votantes: 189}
+                      Mesa 253: {votantes: 233}
+                      Mesa 254: {votantes: 194}
+                      Mesa 255: {votantes: 283}
+                  Local 5:
+                    mesas:
+                      Mesa 256: {votantes: 257}
+                      Mesa 257: {votantes: 226}
+                      Mesa 258: {votantes: 174}
+                      Mesa 259: {votantes: 164}
+                      Mesa 260: {votantes: 147}
+                      Mesa 261: {votantes: 213}
               Seccional 3:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 692: {voters: 291}
-                      Mesa 693: {voters: 38}
-                      Mesa 694: {voters: 134}
-                      Mesa 695: {voters: 26}
-                      Mesa 696: {voters: 432}
+                      Mesa 262: {votantes: 165}
                   Local 1:
                     mesas:
-                      Mesa 697: {voters: 102}
-                      Mesa 698: {voters: 424}
-                      Mesa 699: {voters: 1}
-                      Mesa 700: {voters: 196}
-                      Mesa 701: {voters: 408}
-                      Mesa 702: {voters: 191}
-                      Mesa 703: {voters: 239}
-                      Mesa 704: {voters: 126}
+                      Mesa 263: {votantes: 356}
+                      Mesa 264: {votantes: 257}
+                      Mesa 265: {votantes: 224}
+                      Mesa 266: {votantes: 269}
+                      Mesa 267: {votantes: 85}
+                      Mesa 268: {votantes: 197}
+                      Mesa 269: {votantes: 342}
+                      Mesa 270: {votantes: 124}
                   Local 2:
                     mesas:
-                      Mesa 705: {voters: 149}
-                      Mesa 706: {voters: 323}
-                      Mesa 707: {voters: 208}
-                      Mesa 708: {voters: 97}
-                      Mesa 709: {voters: 1}
+                      Mesa 271: {votantes: 291}
                   Local 3:
                     mesas:
-                      Mesa 710: {voters: 321}
-                      Mesa 711: {voters: 291}
-                      Mesa 712: {voters: 298}
+                      Mesa 272: {votantes: 388}
+          RUCANELO:
+            candidatos:
+              concejal:
+              - {nombre: "Farr\xE9, Armand", partido: Partido Obrero}
+              - {nombre: 'Perkins, Augusto', partido: Partido Liberal}
+              - {nombre: "Gilabert, Ad\xE1n", partido: Partido Conservador}
+              - {nombre: "Ga\xEDnza, Alicia", partido: Partido Comunista}
+              intendente:
+              - {nombre: 'Valladares, Juan', partido: Partido Obrero}
+              - {nombre: 'Wolff, Premislao', partido: Partido Liberal}
+              - {nombre: 'Schleck, Bernhard', partido: Partido Conservador}
+              - {nombre: 'Moyano, Ariadna', partido: Partido Comunista}
+            seccionales:
+              Seccional 0:
+                locales:
+                  Local 0:
+                    mesas:
+                      Mesa 127: {votantes: 200}
+                      Mesa 128: {votantes: 15}
+                      Mesa 129: {votantes: 248}
+                      Mesa 130: {votantes: 312}
+                      Mesa 131: {votantes: 49}
+                      Mesa 132: {votantes: 99}
+                      Mesa 133: {votantes: 159}
+                      Mesa 134: {votantes: 230}
+                      Mesa 135: {votantes: 224}
+                  Local 1:
+                    mesas:
+                      Mesa 136: {votantes: 157}
+                  Local 2:
+                    mesas:
+                      Mesa 137: {votantes: 448}
+                      Mesa 138: {votantes: 239}
+                      Mesa 139: {votantes: 198}
+                      Mesa 140: {votantes: 370}
+                      Mesa 141: {votantes: 183}
+                  Local 3:
+                    mesas:
+                      Mesa 142: {votantes: 165}
+                      Mesa 143: {votantes: 226}
+                      Mesa 144: {votantes: 186}
+                      Mesa 145: {votantes: 175}
+                      Mesa 146: {votantes: 254}
+                      Mesa 147: {votantes: 251}
+                      Mesa 148: {votantes: 365}
+                  Local 4:
+                    mesas:
+                      Mesa 149: {votantes: 1}
+                      Mesa 150: {votantes: 292}
+                      Mesa 151: {votantes: 245}
+                      Mesa 152: {votantes: 67}
+              Seccional 1:
+                locales:
+                  Local 0:
+                    mesas:
+                      Mesa 153: {votantes: 101}
+                  Local 1:
+                    mesas:
+                      Mesa 154: {votantes: 32}
+                      Mesa 155: {votantes: 351}
+                      Mesa 156: {votantes: 121}
+                      Mesa 157: {votantes: 184}
+                      Mesa 158: {votantes: 163}
+                  Local 2:
+                    mesas:
+                      Mesa 159: {votantes: 55}
+                  Local 3:
+                    mesas:
+                      Mesa 160: {votantes: 296}
+                      Mesa 161: {votantes: 217}
+                  Local 4:
+                    mesas:
+                      Mesa 162: {votantes: 208}
+                      Mesa 163: {votantes: 204}
+                      Mesa 164: {votantes: 206}
+                      Mesa 165: {votantes: 93}
+                      Mesa 166: {votantes: 170}
+                      Mesa 167: {votantes: 202}
+              Seccional 2:
+                locales:
+                  Local 0:
+                    mesas:
+                      Mesa 168: {votantes: 314}
+                      Mesa 169: {votantes: 226}
+                      Mesa 170: {votantes: 205}
+                      Mesa 171: {votantes: 9}
+                      Mesa 172: {votantes: 269}
+                  Local 1:
+                    mesas:
+                      Mesa 173: {votantes: 115}
+                  Local 2:
+                    mesas:
+                      Mesa 174: {votantes: 203}
+                      Mesa 175: {votantes: 114}
+                      Mesa 176: {votantes: 27}
+                      Mesa 177: {votantes: 307}
+                      Mesa 178: {votantes: 303}
+                      Mesa 179: {votantes: 260}
+                      Mesa 180: {votantes: 185}
+                      Mesa 181: {votantes: 297}
+              Seccional 3:
+                locales:
+                  Local 0:
+                    mesas:
+                      Mesa 182: {votantes: 177}
+                  Local 1:
+                    mesas:
+                      Mesa 183: {votantes: 147}
+                      Mesa 184: {votantes: 88}
+                      Mesa 185: {votantes: 206}
+                      Mesa 186: {votantes: 130}
+                      Mesa 187: {votantes: 253}
+                      Mesa 188: {votantes: 291}
+                      Mesa 189: {votantes: 202}
+                      Mesa 190: {votantes: 235}
+                  Local 2:
+                    mesas:
+                      Mesa 191: {votantes: 397}
+                      Mesa 192: {votantes: 143}
+                      Mesa 193: {votantes: 6}
+                      Mesa 194: {votantes: 115}
+                      Mesa 195: {votantes: 239}
+                      Mesa 196: {votantes: 46}
+                      Mesa 197: {votantes: 215}
+                      Mesa 198: {votantes: 226}
+                  Local 3:
+                    mesas:
+                      Mesa 199: {votantes: 223}
+                      Mesa 200: {votantes: 374}
+                      Mesa 201: {votantes: 103}
+                      Mesa 202: {votantes: 330}
+                      Mesa 203: {votantes: 165}
+                      Mesa 204: {votantes: 282}
               Seccional 4:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 713: {voters: 77}
-              Seccional 5:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 714: {voters: 206}
+                      Mesa 205: {votantes: 89}
+                      Mesa 206: {votantes: 220}
                   Local 1:
                     mesas:
-                      Mesa 715: {voters: 169}
+                      Mesa 207: {votantes: 135}
+                      Mesa 208: {votantes: 125}
+                      Mesa 209: {votantes: 251}
+                      Mesa 210: {votantes: 138}
+                      Mesa 211: {votantes: 157}
+                      Mesa 212: {votantes: 282}
                   Local 2:
                     mesas:
-                      Mesa 716: {voters: 402}
-                      Mesa 717: {voters: 405}
+                      Mesa 213: {votantes: 190}
+                      Mesa 214: {votantes: 145}
                   Local 3:
                     mesas:
-                      Mesa 718: {voters: 88}
-                      Mesa 719: {voters: 141}
-                      Mesa 720: {voters: 242}
-                      Mesa 721: {voters: 249}
-                      Mesa 722: {voters: 320}
-                      Mesa 723: {voters: 213}
-                      Mesa 724: {voters: 272}
-                      Mesa 725: {voters: 220}
-              Seccional 6:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 726: {voters: 293}
-                      Mesa 727: {voters: 253}
-                      Mesa 728: {voters: 323}
-                  Local 1:
-                    mesas:
-                      Mesa 729: {voters: 121}
-                  Local 2:
-                    mesas:
-                      Mesa 730: {voters: 194}
-                      Mesa 731: {voters: 307}
-                      Mesa 732: {voters: 114}
-                      Mesa 733: {voters: 297}
-          EL SOMBRERO:
-            candidates:
+                      Mesa 215: {votantes: 148}
+                      Mesa 216: {votantes: 190}
+                      Mesa 217: {votantes: 285}
+                      Mesa 218: {votantes: 191}
+          VALLE HERMOSO:
+            candidatos:
               concejal:
-              - {name: 'Frutos, Montserrat', party: Partido Obrero}
-              - {name: "T\xE9llez, Beltr\xE1n", party: Partido Liberal}
-              - {name: 'Krakauer, Casiodoro', party: Partido Conservador}
-              - {name: 'Florit, Acisclo', party: Partido Comunista}
+              - {nombre: 'Manning, Cunegunda', partido: Partido Obrero}
+              - {nombre: 'Queipo, Heihachi', partido: Partido Liberal}
+              - {nombre: 'Emerson, Agapito', partido: Partido Conservador}
+              - {nombre: 'Moreau, George', partido: Partido Comunista}
               intendente:
-              - {name: 'Bonington, Brian', party: Partido Obrero}
-              - {name: "Cansino, Estefan\xEDa", party: Partido Liberal}
-              - {name: "G\xF3ngora, Vi\u015Bvakarma", party: Partido Conservador}
-              - {name: "M\xE9ndez, Mar\xEDa Cristina", party: Partido Comunista}
+              - {nombre: 'Popescu, Anselmo', partido: Partido Obrero}
+              - {nombre: 'Contini, Leandro', partido: Partido Liberal}
+              - {nombre: 'Grueiro, Braulio', partido: Partido Conservador}
+              - {nombre: 'Arnillas, Dionisio', partido: Partido Comunista}
             seccionales:
               Seccional 0:
                 locales:
                   Local 0:
                     mesas:
-                      Mesa 500: {voters: 139}
-                      Mesa 501: {voters: 191}
-                      Mesa 502: {voters: 173}
-                      Mesa 503: {voters: 260}
-                      Mesa 504: {voters: 321}
-                      Mesa 505: {voters: 218}
-                      Mesa 506: {voters: 215}
-                      Mesa 507: {voters: 157}
-                      Mesa 508: {voters: 55}
-              Seccional 1:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 509: {voters: 137}
-                      Mesa 510: {voters: 316}
-                      Mesa 511: {voters: 176}
-                      Mesa 512: {voters: 49}
+                      Mesa 219: {votantes: 19}
+                      Mesa 220: {votantes: 244}
                   Local 1:
                     mesas:
-                      Mesa 513: {voters: 322}
-                      Mesa 514: {voters: 148}
-                      Mesa 515: {voters: 97}
-                      Mesa 516: {voters: 298}
-                      Mesa 517: {voters: 122}
-                  Local 2:
-                    mesas:
-                      Mesa 518: {voters: 317}
-                      Mesa 519: {voters: 206}
-                      Mesa 520: {voters: 116}
-                      Mesa 521: {voters: 138}
-                      Mesa 522: {voters: 173}
-                      Mesa 523: {voters: 97}
-                      Mesa 524: {voters: 266}
-                  Local 3:
-                    mesas:
-                      Mesa 525: {voters: 266}
-                      Mesa 526: {voters: 159}
-                      Mesa 527: {voters: 175}
-                      Mesa 528: {voters: 220}
-                      Mesa 529: {voters: 169}
-                      Mesa 530: {voters: 276}
-                      Mesa 531: {voters: 20}
-                  Local 4:
-                    mesas:
-                      Mesa 532: {voters: 142}
-              Seccional 2:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 533: {voters: 225}
-                      Mesa 534: {voters: 74}
-                      Mesa 535: {voters: 175}
-                      Mesa 536: {voters: 250}
-                  Local 1:
-                    mesas:
-                      Mesa 537: {voters: 138}
-                  Local 2:
-                    mesas:
-                      Mesa 538: {voters: 207}
-                      Mesa 539: {voters: 337}
-                      Mesa 540: {voters: 1}
-              Seccional 3:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 541: {voters: 157}
-                      Mesa 542: {voters: 320}
-                      Mesa 543: {voters: 192}
-                  Local 1:
-                    mesas:
-                      Mesa 544: {voters: 324}
-                  Local 2:
-                    mesas:
-                      Mesa 545: {voters: 52}
-                      Mesa 546: {voters: 276}
-                      Mesa 547: {voters: 264}
-                      Mesa 548: {voters: 352}
-                  Local 3:
-                    mesas:
-                      Mesa 549: {voters: 348}
-                      Mesa 550: {voters: 134}
-                      Mesa 551: {voters: 162}
-                      Mesa 552: {voters: 325}
-                      Mesa 553: {voters: 114}
-          EL TUNAL:
-            candidates:
-              concejal:
-              - {name: 'Andrade, Gabriel', party: Partido Obrero}
-              - {name: "Gir\xF3n, Ascanio", party: Partido Liberal}
-              - {name: "Ga\xEDnza, Fabio", party: Partido Conservador}
-              - {name: "I\xF1iguez, Quirico", party: Partido Comunista}
-              intendente:
-              - {name: 'Cheyrou, Agatoclio', party: Partido Obrero}
-              - {name: 'Krakauer, Berenguela', party: Partido Liberal}
-              - {name: "G\xF3mez, Yves", party: Partido Conservador}
-              - {name: "Ruiz-Gim\xE9nez, Andr\xE9s", party: Partido Comunista}
-            seccionales:
-              Seccional 0:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 628: {voters: 223}
-                      Mesa 629: {voters: 300}
-                      Mesa 630: {voters: 154}
-                      Mesa 631: {voters: 29}
-                      Mesa 632: {voters: 205}
-                      Mesa 633: {voters: 215}
-                  Local 1:
-                    mesas:
-                      Mesa 634: {voters: 147}
-                  Local 2:
-                    mesas:
-                      Mesa 635: {voters: 236}
-                      Mesa 636: {voters: 172}
-                      Mesa 637: {voters: 145}
-                      Mesa 638: {voters: 229}
-                  Local 3:
-                    mesas:
-                      Mesa 639: {voters: 57}
-                  Local 4:
-                    mesas:
-                      Mesa 640: {voters: 218}
-                  Local 5:
-                    mesas:
-                      Mesa 641: {voters: 123}
-              Seccional 1:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 642: {voters: 34}
-                      Mesa 643: {voters: 74}
-                      Mesa 644: {voters: 217}
-                      Mesa 645: {voters: 129}
-                      Mesa 646: {voters: 232}
-                      Mesa 647: {voters: 14}
-                      Mesa 648: {voters: 397}
-                      Mesa 649: {voters: 128}
-                      Mesa 650: {voters: 254}
-                  Local 1:
-                    mesas:
-                      Mesa 651: {voters: 231}
-                      Mesa 652: {voters: 210}
-                      Mesa 653: {voters: 217}
-                      Mesa 654: {voters: 146}
-                      Mesa 655: {voters: 283}
-              Seccional 2:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 656: {voters: 136}
-                      Mesa 657: {voters: 121}
-                      Mesa 658: {voters: 151}
-                      Mesa 659: {voters: 208}
-                      Mesa 660: {voters: 253}
-                      Mesa 661: {voters: 222}
-              Seccional 3:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 662: {voters: 41}
-                      Mesa 663: {voters: 156}
-                      Mesa 664: {voters: 225}
-          "SAENZ PE\xD1A":
-            candidates:
-              concejal:
-              - {name: 'Figuerola, Apolinar', party: Partido Obrero}
-              - {name: "Lowell, Cristi\xE1n", party: Partido Liberal}
-              - {name: 'Adem, Renato', party: Partido Conservador}
-              - {name: 'Boissieu, Azucena', party: Partido Comunista}
-              intendente:
-              - {name: "Villamil, Zacar\xEDas", party: Partido Obrero}
-              - {name: 'Feldman, Cornelio', party: Partido Liberal}
-              - {name: "M\xE9ndez, Gustavo", party: Partido Conservador}
-              - {name: "Feldman, Jud\xE1", party: Partido Comunista}
-            seccionales:
-              Seccional 0:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 554: {voters: 214}
-                      Mesa 555: {voters: 85}
-                      Mesa 556: {voters: 190}
-                      Mesa 557: {voters: 127}
-                      Mesa 558: {voters: 64}
-                      Mesa 559: {voters: 268}
-                  Local 1:
-                    mesas:
-                      Mesa 560: {voters: 207}
-                      Mesa 561: {voters: 213}
-                  Local 2:
-                    mesas:
-                      Mesa 562: {voters: 292}
-              Seccional 1:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 563: {voters: 178}
-                      Mesa 564: {voters: 246}
-                      Mesa 565: {voters: 394}
-                      Mesa 566: {voters: 182}
-                      Mesa 567: {voters: 314}
-                      Mesa 568: {voters: 269}
-                      Mesa 569: {voters: 215}
-              Seccional 2:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 570: {voters: 227}
-                      Mesa 571: {voters: 281}
-                      Mesa 572: {voters: 391}
-                      Mesa 573: {voters: 280}
-                      Mesa 574: {voters: 1}
-                      Mesa 575: {voters: 86}
-                      Mesa 576: {voters: 194}
-                      Mesa 577: {voters: 239}
-                      Mesa 578: {voters: 156}
-                      Mesa 579: {voters: 1}
-                  Local 1:
-                    mesas:
-                      Mesa 580: {voters: 348}
-                      Mesa 581: {voters: 72}
-                      Mesa 582: {voters: 204}
-                  Local 2:
-                    mesas:
-                      Mesa 583: {voters: 250}
-                      Mesa 584: {voters: 138}
-                      Mesa 585: {voters: 31}
-                      Mesa 586: {voters: 130}
-                      Mesa 587: {voters: 283}
-                  Local 3:
-                    mesas:
-                      Mesa 588: {voters: 204}
-                  Local 4:
-                    mesas:
-                      Mesa 589: {voters: 152}
-                      Mesa 590: {voters: 73}
-                  Local 5:
-                    mesas:
-                      Mesa 591: {voters: 41}
-                      Mesa 592: {voters: 1}
-                      Mesa 593: {voters: 248}
-                      Mesa 594: {voters: 364}
-                      Mesa 595: {voters: 260}
-                      Mesa 596: {voters: 233}
-                      Mesa 597: {voters: 280}
-                  Local 6:
-                    mesas:
-                      Mesa 598: {voters: 53}
-                  Local 7:
-                    mesas:
-                      Mesa 599: {voters: 235}
-                      Mesa 600: {voters: 47}
-                      Mesa 601: {voters: 243}
-                      Mesa 602: {voters: 327}
-                      Mesa 603: {voters: 117}
-                      Mesa 604: {voters: 198}
-                      Mesa 605: {voters: 213}
-                  Local 8:
-                    mesas:
-                      Mesa 606: {voters: 93}
-                      Mesa 607: {voters: 329}
-              Seccional 3:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 608: {voters: 197}
-                      Mesa 609: {voters: 205}
-                      Mesa 610: {voters: 191}
-                      Mesa 611: {voters: 94}
-                      Mesa 612: {voters: 174}
-                  Local 1:
-                    mesas:
-                      Mesa 613: {voters: 277}
-                      Mesa 614: {voters: 251}
-                      Mesa 615: {voters: 122}
-                      Mesa 616: {voters: 495}
-                  Local 2:
-                    mesas:
-                      Mesa 617: {voters: 225}
-                      Mesa 618: {voters: 202}
-                      Mesa 619: {voters: 275}
-                      Mesa 620: {voters: 225}
-              Seccional 4:
-                locales:
-                  Local 0:
-                    mesas:
-                      Mesa 621: {voters: 213}
-                      Mesa 622: {voters: 327}
-                      Mesa 623: {voters: 106}
-                      Mesa 624: {voters: 131}
-                      Mesa 625: {voters: 133}
-                      Mesa 626: {voters: 268}
-                  Local 1:
-                    mesas:
-                      Mesa 627: {voters: 189}
+                      Mesa 221: {votantes: 216}

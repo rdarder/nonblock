@@ -7,47 +7,43 @@ session_maker = orm.sessionmaker()
 session = session_maker()
 
 def spec_levels(spec):
-  return [l['level'] for l in spec['levels']]
+  return [l['nivel'] for l in spec['niveles']]
 
 def declare_tables(spec, metadata):
   levels = spec_levels(spec)
-  positions = spec['positions']
+  positions = spec['puestos']
   sa.Table('geo', metadata,
            sa.Column('id', sa.Integer, primary_key=True),
-           sa.Column('name', sa.String(64), nullable=False),
-           sa.Column('type', sa.Enum(*levels), nullable=False),
-           sa.Column('container_id', sa.Integer,
+           sa.Column('nombre', sa.String(64), nullable=False),
+           sa.Column('tipo', sa.Enum(*levels), nullable=False),
+           sa.Column('contenedor_id', sa.Integer,
                      sa.ForeignKey('geo.id'))
           )
-  sa.Table('parties', metadata,
+  sa.Table('partidos', metadata,
            sa.Column('id', sa.Integer, primary_key=True),
-           sa.Column('name', sa.String(64), nullable=False),
+           sa.Column('nombre', sa.String(64), nullable=False),
           )
-  sa.Table('positions', metadata,
+  sa.Table('candidatos', metadata,
            sa.Column('id', sa.Integer, primary_key=True),
-           sa.Column('name', sa.String(64), nullable=False),
-          )
-  sa.Table('candidates', metadata,
-           sa.Column('id', sa.Integer, primary_key=True),
-           sa.Column('name', sa.String(64), nullable=False),
-           sa.Column('party_id', sa.Integer, sa.ForeignKey('parties.id')),
-           sa.Column('position', sa.Enum(*positions), nullable=False),
-           sa.Column('container_id', sa.Integer,
+           sa.Column('nombre', sa.String(64), nullable=False),
+           sa.Column('partido_id', sa.Integer, sa.ForeignKey('partidos.id')),
+           sa.Column('puesto', sa.Enum(*positions), nullable=False),
+           sa.Column('contenedor_id', sa.Integer,
                      sa.ForeignKey('geo.id'))
           )
-  votes_check = sa.Table('votes_check', metadata,
-                         sa.Column('total_votes', sa.Integer, nullable=False),
-                         sa.Column('voting_center_id',
+  votes_check = sa.Table('votos_check', metadata,
+                         sa.Column('votantes', sa.Integer, nullable=False),
+                         sa.Column('centro_votacion_id',
                                    sa.Integer, sa.ForeignKey('geo.id'))
                         )
-  votes = sa.Table('votes', metadata,
-                   sa.Column('voting_center_id',
+  votes = sa.Table('votos', metadata,
+                   sa.Column('centro_votacion_id',
                              sa.Integer, sa.ForeignKey('geo.id'),
                              primary_key=True),
-                   sa.Column('candidate_id', sa.Integer,
-                             sa.ForeignKey('candidates.id'),
+                   sa.Column('candidato_id', sa.Integer,
+                             sa.ForeignKey('candidatos.id'),
                              primary_key=True),
-                   sa.Column('votes', sa.Integer, nullable=False)
+                   sa.Column('votos', sa.Integer, nullable=False)
                   )
 
 def setup_mapper(spec, tables, classes):

@@ -1,65 +1,65 @@
-levels:
-  - level: provincia
-    title: provincias
-    positions: 
+niveles:
+  - nivel: provincia
+    plural: provincias
+    puestos: 
       - gobernador
     avg: 1
     mu: 0
-    name_gen: places
-  - level: departamento
-    title: departamentos
+    generador_nombre: lugares
+  - nivel: departamento
+    plural: departamentos
     avg: 4
     mu: 2
-    positions:
+    puestos:
       - diputado
       - senador
-    name_gen: places
-  - level: localidad
-    title: localidades
+    generador_nombre: lugares
+  - nivel: localidad
+    plural: localidades
     avg: 4
     mu: 3
-    positions:
+    puestos:
       - intendente
       - concejal
-    name_gen: places
-  - level: seccional
-    title: seccionales
+    generador_nombre: lugares
+  - nivel: seccional
+    plural: seccionales
     avg: 4
     mu: 3
-    name_gen: pattern
-    name_pattern: "Seccional {local_index}"
-  - level: local
-    title: locales
+    generador_nombre: patron
+    patron_nombre: "Seccional {local_index}"
+  - nivel: local
+    plural: locales
     avg: 4 
     mu: 2
-    name_gen: pattern
-    name_pattern: "Local {local_index}"
-  - level: mesa
-    title: mesas
+    generador_nombre: patron
+    patron_nombre: "Local {local_index}"
+  - nivel: mesa
+    plural: mesas
     avg: 4
     mu: 3
-    name_gen: pattern
-    name_pattern: "Mesa {global_index}"
-    voters: 
+    generador_nombre: patron
+    patron_nombre: "Mesa {global_index}"
+    votantes: 
       avg: 200
       mu: 100
 
 
-parties:
-  - name: Partido Obrero
+partidos:
+  - nombre: Partido Obrero
     avg: 30
     mu: 15
-  - name: Partido Liberal
+  - nombre: Partido Liberal
     avg: 25
     mu: 5
-  - name: Partido Conservador
+  - nombre: Partido Conservador
     avg: 25
     mu: 5
-  - name: Partido Comunista
+  - nombre: Partido Comunista
     avg: 20
     mu: 15
 
-positions:
+puestos:
   - gobernador
   - concejal
   - diputado

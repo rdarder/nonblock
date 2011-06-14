@@ -11,31 +11,31 @@ def empty_level(level, index, name, slot):
 
 class RandomCandidates(object):
   def __init__(self, election_spec, name_factory):
-    self.parties = [p['name'] for p in election_spec['parties']]
+    self.parties = [p['nombre'] for p in election_spec['partidos']]
     self.positions = {}
-    for level in election_spec['levels']:
-      self.positions[level['level']] = level.get('positions',[])
-    self.votes_label = election_spec['levels'][-1]['level']
-    self.votes_random = (election_spec['levels'][-1]['voters']['avg'],
-                        election_spec['levels'][-1]['voters']['mu'])
+    for level in election_spec['niveles']:
+      self.positions[level['nivel']] = level.get('puestos',[])
+    self.votes_label = election_spec['niveles'][-1]['nivel']
+    self.votes_random = (election_spec['niveles'][-1]['votantes']['avg'],
+                        election_spec['niveles'][-1]['votantes']['mu'])
     self.name_factory = name_factory
   def __call__(self, level, index, name, base):
     election = {}
     for position in self.positions.get(level,[]):
       candidates = []
       for party in self.parties:
-        candidates.append({'party': party, 'name': self.name_factory()})
+        candidates.append({'partido': party, 'nombre': self.name_factory()})
       election[position] = candidates
     if election:
-      base['candidates'] = election
+      base['candidatos'] = election
     if level == self.votes_label:
-      base['voters'] = max(1,int(random.normalvariate(*self.votes_random)))
+      base['votantes'] = max(1,int(random.normalvariate(*self.votes_random)))
     return base
 
 def gen_election(spec, name_factory, item_factory):
   geo = {}
   bases = [geo]
-  levels = spec['levels']
+  levels = spec['niveles']
   autoincrement = 0
   for i, level in enumerate(levels, 1):
     next_bases = []
@@ -43,11 +43,11 @@ def gen_election(spec, name_factory, item_factory):
     for base in bases:
       to_gen = max(1, int(random.normalvariate(level['avg'],level['mu'])))
       insert_into = {}
-      base[level['title']] = insert_into
+      base[level['plural']] = insert_into
       for r in range(to_gen):
         autoincrement += 1
-        lname = name_factory(level['level'], r, autoincrement)
-        entry = item_factory(level['level'], r, lname, {})
+        lname = name_factory(level['nivel'], r, autoincrement)
+        entry = item_factory(level['nivel'], r, lname, {})
         insert_into[lname] = entry
         next_bases.append(entry)
     bases = next_bases
@@ -66,14 +66,14 @@ class RandomPlaceNames(object):
   def __init__(self, place_names, election_spec):
     self.place_names = place_names[:]
     self.name_gen = {}
-    for level in election_spec['levels']:
-      self.name_gen[level['level']] = level
+    for level in election_spec['niveles']:
+      self.name_gen[level['nivel']] = level
     random.shuffle(self.place_names)
   def __call__(self, level, local_index, global_index):
-    if self.name_gen[level]['name_gen'] == "places":
+    if self.name_gen[level]['generador_nombre'] == "lugares":
       return self.place_names.pop()
-    elif self.name_gen[level]['name_gen'] == "pattern":
-      return self.name_gen[level]['name_pattern'].format(
+    elif self.name_gen[level]['generador_nombre'] == "patron":
+      return self.name_gen[level]['patron_nombre'].format(
         level=level,
         local_index=local_index,
         global_index=global_index
@@ -90,9 +90,10 @@ def election_from_spec(election_spec_file, people_names_file,
   places_names_dict = yaml.load(places_names_file)
   logging.info('done loading')
 
-  random_places = RandomPlaceNames(places_names_dict['places'], election_spec)
-  random_names = RandomPeopleNames(people_names_dict['names'],
-                                   people_names_dict['surnames'])
+  random_places = RandomPlaceNames(places_names_dict['lugares'],
+                                   election_spec)
+  random_names = RandomPeopleNames(people_names_dict['nombres'],
+                                   people_names_dict['apellidos'])
   random_candidates = RandomCandidates(election_spec, random_names)
 
   logging.info('generating election')

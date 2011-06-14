@@ -6,10 +6,10 @@ import argparse
 from .. import db
 
 def spec_levels(spec):
-  return [l['level'] for l in spec['levels']]
+  return [l['nivel'] for l in spec['niveles']]
 
 def spec_titles(spec):
-  return [l['title'] for l in spec['levels']]
+  return [l['plural'] for l in spec['niveles']]
 
 class ElectionDB(object):
   def __init__(self, config):
@@ -24,31 +24,31 @@ class ElectionDB(object):
     title = self.titles[i]
     if election.has_key(title):
       for name, contents in election[title].items():
-        values = {'container_id': parent_container_id,
-                  'name': name, 'type': level}
+        values = {'contenedor_id': parent_container_id,
+                  'nombre': name, 'type': level}
         r1 = self.session.execute(sql.insert(self.tables['geo'], values))
         my_id = r1.inserted_primary_key[0]
-        if contents.has_key('candidates'):
-          for position, candidates in contents['candidates'].items():
+        if contents.has_key('candidatos'):
+          for position, candidates in contents['candidatos'].items():
             for candidate in candidates:
-              values = {'name': candidate['name'],
-                        'party_id': self.parties[candidate['party']],
-                        'position': position,
-                        'container_id': my_id}
-              self.session.execute(sql.insert(self.tables['candidates'],
+              values = {'nombre': candidate['nombre'],
+                        'partido_id': self.parties[candidate['partido']],
+                        'puesto': position,
+                        'contenedor_id': my_id}
+              self.session.execute(sql.insert(self.tables['candidatos'],
                                               values))
-        if contents.has_key('voters'):
-          values={'voting_center_id': my_id,
-                  'total_votes': contents['voters']
+        if contents.has_key('votantes'):
+          values={'centro_votacion_id': my_id,
+                  'votantes': contents['votantes']
                  }
-          self.session.execute(sql.insert(self.tables['votes_check'], values))
+          self.session.execute(sql.insert(self.tables['votos_check'], values))
         if i < len(self.levels) -1:
           self.fill_geo(contents, i+1, my_id)
   def fill_parties(self):
-    for party in self.spec['parties']:
-      r1 = self.session.execute(sql.insert(self.tables['parties'],
-                                          values=dict(name=party['name'])))
-      self.parties[party['name']] = r1.inserted_primary_key[0]
+    for party in self.spec['partidos']:
+      r1 = self.session.execute(sql.insert(self.tables['partidos'],
+        values=dict(nombre=party['nombre'])))
+      self.parties[party['nombre']] = r1.inserted_primary_key[0]
   def load(self, election):
     self.fill_parties()
     self.fill_geo(election)
