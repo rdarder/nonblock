@@ -36,61 +36,61 @@ const clienthtml = `
 <title>Json Dump</title>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
-    $(function() {
+$(function() {
 
-    var conn;
-    var puesto = $("#puesto");
-    var nivel = $("#nivel");
-    var alcance = $("#alcance");
-    var lugar = $("#lugar");
-    var log = $("#log");
+  var conn;
+  var puesto = $("#puesto");
+  var nivel = $("#nivel");
+  var alcance = $("#alcance");
+  var lugar = $("#lugar");
+  var log = $("#log");
 
-    function appendLog(msg) {
-        var d = log[0]
-        var doScroll = d.scrollTop == d.scrollHeight - d.clientHeight;
-        msg.appendTo(log)
-        if (doScroll) {
-            d.scrollTop = d.scrollHeight - d.clientHeight;
-        }
+  function appendLog(msg) {
+    var d = log[0]
+    var doScroll = d.scrollTop == d.scrollHeight - d.clientHeight;
+    msg.appendTo(log)
+    if (doScroll) {
+      d.scrollTop = d.scrollHeight - d.clientHeight;
+    }
+  }
+
+  $("#form").submit(function() {
+    if (!conn) {
+      return false;
     }
 
-    $("#form").submit(function() {
-        if (!conn) {
-            return false;
-        }
+    var message = {
+      "Name": "suscribe",
+      "Id": "1",
+      "Ref": "0",
+      "Data": {
+        "Puesto": puesto.val(),
+        "Nivel": nivel.val(),
+        "Alcance": alcance.val(),
+        "Lugar": lugar.val()
+      }
+    };
 
-        var message = {
-          "Name": "suscribe",
-          "Id": "1",
-          "Ref": "0",
-          "Data": {
-            "Puesto": puesto.val(),
-            "Nivel": nivel.val(),
-            "Alcance": alcance.val(),
-            "Lugar": lugar.val()
-          }
-        };
+    conn.send(JSON.stringify(message));
+    puesto.val("");
+    nivel.val("");
+    alcance.val("");
+    lugar.val("");
+    return false
+  });
 
-        conn.send(JSON.stringify(message));
-        puesto.val("");
-        nivel.val("");
-        alcance.val("");
-        lugar.val("");
-        return false
-    });
-
-    if (window["WebSocket"]) {
-        conn = new WebSocket("ws://<<@>>/ws");
-        conn.onclose = function(evt) {
-            appendLog($("<div><b>Connection closed.</b></div>"))
-        }
-        conn.onmessage = function(evt) {
-            appendLog($("<div/>").text(evt.data))
-        }
-    } else {
-        appendLog($("<div><b>Your browser does not support WebSockets.</b></div>"))
+  if (window["WebSocket"]) {
+    conn = new WebSocket("ws://<<@>>/ws");
+    conn.onclose = function(evt) {
+      appendLog($("<div><b>Connection closed.</b></div>"))
     }
-    });
+    conn.onmessage = function(evt) {
+      appendLog($("<div/>").text(evt.data))
+    }
+  } else {
+    appendLog($("<div><b>Your browser does not support WebSockets.</b></div>"))
+  }
+});
 </script>
 </head>
 <body>

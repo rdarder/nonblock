@@ -5,20 +5,21 @@ import (
   "log"
 )
 
-type _messageHeader struct {
+type MessageHeader struct {
   Name  string // suscribe | cancel | newdata
   Id    string
   Ref   string
+  Data  json.RawMessage
 }
 
-type _messageSuscribeData struct {
-  Puesto        string
-  Nivel         string
-  Alcance       string
-  Lugar         string
+type suscribeBody struct {
+  Puesto  string
+  Nivel   string
+  Alcance string
+  Lugar   string
 }
 
-type _messageNewDataData struct {
+type newDataBody struct {
   Puesto        string
   Mesa          string
   Local         string
@@ -31,27 +32,43 @@ type _messageNewDataData struct {
   Votos         int
 }
 
-type suscribeMessage struct {
-  _messageHeader
-  Data _messageSuscribeData
-}
+type MessageBody interface{}
 
-type newDataMessage struct {
-  _messageHeader
-  Data _messageNewDataData
-}
 
-func json2message(mess []byte) (m *suscribeMessage) {
-  m = new(suscribeMessage)
-  if err := json.Unmarshal(mess, m); err != nil {
-    log.Fatalln("Failed to parse json.")
+func decodeMessage(m []byte) (*MessageHeader, MessageBody) {
+  h := new(MessageHeader)
+  var b interface {}
+  var err
+
+  if err := json.Unmarshal(m, h); err == nil {
+    switch h.Name {
+    case "suscribe":
+      b = new(suscribeBody)
+    case "cancel":
+      b = nil
+    case "newdata":
+      b = new(newDataBody)
+    default:
+      log.Println("Don't know how to decode message name: " + h.Name)
+    }
   }
-  return
+
+  err := json.Unmarshal(h.Data, b)
+  return h, b
 }
 
-/*func message2json(mess *Message) ([]byte) {*/
-  /*j, err := json.Marshal(mess)*/
-  /*if err {*/
+
+/*func json2message(mess []byte) (m *suscribeMessage) {*/
+  /*m = new(suscribeMessage)*/
+  /*if err := json.Unmarshal(mess, m); err != nil {*/
+    /*log.Fatalln("Failed to parse json.")*/
+  /*}*/
+  /*return*/
+/*}*/
+
+/*func message2json(m interface{}) ([]byte) {*/
+  /*j, err := json.Marshal(m)*/
+  /*if err != nil {*/
     /*log.Fatalln("Failed to encode json.")*/
   /*}*/
   /*return j*/

@@ -3,13 +3,12 @@ package main
 import (
   "fmt"
   "log"
-  "http"
   // goinstall -v -dashboard=true github.com/kuroneko/gosqlite3
   "github.com/kuroneko/gosqlite3"
 )
 
 
-func buildQuery(m *suscribeMessage) (sql string) {
+func buildQuery(m *suscribeBody) (sql string) {
   sql = fmt.Sprintf(`
     select c.name, c.position, g.name, g.type, sum(v.total_votes)
       from candidates c, votes v, geo g
@@ -18,12 +17,12 @@ func buildQuery(m *suscribeMessage) (sql string) {
        and c.position like '%v'
        and g.type like '%v'
   group by c.name, c.position, g.name, g.type
-  `, m.Data.Puesto, m.Data.Nivel)
+  `, m.Puesto, m.Nivel)
   return
 }
 
 
-func voteFetcher(req chan *suscribeMessage, ret chan *newDataMessage) {
+func voteFetcher(req chan *suscribeBody, ret chan interface{}) {
   db, err := sqlite3.Open("db.sqlite")
   if err != nil {
     log.Fatalln("Failed to connect to DB.")
@@ -40,16 +39,12 @@ func voteFetcher(req chan *suscribeMessage, ret chan *newDataMessage) {
         if err = st.Step(); err != nil {
           r:= st.Row()
           log.Println(r)
-
         } else {
           break
         }
       }
       st.Finalize()
     }
+    /*ret <- &newDataMessage{}*/
   }
-}
-
-func loadVotes(c http.ResponseWriter, req *http.Request) {
-  log.Println("noop, Loading a vote.")
 }
