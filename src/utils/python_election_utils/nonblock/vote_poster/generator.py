@@ -13,10 +13,10 @@ import urllib2
 
 
 def spec_levels(spec):
-  return [l['level'] for l in spec['levels']]
+  return [l['nivel'] for l in spec['niveles']]
 
 def spec_titles(spec):
-  return [l['title'] for l in spec['levels']]
+  return [l['plural'] for l in spec['niveles']]
 
 class VotesGenerator(object):
   def __init__(self, election_spec):
@@ -24,8 +24,8 @@ class VotesGenerator(object):
     self.levels = spec_levels(self.spec)
     self.titles = spec_titles(self.spec)
     self.parties = {}
-    for party in self.spec['parties']:
-      self.parties[party['name']] = party
+    for party in self.spec['partidos']:
+      self.parties[party['nombre']] = party
   def generate(self, election, i=0, parent_candidates={}):
     level = self.levels[i]
     title = self.titles[i]
@@ -35,17 +35,17 @@ class VotesGenerator(object):
 
     if election.has_key(title):
       for name, contents in election[title].items():
-        if contents.has_key('candidates'):
-          for position, level_candidates in contents['candidates'].items():
+        if contents.has_key('candidatos'):
+          for position, level_candidates in contents['candidatos'].items():
               candidates[position] = level_candidates
-        if contents.has_key('voters'):
-          total_votes = contents['voters']
+        if contents.has_key('votantes'):
+          total_votes = contents['votantes']
           voting_center_name = name
           vote_entries = []
           for position, candidate_list in candidates.items():
             random_share = []
             for candidate in candidate_list:
-              party_spec = self.parties[candidate['party']]
+              party_spec = self.parties[candidate['partido']]
               random_share.append(random.normalvariate(party_spec['avg'],
                                                        party_spec['mu']))
             total_share = sum(random_share)
@@ -58,9 +58,10 @@ class VotesGenerator(object):
                 split_votes -= votes
               else:
                 votes = split_votes
-              vote_entries.append({ 'position': position, 'candidate': c,
-                                 'votes': votes })
-          yield {'voting_center': voting_center_name, 'data':vote_entries}
+              vote_entries.append({ 'puesto': position, 'candidato': c,
+                                 'votos': votes })
+          yield {'centro_votacion_id': voting_center_name,
+                 'data':vote_entries}
         if i < len(self.levels) -1:
           for v in self.generate(contents, i+1, candidates):
             yield v
@@ -129,7 +130,8 @@ class ConstantRateVotePoster(object):
   def rate_monitor(self):
     while True:
       rate = self.posted / (datetime.now() - self.start_time).total_seconds()
-      logging.info("Posting at real rate of %0.2f votes per second", rate)
+      logging.info("Posted: %d votes. Rate %0.2f votes per second",
+                   self.posted, rate)
       gevent.sleep(1)
   def put_vote(self, vote):
     data = json.dumps(vote)

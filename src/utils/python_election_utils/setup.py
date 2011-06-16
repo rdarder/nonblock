@@ -12,7 +12,7 @@ setup(
     },
 
     install_requires = ['docutils', 'sqlalchemy', 'pyyaml', 'oursql',
-                        'gevent==0.13.6'],
+                        'gevent']
 
     package_data = {
         'nonblock.gen_election': ['data/people_names.yml',

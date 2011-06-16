@@ -57,8 +57,10 @@ def declare_tables(spec, metadata):
                                sa.ForeignKey('partidos.id'),
                                primary_key=True),
                      sa.Column('candidato', sa.String(64)),
+                     sa.Column('puesto', sa.Enum(*positions),
+                               nullable=False),
                      sa.Column('partido', sa.String(64)),
-                     sa.Column('votos', sa.Integer, nullable=False)
+                     sa.Column('votos', sa.Integer, default=0)
                     )
 
   for level in levels[:-1]:

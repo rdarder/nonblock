@@ -4,6 +4,7 @@ import yaml
 import logging
 import argparse
 from .. import db
+from . import expanded_votes
 
 def spec_levels(spec):
   return [l['nivel'] for l in spec['niveles']]
@@ -49,10 +50,21 @@ class ElectionDB(object):
       r1 = self.session.execute(sql.insert(self.tables['partidos'],
         values=dict(nombre=party['nombre'])))
       self.parties[party['nombre']] = r1.inserted_primary_key[0]
+  def fill_expanded_votes(self):
+    tables = expanded_votes.Tables(db.spec, db)
+    to_insert = expanded_votes.get_expanded(tables, db.spec)
+    db.engine.execute(to_insert)
+    pass
   def load(self, election):
+    logging.info('inserting parties data')
     self.fill_parties()
+    logging.info('inserting geo data')
     self.fill_geo(election)
+    logging.info('commiting transaction')
     self.session.commit()
+    logging.info('inserting expanded votes (may take a while)')
+    self.fill_expanded_votes()
+    self.session.flush()
 
 def main():
   parser = argparse.ArgumentParser(description='create election database')
