@@ -1,26 +1,53 @@
 package main
 
+import (
+  "container/list"
+)
 
-type geotree struct {
+type Provincia struct {
+  Nombre string
+  Departamentos []Departamento
+}
 
-  Provincias []struct {
-    Provincia   string
+type Departamento struct {
+  Nombre string
+  Contenedor *Provincia
+  Seccionales []Seccional
+}
 
-    Departamentos []struct {
-      Departamento  string
+type Seccional struct {
+  Nombre string
+  Contenedor *Departamento
+  Locales []Local
+}
 
-      Seccionales []struct {
-        Seccional   string
+type Local struct {
+  Nombre string
+  Contenedor *Seccional
+  Mesas []Mesa
+}
 
-        Locales []struct {
-          Local   string
+type Mesa struct {
+  Nombre string
+  Contenedor *Local
+}
 
-          Mesas []struct {
-            Mesa  string
 
-          }
-        }
-      }
-    }
-  }
+type Geo struct {
+  Nombre string
+  Nivel  string
+  Contenedor *Geo
+  Contenidos []*Geo
+}
+
+/* one list to bind them all */
+var Mesas = list.New()
+var Locales = list.New()
+var Seccionales = list.New()
+var Departamentos = list.New()
+var Provincias = list.New()
+
+func buildTree() (root *Geo) {
+  root = new(Geo)
+  return
 }

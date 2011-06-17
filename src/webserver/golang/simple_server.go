@@ -5,23 +5,9 @@ import (
   "http"
   "log"
   "websocket"
-  "sync"
 )
 
 var addr = flag.String("addr", ":8080", "http service address")
-
-/*var requests = make(chan *suscribeMessage)*/
-/*var responses = make(chan *newDataMessage)*/
-
-var connections struct {
-  websocks  map[*websocket.Conn]int
-  lock      sync.RWMutex
-}
-
-/* initalize stuff prior to entry point */
-func init() {
-  connections.websocks = make(map[*websocket.Conn]int)
-}
 
 func main() {
   /* parse commandline options */
@@ -49,24 +35,35 @@ func main() {
 }
 
 
+/* just a message to suscribe/unsuscribe */
+type wsSubscription struct {
+  ws        *websocket.Conn
+  subscribe bool
+}
+/* a channel to communicate the message */
+var subscriptionChannel = make(chan wsSubscription)
+
+
 /* wait for updates from db or messages from clients */
 func hub() {
   for {
-
+    select {
+    /*case subscription := <-subscriptionChannel:*/
+    /*case dbupdate := <-dbChannel:*/
+    }
   }
 }
 
 /* listen for messages from clients */
 func clientListener(conn *websocket.Conn) {
-  defer conn.Close()
   defer func() {
-    connections.lock.Lock()
-    connections.websocks[conn] = 0, false // remove connection from map
-    connections.lock.Unlock()
+    subscriptionChannel <- wsSubscription{conn, false}
+    conn.Close()
   }()
+  /* suscribe the websocket */
+  subscriptionChannel <- wsSubscription{conn, true}
 
   buf := make([]byte, 1024)
-
   for  {
     if n, err := conn.Read(buf); err != nil {
       /* TODO: cancel registrations */
@@ -78,6 +75,9 @@ func clientListener(conn *websocket.Conn) {
         case "suscribe":
           if b := m.decodeSuscribe(); b != nil {
             /* register */
+            /*b.Alcance*/
+
+            /*log.Println(b)*/
           }
         case "cancel":
           /* unregister */
