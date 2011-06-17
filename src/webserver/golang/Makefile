@@ -8,6 +8,7 @@ GOFILES = \
 	simple_server.go \
 	webclient.go \
 	database.go \
-	messages.go
+	messages.go \
+	geotree.go
 
 include $(GOROOT)/src/Make.cmd

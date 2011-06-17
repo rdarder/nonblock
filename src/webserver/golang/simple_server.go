@@ -73,13 +73,18 @@ func clientListener(conn *websocket.Conn) {
       break
     } else {
 
-      /*log.Println(n)*/
-      switch h, m := decodeMessage(buf[:n]); h.Name {
-      case "suscribe":
-        log.Println(m)
-      case "cancel":
-      default:
-        log.Println("Recieved unknown message: " + h.Name)
+      if m := decodeMessage(buf[:n]); m != nil {
+        switch m.Name {
+        case "suscribe":
+          if b := m.decodeSuscribe(); b != nil {
+            /* register */
+          }
+        case "cancel":
+          /* unregister */
+          log.Println("Cancel")
+        default:
+          log.Println("Recieved unknown message: " + m.Name)
+        }
       }
     }
   }

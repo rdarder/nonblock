@@ -5,11 +5,11 @@ import (
   "log"
 )
 
-type MessageHeader struct {
-  Name  string // suscribe | cancel | newdata
+type Message struct {
+  Name  string
   Id    string
   Ref   string
-  Data  json.RawMessage
+  Data  *json.RawMessage
 }
 
 type suscribeBody struct {
@@ -32,44 +32,43 @@ type newDataBody struct {
   Votos         int
 }
 
-type MessageBody interface{}
 
-
-func decodeMessage(m []byte) (*MessageHeader, MessageBody) {
-  h := new(MessageHeader)
-  var b interface {}
-  var err
-
-  if err := json.Unmarshal(m, h); err == nil {
-    switch h.Name {
-    case "suscribe":
-      b = new(suscribeBody)
-    case "cancel":
-      b = nil
-    case "newdata":
-      b = new(newDataBody)
-    default:
-      log.Println("Don't know how to decode message name: " + h.Name)
-    }
+func decodeMessage(m []byte) *Message {
+  r := new(Message)
+  if err := json.Unmarshal(m, r); err != nil {
+    log.Println("Failed to decode message: %v", r)
+    return nil
   }
-
-  err := json.Unmarshal(h.Data, b)
-  return h, b
+  return r
 }
 
+func (m *Message)decodeSuscribe() *suscribeBody {
+  if m.Name != "suscribe" {
+    log.Println("Not a suscribe body.")
+    return nil
+  }
+  b := new(suscribeBody)
+  if err := json.Unmarshal(*m.Data, b); err != nil {
+    log.Println("Failed to decode body: %v", m)
+    return nil
+  }
+  return b
+}
 
-/*func json2message(mess []byte) (m *suscribeMessage) {*/
-  /*m = new(suscribeMessage)*/
-  /*if err := json.Unmarshal(mess, m); err != nil {*/
-    /*log.Fatalln("Failed to parse json.")*/
+func (m *Message)decodeCancel() {
+  log.Println("Cancel messages don't carry data.")
+  return
+}
+
+/*func (m *Message)encodeJSON(any interface{}) []byte {*/
+  /*if j, err := json.Marshal(m.Data); err != nil {*/
+    /*log.Println("Failed to encode message: " + m)*/
+    /*return nil*/
   /*}*/
-  /*return*/
-/*}*/
 
-/*func message2json(m interface{}) ([]byte) {*/
-  /*j, err := json.Marshal(m)*/
-  /*if err != nil {*/
-    /*log.Fatalln("Failed to encode json.")*/
+  /*if j, err := json.Marshal(m); err != nil {*/
+    /*log.Println("Failed to encode message: " + m)*/
+    /*return nil*/
   /*}*/
   /*return j*/
 /*}*/
