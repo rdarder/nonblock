@@ -29,7 +29,17 @@ type newDataBody struct {
   Provincia     string
   Candidato     string
   Partido       string
-  Votos         int
+  Cantidad      int
+}
+
+type submitBody struct {
+  Mesa          string
+  Votos         []struct {
+    Puesto      string
+    Candidato   string
+    Partido     string
+    Cantidad    int
+  }
 }
 
 
@@ -49,7 +59,7 @@ func (m *Message)decodeSuscribe() *suscribeBody {
   }
   b := new(suscribeBody)
   if err := json.Unmarshal(*m.Data, b); err != nil {
-    log.Println("Failed to decode body: %v", m)
+    log.Println("Failed to decode suscribe body: %v", m)
     return nil
   }
   return b
@@ -58,6 +68,19 @@ func (m *Message)decodeSuscribe() *suscribeBody {
 func (m *Message)decodeCancel() {
   log.Println("Cancel messages don't carry data.")
   return
+}
+
+func (m *Message)decodeSubmit() *submitBody {
+  if m.Name != "submitvotes" {
+    log.Println("Not a submit body.")
+    return nil
+  }
+  b := new(submitBody)
+  if err := json.Unmarshal(*m.Data, b); err != nil {
+    log.Println("Failed to decode submit body: %v", m)
+    return nil
+  }
+  return b
 }
 
 /*func (m *Message)encodeJSON(any interface{}) []byte {*/

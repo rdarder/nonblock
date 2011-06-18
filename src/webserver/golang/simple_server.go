@@ -9,6 +9,7 @@ import (
 
 var addr = flag.String("addr", ":8080", "http service address")
 
+
 func main() {
   /* parse commandline options */
   flag.Parse()
@@ -43,13 +44,15 @@ type wsSubscription struct {
 /* a channel to communicate the message */
 var subscriptionChannel = make(chan wsSubscription)
 
+/* a channel to communicate a DB update TODO: buffer ? */
+var dbupdateChannel = make(chan *submitBody)
 
 /* wait for updates from db or messages from clients */
 func hub() {
   for {
     select {
-    /*case subscription := <-subscriptionChannel:*/
-    /*case dbupdate := <-dbChannel:*/
+    /*case sucrip := <-subscriptionChannel:*/
+    /*case dbupdate := <-dbupdateChannel:*/
     }
   }
 }
@@ -91,8 +94,29 @@ func clientListener(conn *websocket.Conn) {
 }
 
 
-func loadVotes(c http.ResponseWriter, req *http.Request) {
-  log.Println("noop, Loading a vote.")
+func loadVotes(rw http.ResponseWriter, req *http.Request) {
+  buf := make([]byte, 1024)
+
+  if n, err := req.Body.Read(buf); err != nil {
+    rw.WriteHeader(http.StatusBadRequest)
+  } else {
+
+    /* parse message header */
+    if m := decodeMessage(buf[:n]); m != nil {
+      rw.WriteHeader(http.StatusOK)
+      /* decode body */
+      if b := m.decodeSubmit(); b != nil {
+        /*dbupdateChannel*/
+      } else {
+        rw.WriteHeader(http.StatusBadRequest)
+      }
+    } else {
+      rw.WriteHeader(http.StatusBadRequest)
+    }
+  }
+  // TODO: check if connection is being closed
+
   /* signal new data */
   /*newdata <- true*/
+  log.Println("noop, Loading a vote.")
 }
