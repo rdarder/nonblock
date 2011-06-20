@@ -1,54 +1,78 @@
-from pkg_resources import resource_filename
-import json
-from paste.fileapp import DirectoryApp
-import os
-import argparse
-import logging
-from gevent.pywsgi import WSGIServer, WSGIHandler
-import yaml
+import os, json, argparse, logging
+from gevent.pywsgi import WSGIServer
 from gevent.server import StreamServer
 from gevent.event import Event
-import gevent
-import msgpack
 from websocket.server import WebSocketHandler
+from paste.fileapp import DirectoryApp
+from pkg_resources import resource_filename
+import urlparse
 
-from nonblock import db
+from . import parsers, db
 
-
-class NotificationRegistry(object):
-  pass
-
-class HttpElectionServer(WSGIHandler):
+class HttpElectionServer(WebSocketHandler):
   static_file_handler = DirectoryApp(os.path.dirname(
     resource_filename('nonblock.webserver', 'static')))
-  def __init__(self, socket_server):
+  def __init__(self, socket_server, votes_store):
     self.socket_server = socket_server
+    self.store =  votes_store
   def __call__(self, environ, start_response):
-    if environ["PATH_INFO"] == '/votes':
-      start_response('200 OK', [('Content-Type', 'Text/Plain')])
-      return []
+    if (environ["PATH_INFO"] == '/votes' and
+        environ["REQUEST_METHOD"] == 'POST'):
+      return self.load_votes(environ, start_response)
+    elif environ["PATH_INFO"] == '/results':
+      return self.get_results(environ, start_response)
     elif environ["PATH_INFO"] == '/ws':
-      get_websocket = environ.get('wsgi.get_websocket')
-      if get_websocket is not None:
-        socket = get_websocket()
-        socket.do_handshake()
-        return self.socket_server(socket, environ.get('REMOTE_ADDR',
-                                                      'UNKNOWN'))
+      return self.handle_websocket(environ, start_response)
     elif environ["PATH_INFO"].startswith('/static'):
       return self.static_file_handler(environ, start_response)
     else:
-      start_response('403 Forbidden', [('Content-Type', 'Text/Plain')])
-      return ["Forbidden"]
+      return self.forbidden(environ, start_response)
+
+  def forbidden(self, environ, start_response, msg='Forbidden'):
+    start_response('403 Forbidden', [('Content-Type', 'Text/Plain')])
+    return [msg]
+  def bad_request(self, environ, start_response, msg='Bad Request'):
+    start_response('400 Bad Request', [('Content-Type', 'Text/Plain')])
+    return [msg]
+  def success(self, environ, start_response, msg="OK"):
+    start_response('200 OK', [('Content-Type', 'Text/Plain')])
+    return [msg]
+  def json_ok(self, environ, start_response, data=None):
+    start_response('200 OK', [('Content-Type', 'application/json')])
+    return json.dumps(data)
+
+  def handle_websocket(self, environ, start_response):
+    get_websocket = environ.get('wsgi.get_websocket')
+    if get_websocket is not None:
+      socket = get_websocket()
+      socket.do_handshake()
+      return self.socket_server(socket,
+                                environ.get('REMOTE_ADDR', 'UNKNOWN'))
+  def load_votes(self, environ, start_response):
+    votes = json.load(environ['wsgi.input'])
+    voting_center = votes['data']['mesa']
+    votes = votes['data']['votos']
+    self.store.store_votes(voting_center, votes)
+    return self.success(environ, start_response)
+  def get_results(self, environ, start_response):
+    required = ['scope', 'place', 'level', 'position']
+    params = dict(urlparse.parse_qsl(environ['QUERY_STRING']))
+    for field in required:
+      if field not in params:
+          return self.bad_request(environ, start_response,
+                                  'missing %s field' % field)
+    results = self.store.get_results(*[params[f] for f in required])
+    return self.json_ok(environ, start_response, list(results))
 
 class ServerBuilder(object):
   def __init__(self, parser_factory, registry):
     self.parser_factory= parser_factory
     self.registry = registry
   def __call__(self, socket, address):
-    print 'calling socket server'
-    return ElectionServer(self.parser_factory(socket), self.registry).main()
+    return ElectionNotificationServer(self.parser_factory(socket),
+                                      self.registry).main()
 
-class ElectionServer(object):
+class ElectionNotificationServer(object):
   message_names = set(['subscribe', 'cancel'])
   def __init__(self, client, registry):
     self.client = client
@@ -71,73 +95,6 @@ class ElectionServer(object):
   def cancel(self, event):
     print 'subcribe!'
 
-class YamlStreamParser(object):
-  def __init__(self, sock):
-    self.stream = sock.makefile()
-  def receive(self):
-    buf = []
-    while True:
-      line = self.stream.readline()
-      if line.startswith('---'):
-        return yaml.loads(''.join(buf))
-      else:
-        buf.append(line)
-  def send(self, msg):
-    self.stream.write(yaml.dumps(msg) + '\n---\n')
-
-class YamlPacketParser(object):
-  def __init__(self, pkt):
-    self.pkt = pkt
-  def receive(self):
-    return yaml.loads(self.pkt.receive())
-  def send(self, msg):
-    self.pkt.send(yaml.dumps(self, msg))
-
-
-class JsonStreamParser(object):
-  def __init__(self, sock):
-    self.stream = sock.makefile()
-  def receive(self):
-    return json.load(self.stream.readline())
-  def send(self, msg):
-    packet = json.dumps(msg) + '\n'
-    self.stream.write(packet + '\n')
-
-class JsonPacketParser(object):
-  def __init__(self, pkt):
-    self.pkt = pkt
-  def receive(self):
-    return json.loads(self.pkt.receive())
-  def send(self, msg):
-    self.pkt.send(json.dumps(self, msg))
-
-
-class MsgPacketParser(object):
-  def __init__(self, pkt):
-    self.pkt = pkt
-  def receive(self):
-    return msgpack.loads(self.pkt.receive())
-  def send(self, msg):
-    self.pkt.send(msgpack.dumps(msg))
-
-class MsgStreamParser(object):
-  def __init__(self, stream):
-    self.stream = stream
-  def receive(self):
-    return msgpack.load(self.stream)
-  def send(self, msg):
-    msgpack.dump(msg, self.stream)
-
-
-
-stream_parsers = {'json': JsonStreamParser,
-                  'yaml': YamlStreamParser,
-                  'msgpack': MsgStreamParser,
-                 }
-packet_parsers = {'json': JsonPacketParser,
-                  'yaml': YamlPacketParser,
-                  'msgpack': MsgPacketParser,
-                 }
 
 def argument_parser():
   parser = argparse.ArgumentParser(description='Election results Server')
@@ -146,13 +103,13 @@ def argument_parser():
   parser.add_argument('-t', '--tcp',
                       help="address:port  where tcp server will bind to")
   parser.add_argument('-f', '--format', help="packet format",
-                      choices=packet_parsers, default='json')
-  parser.add_argument('-d', '--db',  default="sqlite:///db.sqlite",
-                      help="url format described in "
-                      "http://www.sqlalchemy.org/docs/core/engines.html",
-                      required=True)
-  parser.add_argument('-s', '--election-spec', type=argparse.FileType('r'),
-                      required=True)
+                      choices=parsers.packet_parsers, default='json')
+  parser.add_argument('--db-host',  default="localhost")
+  parser.add_argument('--db-port',  type=int, default=3306)
+  parser.add_argument('--db-user', required=True)
+  parser.add_argument('--db-pass', required=True)
+  parser.add_argument('--db-name', required=True)
+  parser.add_argument('--db-pool-size', type=int, default=20)
   parser.add_argument('-v', '--verbose', action='store_true', default=False)
   parser.add_argument('-D', '--debug', action='store_true', default=False)
   return parser
@@ -165,36 +122,46 @@ def setup_logging(args):
   else:
     logging.basicConfig(level=logging.WARNING)
 
-def setup_db(args):
-  election_spec = yaml.load(args.election_spec)
-  db.setup(election_spec, args.db, True, args.debug)
-
 def main():
   args = argument_parser().parse_args()
   setup_logging(args)
+  store = db.VotesStore(db.DbPool(args))
+  registry = NotificationTree()
 
-  if args.http is None and args.tcp is None:
+  if not (args.http or args.tcp):
     logging.fatal('At least one of --http or --tcp options is required')
     return(-1)
-  registry = NotificationRegistry()
-
+  socket_server = ServerBuilder(parsers.packet_parsers[args.format],
+                                  registry)
   if args.http:
-    socket_server = ServerBuilder(packet_parsers[args.format], registry)
     address, port = args.http.split(':',1)
-    http_server = HttpElectionServer(socket_server)
-    http_listener =  WSGIServer((address, int(port)), http_server,
-                               handler_class=WebSocketHandler)
+    http_server = HttpElectionServer(socket_server, store)
+    http_listener =  WSGIServer((address, int(port)), http_server)
     http_listener.start()
   if args.tcp:
-    socket_server = ServerBuilder(stream_parsers[args.format], registry)
+    socket_server = ServerBuilder(parsers.stream_parsers[args.format],
+                                  registry)
     address, port = args.tcp.split(':',1)
     tcp_server = StreamServer((address, int(port)), socket_server)
     tcp_server.start()
 
-    stop_event = Event()
-    stop_event.wait()
+  stop_event = Event()
+  stop_event.wait()
 
+class NotificationTree(object):
+  pass
 
+class GeoLevel(object):
+  def __init__(self, container, geo_id, scope):
+    self.container = container
+    self.geo_id = geo_id
+    self.scope = scope
+    self.dirty = False
+  def register(self, level, position):
+    if self.buckets.has_key((level,position)):
+      pass
+    else:
+      self._create_bucket(self, level, position)
 
 
 if __name__ == '__main__':
