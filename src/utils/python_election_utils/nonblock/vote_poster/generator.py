@@ -58,10 +58,16 @@ class VotesGenerator(object):
                 split_votes -= votes
               else:
                 votes = split_votes
-              vote_entries.append({ 'puesto': position, 'candidato': c,
-                                 'votos': votes })
-          yield {'centro_votacion': voting_center_name,
-                 'data':vote_entries}
+              vote_entries.append({'puesto': position,
+                                   'candidato': c['nombre'],
+                                   'partido': c['partido'],
+                                   'cant': votes })
+            yield { 'name': 'submitVotes',
+                    'data': {
+                      'mesa': voting_center_name,
+                      'votos':vote_entries
+                    }
+                  }
         if i < len(self.levels) -1:
           for v in self.generate(contents, i+1, candidates):
             yield v
