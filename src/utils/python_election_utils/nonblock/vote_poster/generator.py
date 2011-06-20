@@ -46,8 +46,8 @@ class VotesGenerator(object):
             random_share = []
             for candidate in candidate_list:
               party_spec = self.parties[candidate['partido']]
-              random_share.append(random.normalvariate(party_spec['avg'],
-                                                       party_spec['mu']))
+              random_share.append(max(0,random.normalvariate(party_spec['avg'],
+                                                       party_spec['mu'])))
             total_share = sum(random_share)
             random_percentages = [s/total_share for s in random_share]
             split_votes = total_votes
@@ -117,7 +117,7 @@ class ConstantRateVotePoster(object):
     self.url =  url
     self.rate = rate
     if limit:
-      self.votes = votes[:limit]
+      self.votes = votes[:limit+1]
   def start(self):
     mon = gevent.spawn(self.rate_monitor)
     self.start_time = datetime.now()
