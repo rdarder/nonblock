@@ -121,9 +121,11 @@ class ConstantRateVotePoster(object):
   def start(self):
     mon = gevent.spawn(self.rate_monitor)
     self.start_time = datetime.now()
-    self.posted=0
+    self.transit = 0
+    self.posted = 0
     for vote in self.votes:
-      wait_until = self.start_time + timedelta(seconds=self.posted /
+      wait_until = self.start_time + timedelta(seconds=(self.transit +
+                                                        self.posted) /
                                                float(self.rate))
       logging.debug('started on %s, waiting until %s', self.start_time,
                     wait_until)
@@ -134,14 +136,15 @@ class ConstantRateVotePoster(object):
         #time.sleep(sleep_time)
       else:
         logging.debug('not sleeping')
-      self.posted += 1
+      self.transit += 1
       gevent.spawn(self.put_vote,vote)
     gevent.kill(mon)
   def rate_monitor(self):
     while True:
-      rate = self.posted / (datetime.now() - self.start_time).total_seconds()
-      logging.info("Posted: %d votes. Rate %0.2f votes per second",
-                   self.posted, rate)
+      total_rate  = (self.posted  + self.transit) / (datetime.now() - self.start_time).total_seconds()
+      posted_rate = (self.posted) / (datetime.now() - self.start_time).total_seconds()
+      logging.info("Posted: %d votes. Rate (%0.2f:%0.2f) votes per second",
+                   self.posted, total_rate, posted_rate)
       gevent.sleep(1)
   def put_vote(self, vote):
     data = json.dumps(vote)
@@ -149,6 +152,7 @@ class ConstantRateVotePoster(object):
     try:
       f = urllib2.urlopen(req)
       response = f.read()
+      self.posted+=1
     except Exception, e:
       print(e)
     else:
