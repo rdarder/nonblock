@@ -124,8 +124,7 @@ class ConstantRateVotePoster(object):
     self.transit = 0
     self.posted = 0
     for vote in self.votes:
-      wait_until = self.start_time + timedelta(seconds=(self.transit +
-                                                        self.posted) /
+      wait_until = self.start_time + timedelta(seconds=(self.transit)/
                                                float(self.rate))
       logging.debug('started on %s, waiting until %s', self.start_time,
                     wait_until)
@@ -141,7 +140,7 @@ class ConstantRateVotePoster(object):
     gevent.kill(mon)
   def rate_monitor(self):
     while True:
-      total_rate  = (self.posted  + self.transit) / (datetime.now() - self.start_time).total_seconds()
+      total_rate  = (self.transit) / (datetime.now() - self.start_time).total_seconds()
       posted_rate = (self.posted) / (datetime.now() - self.start_time).total_seconds()
       logging.info("Posted: %d votes. Rate (%0.2f:%0.2f) votes per second",
                    self.posted, total_rate, posted_rate)
