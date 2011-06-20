@@ -46,7 +46,7 @@ class VotesGenerator(object):
             random_share = []
             for candidate in candidate_list:
               party_spec = self.parties[candidate['partido']]
-              random_share.append(max(0,random.normalvariate(party_spec['avg'],
+              random_share.append(max(1,random.normalvariate(party_spec['avg'],
                                                        party_spec['mu'])))
             total_share = sum(random_share)
             random_percentages = [s/total_share for s in random_share]
