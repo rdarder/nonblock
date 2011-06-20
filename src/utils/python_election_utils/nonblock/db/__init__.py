@@ -32,12 +32,10 @@ def declare_tables(spec, metadata):
                      sa.ForeignKey('geo.id'))
           )
   votes_check = sa.Table('votos_check', metadata,
-                         sa.Column('votantes', sa.Integer, nullable=False),
-                         sa.Column('centro_votacion_id',
-                                   sa.Integer, sa.ForeignKey('geo.id'))
+                         sa.Column('votantes', sa.Integer),
                         )
   votes = sa.Table('votos', metadata,
-                   sa.Column('centro_votacion_id',
+                   sa.Column(levels[-1] + '_id',
                              sa.Integer, sa.ForeignKey('geo.id'),
                              primary_key=True),
                    sa.Column('candidato_id', sa.Integer,
@@ -46,27 +44,28 @@ def declare_tables(spec, metadata):
                    sa.Column('votos', sa.Integer, nullable=False)
                   )
   x_votes = sa.Table('votos_expandidos', metadata,
-                     sa.Column(levels[-1] + '_id',
-                               sa.Integer, sa.ForeignKey('geo.id'),
-                               primary_key=True),
-                     sa.Column(levels[-1], sa.String(64)),
-                     sa.Column('candidato_id', sa.Integer,
-                               sa.ForeignKey('candidatos.id'),
-                               primary_key=True),
                      sa.Column('partido_id', sa.Integer,
                                sa.ForeignKey('partidos.id'),
                                primary_key=True),
                      sa.Column('candidato', sa.String(64)),
+                     sa.Column('candidato_id', sa.Integer,
+                               sa.ForeignKey('candidatos.id'),
+                               primary_key=True),
                      sa.Column('puesto', sa.Enum(*positions),
                                nullable=False),
                      sa.Column('partido', sa.String(64)),
                      sa.Column('votos', sa.Integer, default=0)
                     )
 
-  for level in levels[:-1]:
+  for level in levels:
     x_votes.append_column(sa.Column(level + '_id', sa.Integer,
-                                    sa.ForeignKey('geo.id')))
+                                    sa.ForeignKey('geo.id'),
+                                    primary_key=True))
+    votes_check.append_column(sa.Column(level + '_id', sa.Integer,
+                                        sa.ForeignKey('geo.id'),
+                                        primary_key=True))
     x_votes.append_column(sa.Column(level , sa.String(64)))
+    votes_check.append_column(sa.Column(level , sa.String(64)))
 
 def setup_mapper(spec, tables, classes):
   pass

@@ -26,7 +26,7 @@ class ElectionDB(object):
     if election.has_key(title):
       for name, contents in election[title].items():
         values = {'contenedor_id': parent_container_id,
-                  'nombre': name, 'type': level}
+                  'nombre': name, 'tipo': level}
         r1 = self.session.execute(sql.insert(self.tables['geo'], values))
         my_id = r1.inserted_primary_key[0]
         if contents.has_key('candidatos'):
@@ -38,11 +38,11 @@ class ElectionDB(object):
                         'contenedor_id': my_id}
               self.session.execute(sql.insert(self.tables['candidatos'],
                                               values))
-        if contents.has_key('votantes'):
-          values={'centro_votacion_id': my_id,
-                  'votantes': contents['votantes']
-                 }
-          self.session.execute(sql.insert(self.tables['votos_check'], values))
+        #if contents.has_key('votantes'):
+        #  values={ 'votantes': contents['votantes'] }
+        #  self.session.execute(sql.update(self.tables['votos_check'],
+        #  (self.tables['votos_check'].c[self.levels[-1]['nivel'] + '_id'] ==
+        #     my_id), values))
         if i < len(self.levels) -1:
           self.fill_geo(contents, i+1, my_id)
   def fill_parties(self):
@@ -50,7 +50,7 @@ class ElectionDB(object):
       r1 = self.session.execute(sql.insert(self.tables['partidos'],
         values=dict(nombre=party['nombre'])))
       self.parties[party['nombre']] = r1.inserted_primary_key[0]
-  def fill_expanded_votes(self):
+  def fill_votes_check(self):
     tables = expanded_votes.Tables(db.spec, db)
     to_insert = expanded_votes.get_expanded(tables, db.spec)
     db.engine.execute(to_insert)
@@ -63,7 +63,7 @@ class ElectionDB(object):
     logging.info('commiting transaction')
     self.session.commit()
     logging.info('inserting expanded votes (may take a while)')
-    self.fill_expanded_votes()
+    self.fill_votes_check()
     self.session.flush()
 
 def main():

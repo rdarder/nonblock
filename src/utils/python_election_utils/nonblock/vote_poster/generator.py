@@ -60,7 +60,7 @@ class VotesGenerator(object):
                 votes = split_votes
               vote_entries.append({ 'puesto': position, 'candidato': c,
                                  'votos': votes })
-          yield {'centro_votacion_id': voting_center_name,
+          yield {'centro_votacion': voting_center_name,
                  'data':vote_entries}
         if i < len(self.levels) -1:
           for v in self.generate(contents, i+1, candidates):
@@ -74,6 +74,8 @@ def main():
                       required=True)
   parser.add_argument('-r', '--rate', type=int, default=10,
                       help="rate in votes per second")
+  parser.add_argument('-l', '--limit', type=int, default=0,
+                      help="put at most <limit> votes, default all")
   parser.add_argument('-u', '--url',  default="http://localhost",
                       help="url address where votes should be POSTed")
   parser.add_argument('-v', '--verbose', action='store_true', default=False)
@@ -97,17 +99,19 @@ def main():
   random.shuffle(votes)
 
   logging.info('starting to post votes @%d vps', args.rate)
-  poster = ConstantRateVotePoster(votes, args.url, args.rate)
+  poster = ConstantRateVotePoster(votes, args.url, args.rate, args.limit)
   poster.start()
   logging.info('finished')
 
 from datetime import datetime, timedelta
 
 class ConstantRateVotePoster(object):
-  def __init__(self, votes, url, rate):
+  def __init__(self, votes, url, rate, limit=0):
     self.votes = votes
     self.url =  url
     self.rate = rate
+    if limit:
+      self.votes = votes[:limit]
   def start(self):
     mon = gevent.spawn(self.rate_monitor)
     self.start_time = datetime.now()
@@ -124,8 +128,8 @@ class ConstantRateVotePoster(object):
         #time.sleep(sleep_time)
       else:
         logging.debug('not sleeping')
-      self.put_vote(vote)
       self.posted += 1
+      gevent.spawn(self.put_vote,vote)
     gevent.kill(mon)
   def rate_monitor(self):
     while True:
@@ -136,9 +140,14 @@ class ConstantRateVotePoster(object):
   def put_vote(self, vote):
     data = json.dumps(vote)
     req = urllib2.Request(self.url, data, {'Content-Type':'application/json'})
-    f = urllib2.urlopen(req)
-    response = f.read()
-    f.close()
+    try:
+      f = urllib2.urlopen(req)
+      response = f.read()
+    except Exception, e:
+      print(e)
+    else:
+      print(response)
+      f.close()
 
 
 
