@@ -1,13 +1,15 @@
 package com.globant.nonblock.netty.server.service.votes;
 
-import com.globant.nonblock.netty.server.message.loader.VotesResult;
+import java.util.List;
+
+import com.globant.nonblock.netty.server.message.loader.SubmitVotesMessage;
 import com.globant.nonblock.netty.server.message.newdata.NewDataMessage;
 import com.globant.nonblock.netty.server.message.subscription.SubscribeMessage;
 
 public interface VoteService {
 
-	void addVotes(VotesResult newResults);
+	void addVotes(SubmitVotesMessage newResults);
 
-	NewDataMessage calculateStatus(SubscribeMessage message);
+	List<Object[]> calculateStatus(SubscribeMessage message);
 
 }

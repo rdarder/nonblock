@@ -1,6 +1,7 @@
 package com.globant.nonblock.netty.server.service.location;
 
 public enum LocationType {
+
 	Provincia(),
 	Departamento(),
 	Localidad(),

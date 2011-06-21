@@ -1,18 +1,22 @@
 package com.globant.nonblock.netty.server.service.geo.impl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.commons.lang.Validate;
+import org.jboss.netty.channel.ChannelFuture;
+import org.jboss.netty.channel.ChannelFutureListener;
 
-import com.globant.nonblock.netty.server.channel.BroadcastClientChannelSet;
 import com.globant.nonblock.netty.server.channel.ClientChannel;
+import com.globant.nonblock.netty.server.channel.impl.NettyClientChannelAdapter;
 import com.globant.nonblock.netty.server.message.subscription.SubscribeMessage;
 import com.globant.nonblock.netty.server.service.geo.GeoNode;
 import com.globant.nonblock.netty.server.service.geo.GeoTreeWalker;
+import com.globant.nonblock.netty.server.service.geo.SubscriptionEntry;
 import com.globant.nonblock.netty.server.service.location.LocationType;
-import com.google.inject.Provider;
 
 public class ChannelGroupGeoNode implements GeoNode {
 
@@ -22,28 +26,41 @@ public class ChannelGroupGeoNode implements GeoNode {
 
 	private final String location;
 
-	private final Map<SubscribeMessage, BroadcastClientChannelSet> subscribers = new HashMap<SubscribeMessage, BroadcastClientChannelSet>();
+	private AtomicBoolean dirty = new AtomicBoolean(false);
 
-	private final Provider<BroadcastClientChannelSet> broadcastChannelFactory;
+	private final Map<SubscribeMessage, Set<SubscriptionEntry>> subscribersByNivel = new HashMap<SubscribeMessage, Set<SubscriptionEntry>>();
 
-	public ChannelGroupGeoNode(final GeoNode parent, final LocationType locationType, final String location, final Provider<BroadcastClientChannelSet> broadcastChannelFactory) {
+	public ChannelGroupGeoNode(final GeoNode parent, final LocationType locationType, final String location) {
 		super();
 		this.parent = parent;
 		this.locationType = locationType;
 		this.location = location;
-		this.broadcastChannelFactory = broadcastChannelFactory;
 	}
 
 	public void addSubscriptor(final SubscribeMessage message, final ClientChannel channel) {
 
 		Validate.isTrue(message.getAlcance().equals(this.locationType), "Wrong location type");
-		Validate.isTrue(message.getAlcanceValue().equals(this.location), "Wronh location");
+		Validate.isTrue(message.getLugar().equals(this.location), "Wrong location");
 
-		if (subscribers.get(message) == null) {
-			subscribers.put(message, broadcastChannelFactory.get());
+		final SubscriptionEntry entry = new SubscriptionEntry();
+		entry.clientChannel = channel;
+		entry.originalSubscribeMessage = message;
+
+		
+		final NettyClientChannelAdapter nettyChannel = ((NettyClientChannelAdapter) channel);
+		nettyChannel.getWrappedChannel().getCloseFuture().addListener(new ChannelFutureListener() {
+			
+			@Override
+			public void operationComplete(ChannelFuture future) throws Exception {
+				subscribersByNivel.get(message).remove(entry);				
+			}
+		});
+		
+		if (subscribersByNivel.get(message) == null) {
+			subscribersByNivel.put(message, new HashSet<SubscriptionEntry>());
 		}
 
-		subscribers.get(message).add(channel);
+		subscribersByNivel.get(message).add(entry);
 	}
 
 	public void traverse(final GeoTreeWalker geoTreeVisitor) {
@@ -59,11 +76,26 @@ public class ChannelGroupGeoNode implements GeoNode {
 	}
 
 	public Set<SubscribeMessage> getAllSubscriberMessages() {
-		return this.subscribers.keySet();
+		return this.subscribersByNivel.keySet();
 	}
 
-	public BroadcastClientChannelSet getChannelGroup(final SubscribeMessage message) {
-		return this.subscribers.get(message);
+	public Set<SubscriptionEntry> getChannelGroup(final SubscribeMessage message) {
+		return this.subscribersByNivel.get(message);
+	}
+
+	@Override
+	public boolean isDirty() {
+		return this.dirty.get();
+	}
+
+	@Override
+	public void setDirty() {
+		this.dirty.set(true);
+	}
+
+	@Override
+	public void clean() {
+		this.dirty.set(false);
 	}
 
 }

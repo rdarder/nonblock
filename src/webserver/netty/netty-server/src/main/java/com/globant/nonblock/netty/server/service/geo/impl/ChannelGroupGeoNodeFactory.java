@@ -20,7 +20,7 @@ public class ChannelGroupGeoNodeFactory implements GeoNodeFactory {
 
 	@Override
 	public GeoNode create(GeoNode parent, LocationType locationType, String location) {
-		ChannelGroupGeoNode newNode = new ChannelGroupGeoNode(parent, locationType, location, broadcastChannelfactory);
+		ChannelGroupGeoNode newNode = new ChannelGroupGeoNode(parent, locationType, location);
 		return newNode;
 	}
 

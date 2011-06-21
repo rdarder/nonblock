@@ -8,6 +8,8 @@ import javax.inject.Inject;
 
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
+import org.jboss.netty.handler.codec.frame.DelimiterBasedFrameDecoder;
+import org.jboss.netty.handler.codec.frame.Delimiters;
 import org.jboss.netty.handler.codec.string.StringDecoder;
 import org.jboss.netty.handler.codec.string.StringEncoder;
 
@@ -17,7 +19,7 @@ import com.google.inject.Provider;
 public class RawSocketChannelPipelineFactory implements ChannelPipelineFactory {
 
 	private Provider<MessageManagerHandler> messageManagerHandlerFactory;
-
+	
 	@Inject
 	public RawSocketChannelPipelineFactory(Provider<MessageManagerHandler> messageBrokerHanlderProvider) {
 		super();
@@ -27,6 +29,7 @@ public class RawSocketChannelPipelineFactory implements ChannelPipelineFactory {
 	@Override
 	public ChannelPipeline getPipeline() throws Exception {
 		final ChannelPipeline pipeline = pipeline();
+		pipeline.addLast("frameDecoder", new DelimiterBasedFrameDecoder(Integer.MAX_VALUE, Delimiters.lineDelimiter()));
 		pipeline.addLast("stringDecoder", new StringDecoder(Charset.forName("UTF-8")));
 		pipeline.addLast("stringEncoder", new StringEncoder(Charset.forName("UTF-8")));
 		pipeline.addLast("encoder", this.messageManagerHandlerFactory.get());

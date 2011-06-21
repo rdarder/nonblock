@@ -1,20 +1,25 @@
 package com.globant.nonblock.netty.server.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name="geo")
 public class Geo {
 
 	@Id
 	private Long id;
 
+	@Column(name="nombre")
 	private String name;
 
+	@Column(name="tipo")
 	private String type;
 
 	@ManyToOne()
+	@JoinColumn(name = "contenedor_id")
 	private Geo parent;
 
 	public Long getId() {

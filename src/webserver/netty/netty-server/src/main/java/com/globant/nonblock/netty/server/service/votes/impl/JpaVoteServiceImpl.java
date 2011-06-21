@@ -7,10 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.globant.nonblock.netty.server.entity.Voto;
+import com.globant.nonblock.netty.server.message.loader.SubmitVotesMessage;
 import com.globant.nonblock.netty.server.message.loader.VoteDatum;
-import com.globant.nonblock.netty.server.message.loader.VotesResult;
-import com.globant.nonblock.netty.server.message.newdata.NewDataDatum;
-import com.globant.nonblock.netty.server.message.newdata.NewDataMessage;
 import com.globant.nonblock.netty.server.message.subscription.SubscribeMessage;
 import com.globant.nonblock.netty.server.service.location.Location;
 import com.globant.nonblock.netty.server.service.location.LocationService;
@@ -18,10 +16,22 @@ import com.globant.nonblock.netty.server.service.votes.VoteService;
 import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 
+/**
+ * JPA backed {@link VoteService} implementation.
+ * 
+ * @author Julian Gutierrez Oschmann
+ * 
+ */
 public class JpaVoteServiceImpl implements VoteService {
 
+	/**
+	 * JPA entity manager.
+	 */
 	private final Provider<EntityManager> entityManager;
 
+	/**
+	 * Location service.
+	 */
 	private final LocationService locationService;
 
 	@Inject
@@ -33,7 +43,7 @@ public class JpaVoteServiceImpl implements VoteService {
 
 	@Override
 	@Transactional
-	public void addVotes(final VotesResult newResults) {
+	public void addVotes(final SubmitVotesMessage newResults) {
 
 		final Location l = this.locationService.findLocation(newResults.getMesa());
 
@@ -58,21 +68,24 @@ public class JpaVoteServiceImpl implements VoteService {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public NewDataMessage calculateStatus(final SubscribeMessage message) {
+	public List<Object[]> calculateStatus(final SubscribeMessage message) {
 
 		final Query q = this.entityManager.get().createQuery(
-				"select sum(v.votos), v." + message.getNivel().toString().toLowerCase() + ", v.candidato from Voto v where v." + message.getAlcance().toString().toLowerCase() + " = '" + message.getAlcanceValue() + "'"
-						+ " and v.puesto = '" + message.getPuesto() + "' " + " group by v.candidato, v." + message.getNivel().toString().toLowerCase());
+				"select sum(v.votos), v." + message.getNivel().toString().toLowerCase() + ", v.candidato from Voto v where v." + message.getAlcance().toString().toLowerCase()
+						+ " = '" + message.getLugar() + "'" + " and v.puesto = '" + message.getPuesto() + "' " + " group by v.candidato, v."
+						+ message.getNivel().toString().toLowerCase());
 
 		List<Object[]> queryResult = q.getResultList();
-		NewDataMessage resultMessage = new NewDataMessage();
-		for (Object[] e : queryResult) {
-			Long cant = (Long) e[0];
-			String nivel = (String) e[1];
-			String candidato = (String) e[2];
-			resultMessage.getDatos().add(new NewDataDatum(cant, nivel, candidato));
-		}
-		return resultMessage;
+		return queryResult;
+//		NewDataMessage resultMessage = new NewDataMessage(null, message.getId());
+//		for (Object[] e : queryResult) {
+//			Long cant = (Long) e[0];
+//			String nivel = (String) e[1];
+//			String candidato = (String) e[2];
+//			resultMessage.getDatos().add(new NewDataDatum("", "", "", "", "", "", "", candidato, "", Integer.valueOf(cant.intValue())));
+//		}
+//
+//		return resultMessage;
 	}
 
 }

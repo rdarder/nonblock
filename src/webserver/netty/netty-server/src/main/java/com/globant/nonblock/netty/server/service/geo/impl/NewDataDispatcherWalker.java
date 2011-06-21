@@ -1,28 +1,25 @@
 package com.globant.nonblock.netty.server.service.geo.impl;
 
-import com.globant.nonblock.netty.server.channel.BroadcastClientChannelSet;
-import com.globant.nonblock.netty.server.message.newdata.NewDataMessage;
-import com.globant.nonblock.netty.server.message.subscription.SubscribeMessage;
+import com.globant.nonblock.netty.server.service.geo.GeoNode;
 import com.globant.nonblock.netty.server.service.geo.GeoTreeWalker;
-import com.globant.nonblock.netty.server.service.votes.VoteService;
+import com.globant.nonblock.netty.server.service.worker.DirtyNodesQueue;
 import com.google.inject.Inject;
 
 public class NewDataDispatcherWalker implements GeoTreeWalker {
 
-	private final VoteService voteService;
+	private final DirtyNodesQueue dirtyNodesQueue;
 
 	@Inject
-	public NewDataDispatcherWalker(final VoteService voteService) {
+	public NewDataDispatcherWalker(final DirtyNodesQueue dirtyNodesQueue) {
 		super();
-		this.voteService = voteService;
+		this.dirtyNodesQueue = dirtyNodesQueue;
 	}
 
 	@Override
-	public void visit(final ChannelGroupGeoNode geoNode) {
-		for (final SubscribeMessage sm : geoNode.getAllSubscriberMessages()) {
-			final BroadcastClientChannelSet channelGroup = geoNode.getChannelGroup(sm);
-			final NewDataMessage message = this.voteService.calculateStatus(sm);
-			channelGroup.writeToAll(message.toJson() + "\n");
+	public void visit(final GeoNode geoNode) {
+		synchronized (geoNode) {
+			geoNode.setDirty();
+			dirtyNodesQueue.getDirtyTreeNodesQueue().add(geoNode);			
 		}
 	}
 

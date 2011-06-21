@@ -1,14 +1,11 @@
 package com.globant.nonblock.netty.server.message.loader;
 
-import java.util.Map;
-
 import net.sf.json.JSONObject;
 
-import com.globant.nonblock.netty.server.message.ClientMessage;
-import com.globant.nonblock.netty.server.service.location.LocationType;
+import com.globant.nonblock.netty.server.message.binding.MessagePart;
 
 
-public class VoteDatum implements ClientMessage {
+public class VoteDatum implements MessagePart {
 
 	private String puesto;
 	private String candidato;
@@ -48,12 +45,19 @@ public class VoteDatum implements ClientMessage {
 	}
 
 	@Override
-	public void fromString(final String json) {
-		Map<String, Object> jo = JSONObject.fromObject(json);
+	public void addBodyContent(final JSONObject jo) {
 		this.candidato = (String) jo.get("candidato");
 		this.cantidad = jo.get("cant").toString();
 		this.partido = (String) jo.get("partido");
-		this.puesto = (String) jo.get("puesto");
+		this.puesto = (String) jo.get("puesto");	
+	}
+
+	@Override
+	public void parseBodyContent(final JSONObject jo) {
+		this.candidato = (String) jo.get("candidato");
+		this.cantidad = jo.get("cant").toString();
+		this.partido = (String) jo.get("partido");
+		this.puesto = (String) jo.get("puesto");		
 	}
 
 }

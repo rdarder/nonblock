@@ -8,13 +8,13 @@ public abstract class URLHandlerOptions {
 	public String webSocketUrl() {
 		return "ws";
 	}
-	
+
 	public String appUrl() {
 		return "app";
 	}
-	
+
 	public String loadServiceUrl() {
 		return "loadVotes";
 	}
-	
+
 }

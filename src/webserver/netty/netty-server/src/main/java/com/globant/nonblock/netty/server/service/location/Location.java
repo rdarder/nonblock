@@ -1,5 +1,12 @@
 package com.globant.nonblock.netty.server.service.location;
 
+/**
+ * A <a href="http://martinfowler.com/bliki/ValueObject.html"> value object </a>
+ * representing a location. 
+ *  
+ * @author Julian Gutierrez Oschmann
+ *
+ */
 public class Location {
 
 	private String mesa;
@@ -51,7 +58,7 @@ public class Location {
 		return provincia;
 	}
 
-	public String getValueByType(LocationType type) {
+	public String getValueByType(final LocationType type) {
 		switch (type) {
 		case Departamento:
 			return this.departamento;

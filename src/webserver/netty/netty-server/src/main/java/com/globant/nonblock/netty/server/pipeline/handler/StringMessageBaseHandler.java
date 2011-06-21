@@ -8,11 +8,11 @@ import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
 public abstract class StringMessageBaseHandler extends SimpleChannelUpstreamHandler {
 
 	@Override
-	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
+	public void messageReceived(final ChannelHandlerContext ctx, final MessageEvent e) throws Exception {
 		final String message = (String) e.getMessage();
 		processMessage(message, ctx.getChannel());
 	}
 
-	abstract void processMessage(String message, Channel channel);
+	abstract void processMessage(final String message, final Channel channel);
 
 }

@@ -56,7 +56,7 @@ import org.jboss.netty.handler.stream.ChunkedFile;
 import org.jboss.netty.util.CharsetUtil;
 
 import com.globant.nonblock.netty.server.pipeline.handler.config.URLHandlerOptions;
-import com.globant.nonblock.netty.server.pipeline.handler.resource.config.StaticContentConfig;
+import com.globant.nonblock.netty.server.pipeline.handler.resource.config.StaticContentOptions;
 
 /**
  * @author <a href="http://www.jboss.org/netty/">The Netty Project</a>
@@ -64,11 +64,11 @@ import com.globant.nonblock.netty.server.pipeline.handler.resource.config.Static
  */
 public class HttpStaticFileServerHandler extends SimpleChannelUpstreamHandler {
 
-	private final StaticContentConfig staticContentConfig;
+	private final StaticContentOptions staticContentConfig;
 	private final URLHandlerOptions urlHandlerOptions;
 	
 	@Inject
-    public HttpStaticFileServerHandler(final StaticContentConfig staticContentConfig, final URLHandlerOptions urlHandlerOptions) {
+    public HttpStaticFileServerHandler(final StaticContentOptions staticContentConfig, final URLHandlerOptions urlHandlerOptions) {
 		super();
 		this.staticContentConfig = staticContentConfig;
 		this.urlHandlerOptions = urlHandlerOptions;

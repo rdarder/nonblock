@@ -1,52 +1,56 @@
 package com.globant.nonblock.netty.server.message.subscription;
 
-import java.util.Map;
-
 import net.sf.json.JSONObject;
 
-import com.globant.nonblock.netty.server.message.ClientMessage;
+import com.globant.nonblock.netty.server.message.binding.Message;
 import com.globant.nonblock.netty.server.service.location.LocationType;
 
-public class SubscribeMessage implements ClientMessage {
+public class SubscribeMessage extends Message {
 
+	public SubscribeMessage(Integer id, Integer ref) {
+		super("subscribe", id, ref);
+	}
+
+	public SubscribeMessage() {
+		super("subscribe");
+	}
+	
 	private String puesto;
 
 	private LocationType nivel;
 
 	private LocationType alcance;
 
-	private String alcanceValue;
+	private String lugar;
 
 	public String getPuesto() {
 		return puesto;
-	}
-
-	public void setPuesto(String puesto) {
-		this.puesto = puesto;
 	}
 
 	public LocationType getNivel() {
 		return nivel;
 	}
 
-	public void setNivel(LocationType nivel) {
-		this.nivel = nivel;
-	}
-
 	public LocationType getAlcance() {
 		return alcance;
 	}
 
-	public void setAlcance(LocationType alcance) {
-		this.alcance = alcance;
+	public String getLugar() {
+		return lugar;
 	}
 
-	public String getAlcanceValue() {
-		return alcanceValue;
+	@Override
+	public void addBodyContent(final JSONObject data) {
+		
 	}
 
-	public void setAlcanceValue(String alcanceValue) {
-		this.alcanceValue = alcanceValue;
+	@Override
+	public void parseBodyContent(final JSONObject msg) {
+		final JSONObject dataNode = (JSONObject) msg.get("data");
+		this.puesto = (String) dataNode.get("puesto");
+		this.alcance = LocationType.valueOf(LocationType.class, (String) dataNode.get("alcance"));
+		this.nivel = LocationType.valueOf(LocationType.class, (String) dataNode.get("nivel"));
+		this.lugar = (String) dataNode.get("lugar");
 	}
 
 	@Override
@@ -54,7 +58,7 @@ public class SubscribeMessage implements ClientMessage {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((alcance == null) ? 0 : alcance.hashCode());
-		result = prime * result + ((alcanceValue == null) ? 0 : alcanceValue.hashCode());
+		result = prime * result + ((lugar == null) ? 0 : lugar.hashCode());
 		result = prime * result + ((nivel == null) ? 0 : nivel.hashCode());
 		result = prime * result + ((puesto == null) ? 0 : puesto.hashCode());
 		return result;
@@ -74,10 +78,10 @@ public class SubscribeMessage implements ClientMessage {
 				return false;
 		} else if (!alcance.equals(other.alcance))
 			return false;
-		if (alcanceValue == null) {
-			if (other.alcanceValue != null)
+		if (lugar == null) {
+			if (other.lugar != null)
 				return false;
-		} else if (!alcanceValue.equals(other.alcanceValue))
+		} else if (!lugar.equals(other.lugar))
 			return false;
 		if (nivel == null) {
 			if (other.nivel != null)
@@ -90,16 +94,6 @@ public class SubscribeMessage implements ClientMessage {
 		} else if (!puesto.equals(other.puesto))
 			return false;
 		return true;
-	}
-
-	@Override
-	public void fromString(final String json) {
-		Map<String, Object> jo = JSONObject.fromObject(json);
-		this.puesto = (String) jo.get("puesto");
-		this.alcance = LocationType.valueOf(LocationType.class, (String) jo.get("alcance"));
-		this.nivel = LocationType.valueOf(LocationType.class, (String) jo.get("nivel"));
-		this.alcanceValue = (String) jo.get("valor_alcance");
-		System.out.println(jo);
 	}
 
 }

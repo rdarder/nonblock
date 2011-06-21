@@ -2,6 +2,12 @@ package com.globant.nonblock.netty.server.config;
 
 import com.google.sitebricks.options.Options;
 
+/**
+ * Http server specific bootstrap parameters
+ * 
+ * @author Julian Gutierrez Oschmann
+ *
+ */
 @Options("http")
 public abstract class HttpServerOptions {
 

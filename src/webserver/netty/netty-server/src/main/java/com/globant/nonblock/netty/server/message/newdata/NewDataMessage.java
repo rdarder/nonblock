@@ -3,51 +3,48 @@ package com.globant.nonblock.netty.server.message.newdata;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import com.globant.nonblock.netty.server.message.ServerMessage;
+import com.globant.nonblock.netty.server.message.binding.Message;
 
-public class NewDataMessage implements ServerMessage {
+public class NewDataMessage extends Message {
 
-	List<NewDataDatum> datos = new ArrayList<NewDataDatum>();
-	
+	public NewDataMessage(Integer id, Integer ref) {
+		super("newdata", id, ref);
+	}
+
+	private List<NewDataDatum> datos = new ArrayList<NewDataDatum>();
+
 	public List<NewDataDatum> getDatos() {
 		return datos;
 	}
 
-	public void setDatos(List<NewDataDatum> datos) {
+	public void setDatos(final List<NewDataDatum> datos) {
 		this.datos = datos;
 	}
 
-	@Override
-	public String toJson() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("event", "newData");
-		
-		List<Map<String, Object>> datum = new ArrayList<Map<String,Object>>();
-		map.put("data", datum);
-		for (NewDataDatum d : this.datos) {		
-			Map<String, Object> datumMap = new HashMap<String, Object>();
-			datumMap.put("nivel", d.getNivel());
+	public void addBodyContent(final JSONObject msg) {
+		JSONArray datum = new JSONArray();
+		for (NewDataDatum d : this.datos) {
+			JSONObject datumMap = JSONObject.fromObject(new HashMap<String, Object>());
+			datumMap.put("puesto", d.getPuesto());
+			datumMap.put("mesa", d.getMesa());
+			datumMap.put("local", d.getLocal());
+			datumMap.put("seccional", d.getSeccional());
+			datumMap.put("localidad", d.getLocalidad());
+			datumMap.put("departamento", d.getDepartamento());
+			datumMap.put("provincia", d.getProvincia());
 			datumMap.put("candidato", d.getCandidato());
-			datumMap.put("cant", d.getCant());
+			datumMap.put("partido", d.getPartido());
+			datumMap.put("votos", d.getVotos());
 			datum.add(datumMap);
 		}
-		return JSONObject.fromObject(map).toString();
+		msg.put("data", datum);
 	}
 
-	public static void main(String[] args) {
-	
-		 NewDataMessage m = new NewDataMessage();
-		 
-		 for (int i = 0; i< 1; i++) {
-			 NewDataDatum ndd = new NewDataDatum(Long.valueOf(i), "Provincia" + i, "Pedrito");
-			 m.getDatos().add(ndd);
-		 }
-	
-		 System.out.println(m.toJson());
+	public void parseBodyContent(JSONObject data) {
 	}
-	
+
 }

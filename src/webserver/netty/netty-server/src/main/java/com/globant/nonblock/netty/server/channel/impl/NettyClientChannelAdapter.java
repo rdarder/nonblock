@@ -13,7 +13,7 @@ public final class NettyClientChannelAdapter implements ClientChannel {
 		this.channel = channel;
 	}
 
-	Channel getWrappedChannel() {
+	public Channel getWrappedChannel() {
 		return channel;
 	}
 

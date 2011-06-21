@@ -14,9 +14,22 @@ import com.globant.nonblock.netty.server.service.location.LocationService;
 import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 
+/**
+ * JPA backed {@link LocationService}.
+ * 
+ * @author Julian Gutierrez Oschmann
+ *
+ */
 public class JpaLocationService implements LocationService {
 
+	/**
+	 * JPA entity manager (Unit of Work).
+	 */
 	private final Provider<EntityManager> entityManager;
+	
+	/**
+	 * Locations indexed by root level location name.
+	 */
 	private Map<String, Location> locationTree;
 
 	@Inject
@@ -24,20 +37,26 @@ public class JpaLocationService implements LocationService {
 		this.entityManager = entityManager;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Transactional
 	public void start() {
+		final List<Location> queryResult = findLocations();
+		buildIndex(queryResult);
+	}
+
+	private void buildIndex(final List<Location> queryResult) {
 		this.locationTree = new TreeMap<String, Location>();
-		final Query q = this.entityManager.get().createQuery(
-				"select new com.globant.nonblock.netty.server.service.location.Location(g.name, g.parent.name, g.parent.parent.name, g.parent.parent.parent.name, "
-						+ "g.parent.parent.parent.parent.name, g.parent.parent.parent.parent.parent.name) from" + " Geo g where g.type = 'Mesa'");
-
-		List<Location> queryResult = q.getResultList();
-
-		// Indexing by "mesa"
-		for (Location l : queryResult) {
+		for (final Location l : queryResult) {
 			this.locationTree.put(l.getMesa(), l);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<Location> findLocations() {
+		final Query q = this.entityManager.get().createQuery(
+				"select new com.globant.nonblock.netty.server.service.location.Location(g.name, g.parent.name, g.parent.parent.name, g.parent.parent.parent.name, "
+						+ "g.parent.parent.parent.parent.name, g.parent.parent.parent.parent.parent.name) from" + " geo g where g.type = 'Mesa'");
+		List<Location> queryResult = q.getResultList();
+		return queryResult;
 	}
 
 	@Override
@@ -52,7 +71,6 @@ public class JpaLocationService implements LocationService {
 
 	@Override
 	public void shutshown() {
-		
 	}
 
 }
