@@ -1,0 +1,2 @@
+Al cerrar un channel, no se desregistra del geotree. (FIXED)
+No calcula las proyecciones dinamicamente

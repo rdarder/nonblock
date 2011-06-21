@@ -1,0 +1,12 @@
+{ name : 'subscribe', id: 1, data : { puesto : 'Intendente', alcance : 'Provincia', lugar : 'PIEDRA LARGA', nivel : 'Localidad'}}
+
+{ 
+	name: 'submitVotes',
+	id: 2,  
+	data: {
+		mesa: 'Mesa 335',
+		votos: [ 
+			{  puesto: 'Intendente', candidato: 'Ranto', partido: 'PSD' , cant: 1 } 
+			] 
+		} 
+}
