@@ -14,9 +14,9 @@ type Message struct {
 
 type suscribeBody struct {
   Puesto  string
-  Nivel   string
-  Alcance string
-  Lugar   string
+  Nivel   string // nivel de agregacion
+  Alcance string // altura en el arbol
+  Lugar   string // geo a esta altura
 }
 
 type newDataBody struct {

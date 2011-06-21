@@ -14,8 +14,6 @@ func main() {
   /* parse commandline options */
   flag.Parse()
 
-  /*go voteFetcher(requests, responses)*/
-
   /* these handlers apply on the defautl ServeMux */
   http.HandleFunc("/", serveWebClient)
   http.HandleFunc("/js/", serveJSFile)
@@ -47,14 +45,8 @@ var subscriptionChannel = make(chan wsSubscription)
 /* a channel to communicate a DB update TODO: buffer ? */
 var dbupdateChannel = make(chan *submitBody)
 
-/* wait for updates from db or messages from clients */
-func hub() {
-  for {
-    select {
-    /*case sucrip := <-subscriptionChannel:*/
-    /*case dbupdate := <-dbupdateChannel:*/
-    }
-  }
+/* Client notificator */
+func notificator() {
 }
 
 /* listen for messages from clients */
@@ -78,12 +70,11 @@ func clientListener(conn *websocket.Conn) {
         case "suscribe":
           if b := m.decodeSuscribe(); b != nil {
             /* register */
-            /*b.Alcance*/
-
-            /*log.Println(b)*/
+            //TODO: register
           }
         case "cancel":
           /* unregister */
+          //TODO: cancel
           log.Println("Cancel")
         default:
           log.Println("Recieved unknown message: " + m.Name)
@@ -99,24 +90,23 @@ func loadVotes(rw http.ResponseWriter, req *http.Request) {
 
   if n, err := req.Body.Read(buf); err != nil {
     rw.WriteHeader(http.StatusBadRequest)
+      log.Println("Couldn't read body.")
   } else {
-
     /* parse message header */
     if m := decodeMessage(buf[:n]); m != nil {
-      rw.WriteHeader(http.StatusOK)
       /* decode body */
       if b := m.decodeSubmit(); b != nil {
-        /*dbupdateChannel*/
+        rw.WriteHeader(http.StatusOK)
+        /* update votes */
+        dbupdateChannel <- b
+        /*log.Println(b)*/
       } else {
         rw.WriteHeader(http.StatusBadRequest)
+        log.Println("Couldn't decode submit.")
       }
     } else {
       rw.WriteHeader(http.StatusBadRequest)
+      log.Println("Couldn't decode message.")
     }
   }
-  // TODO: check if connection is being closed
-
-  /* signal new data */
-  /*newdata <- true*/
-  log.Println("noop, Loading a vote.")
 }
