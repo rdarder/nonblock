@@ -47,23 +47,22 @@ var subscriptionChannel = make(chan *Subscription, 10)
 /* a channel to communicate a DB update, buffer upto 1024 reqs */
 var dbupdateChannel = make(chan *submitBody, 128)
 
-/* Subscriptions indexed by client, then by Ref */
-var ClientSubscriptions = map[*websocket.Conn]map[string]*Subscription{}
-
-
 /* listen for messages from clients */
 func clientListener(conn *websocket.Conn) {
+  /* Subscriptions indexed by client, then by Ref */
+  subscriptions := map[string]*Subscription{}
+  buf := make([]byte, 1024)
+
   defer func() {
     // TODO: cleanup subscriptions
     conn.Close()
-    for _, subs := range ClientSubscriptions[conn] {
-      subs.Subscribe = false
-      subscriptionChannel <- subs
+    for _, s := range subscriptions {
+      s.Subscribe = false
+      subscriptionChannel <- s
     }
   }()
 
-  buf := make([]byte, 1024)
-  for  {
+  for {
     if n, err := conn.Read(buf); err != nil {
       break
     } else {
@@ -72,13 +71,17 @@ func clientListener(conn *websocket.Conn) {
         switch m.Name {
         case "subscribe":
           if b := m.decodeSubscribe(); b != nil {
-            subscriptionChannel <- &Subscription{
+            subscriptions[m.Ref] = &Subscription{
               Subscribe: true, Conn: conn, Ref: m.Ref, Request: b }
+            subscriptionChannel <- subscriptions[m.Ref]
+            log.Println("New subscription.")
           }
         case "cancel":
           /* unregister */
-          subscriptionChannel <- &Subscription{
-            Subscribe: false, Conn: conn, Ref: m.Ref }
+          subscriptions[m.Ref].Subscribe = false
+          subscriptionChannel <- subscriptions[m.Ref]
+          subscriptions[m.Ref] = nil, false
+          log.Println("Canceled subscription.")
         default:
           log.Println("Recieved unknown message: " + m.Name)
           return
@@ -102,8 +105,8 @@ func loadVotes(rw http.ResponseWriter, req *http.Request) {
       if b := m.decodeSubmit(); b != nil {
         rw.WriteHeader(http.StatusOK)
         /* update votes */
-        dbupdateChannel <- b
         log.Println(b)
+        dbupdateChannel <- b
       } else {
         rw.WriteHeader(http.StatusBadRequest)
         log.Println("Couldn't decode submit.")

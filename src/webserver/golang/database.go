@@ -3,8 +3,8 @@ package main
 import (
   "fmt" // TODO, get rid of this and use variable binding
   "log"
-  // goinstall -v -dashboard=true github.com/kuroneko/gosqlite3
-  "github.com/kuroneko/gosqlite3"
+  // goinstall -v -dashboard=true github.com/feyeleanor/gosqlite3
+  "github.com/feyeleanor/gosqlite3"
 )
 
 /* initialization */
@@ -12,36 +12,36 @@ func init() {
   buildGeoQueries()
   buildGeoTree()
   go submitListener()
-  /*go nodeSubscriber()*/
-  /*go clientNotifier()*/
+  go nodeSubscriber()
+  go clientNotifier()
 }
 
 type GeoNode struct {
   Nombre string // Lugar
   Tipo   string // Alcance
   Contenedor *GeoNode
-  Subscriptions map[*Subscription]bool
+  // subscriptions by Nivel
+  Subscriptions map[string]map[*Subscription]bool
 }
-
 
 /* registers or cancels suscriptions */
 func nodeSubscriber() {
   for s := range subscriptionChannel {
     if s.Subscribe {
+      log.Printf("Suscribing: %v\n", s.Request)
       /* lookup geonode by alcance, lugar */
       s.Node = Geos[s.Request.Alcance][
                 geo2id[s.Request.Alcance][s.Request.Lugar]]
-      /* register client's request to it's list */
-      ClientSubscriptions[s.Conn][s.Ref] = s
       /* suscribe client to geonode */
-      s.Node.Subscriptions[s] = true, true
+      if s.Node.Subscriptions[s.Request.Nivel] == nil {
+        s.Node.Subscriptions[s.Request.Nivel] = map[*Subscription]bool{}
+      }
+      s.Node.Subscriptions[s.Request.Nivel][s] = true, true
       /* push newdata */
       voteupdateChannel <- s.Node
     } else {
       /* remove reference from geonode, remove from client's requests */
-      s := ClientSubscriptions[s.Conn][s.Ref]
-      s.Node.Subscriptions[s] = false, false
-      ClientSubscriptions[s.Conn][s.Ref] = nil, false
+      s.Node.Subscriptions[s.Request.Nivel][s] = false, false
     }
   }
 }
@@ -59,24 +59,41 @@ func clientNotifier() {
 
   // TODO: delay response awaiting for a new notification ?
   for node := range voteupdateChannel {
-    for s, _ := range node.Subscriptions {
-      // TODO: this code sucks, rethink data structures
-      sql := fmt.Sprintf(*sqlNivel[s.Request.Nivel],
-                         geo2id[node.Tipo][node.Nombre],
-                         s.Request.Puesto)
+    for node != nil {
+      for nivel, subsmap := range node.Subscriptions {
+        for s, _ := range subsmap {
+          // TODO: this code sucks, rethink data structures
+          sql := fmt.Sprintf(*sqlNivel[nivel],
+                             geo2id[node.Tipo][node.Nombre],
+                             s.Request.Puesto)
 
-      if st, err := db.Prepare(sql); err == nil {
-        for st.Step() != nil {
-          /*newDataBody{Mesa: "", Local: "", Seccional: "", Localidad: "",*/
-                      /*Departamento: "", Provincia: "", Candidato: "",*/
-                      /*Partido: "", Puesto: "", Cantidad: 0 }*/
-        }
-
-        mess := encodeNewData()
-        if _, err := s.Conn.Write(mess); err != nil {
-          s.Conn.Close() // TODO: handle properly a write error
+          var mess []byte
+          if st, err := db.Prepare(sql); err == nil {
+            for st.Step() != nil {
+              // TODO: concatenate each retrieved row, should be just one anyway
+              m := Message{Name: "newdata", Id: "481234", Ref: s.Ref}
+              mess = m.encodeNewData(&newDataBody{
+                              Mesa: st.Column(0).(string),
+                              Local: st.Column(1).(string),
+                              Seccional: st.Column(2).(string),
+                              Localidad: st.Column(3).(string),
+                              Departamento: st.Column(4).(string),
+                              Provincia: st.Column(5).(string),
+                              Candidato: st.Column(6).(string),
+                              Partido: st.Column(7).(string),
+                              Puesto: st.Column(8).(string),
+                              Cantidad: st.Column(9).(int64) })
+              if _, err := s.Conn.Write(mess); err != nil {
+                s.Conn.Close() // TODO: handle properly a write error
+              } else {
+                log.Println("Message sent.")
+              }
+            }
+          }
         }
       }
+      /* go to parent */
+      node = node.Contenedor
     }
   }
 }
@@ -93,135 +110,48 @@ var sqlNivel = map[string]*string{
 
 func buildGeoQueries() {
   // TODO: create indices and auto build this
-  *sqlNivel["mesa"] = `
-   select g0.nombre as Mesa,
-          g1.nombre as Local,
-          g2.nombre as Seccional,
-          g3.nombre as Localidad,
-          g4.nombre as Departamento,
-          g5.nombre as Provincia,
-          c.nombre as Candidato,
-          p.nombre as Partido,
-          c.puesto as Puesto
-          sum(v.votos) as Cantidad
-     from geo g0, geo g1, geo g2, geo g3, geo g4, geo g5,
-          candidatos c, partidos p, votos v
-    where v.candidato_id = c.id and c.partido_id = p.id
-      and v.mesa_id = g0.id
-      and g0.contenedor_id = g1.id
-      and g1.contenedor_id = g2.id
-      and g2.contenedor_id = g3.id
-      and g3.contenedor_id = g4.id
-      and g4.contenedor_id = g5.id
-      and g0.id = %v and c.puesto = '%v'
- group by g5.id, g4.id, g3.id, g2.id, g1.id, g0.id,
-          c.nombre, p.nombre, c.puesto
-  `
-  *sqlNivel["local"] = `
-   select g1.nombre as Local,
-          g2.nombre as Seccional,
-          g3.nombre as Localidad,
-          g4.nombre as Departamento,
-          g5.nombre as Provincia,
-          c.nombre as Candidato,
-          p.nombre as Partido,
-          c.puesto as Puesto
-          sum(v.votos) as Cantidad
-     from geo g0, geo g1, geo g2, geo g3, geo g4, geo g5,
-          candidatos c, partidos p, votos v
-    where v.candidato_id = c.id and c.partido_id = p.id
-      and v.mesa_id = g0.id
-      and g0.contenedor_id = g1.id
-      and g1.contenedor_id = g2.id
-      and g2.contenedor_id = g3.id
-      and g3.contenedor_id = g4.id
-      and g4.contenedor_id = g5.id
-      and g1.id = %v and c.puesto = '%v'
- group by g5.id, g4.id, g3.id, g2.id, g1.id,
-          c.nombre, p.nombre, c.puesto
-  `
-  *sqlNivel["seccional"] = `
-   select g2.nombre as Seccional,
-          g3.nombre as Localidad,
-          g4.nombre as Departamento,
-          g5.nombre as Provincia,
-          c.nombre as Candidato,
-          p.nombre as Partido,
-          c.puesto as Puesto
-          sum(v.votos) as Cantidad
-     from geo g0, geo g1, geo g2, geo g3, geo g4, geo g5,
-          candidatos c, partidos p, votos v
-    where v.candidato_id = c.id and c.partido_id = p.id
-      and v.mesa_id = g0.id
-      and g0.contenedor_id = g1.id
-      and g1.contenedor_id = g2.id
-      and g2.contenedor_id = g3.id
-      and g3.contenedor_id = g4.id
-      and g4.contenedor_id = g5.id
-      and g2.id = %v and c.puesto = '%v'
- group by g5.id, g4.id, g3.id, g2.id,
-          c.nombre, p.nombre, c.puesto
-  `
-  *sqlNivel["localidad"] = `
-   select g3.nombre as Localidad,
-          g4.nombre as Departamento,
-          g5.nombre as Provincia,
-          c.nombre as Candidato,
-          p.nombre as Partido,
-          c.puesto as Puesto
-          sum(v.votos) as Cantidad
-     from geo g0, geo g1, geo g2, geo g3, geo g4, geo g5,
-          candidatos c, partidos p, votos v
-    where v.candidato_id = c.id and c.partido_id = p.id
-      and v.mesa_id = g0.id
-      and g0.contenedor_id = g1.id
-      and g1.contenedor_id = g2.id
-      and g2.contenedor_id = g3.id
-      and g3.contenedor_id = g4.id
-      and g4.contenedor_id = g5.id
-      and g3.id = %v and c.puesto = '%v'
- group by g5.id, g4.id, g3.id,
-          c.nombre, p.nombre, c.puesto
-  `
-  *sqlNivel["departamento"] = `
-   select g4.nombre as Departamento,
-          g5.nombre as Provincia,
-          c.nombre as Candidato,
-          p.nombre as Partido,
-          c.puesto as Puesto
-          sum(v.votos) as Cantidad
-     from geo g0, geo g1, geo g2, geo g3, geo g4, geo g5,
-          candidatos c, partidos p, votos v
-    where v.candidato_id = c.id and c.partido_id = p.id
-      and v.mesa_id = g0.id
-      and g0.contenedor_id = g1.id
-      and g1.contenedor_id = g2.id
-      and g2.contenedor_id = g3.id
-      and g3.contenedor_id = g4.id
-      and g4.contenedor_id = g5.id
-      and g0.id = %v and c.puesto = '%v'
- group by g4.id, g4.id,
-          c.nombre, p.nombre, c.puesto
-  `
-  *sqlNivel["provincia"] = `
-   select g5.nombre as Provincia,
-          c.nombre as Candidato,
-          p.nombre as Partido,
-          c.puesto as Puesto
-          sum(v.votos) as Cantidad
-     from geo g0, geo g1, geo g2, geo g3, geo g4, geo g5,
-          candidatos c, partidos p, votos v
-    where v.candidato_id = c.id and c.partido_id = p.id
-      and v.mesa_id = g0.id
-      and g0.contenedor_id = g1.id
-      and g1.contenedor_id = g2.id
-      and g2.contenedor_id = g3.id
-      and g3.contenedor_id = g4.id
-      and g4.contenedor_id = g5.id
-      and g5.id = %v and c.puesto = '%v'
- group by g5.id,
-          c.nombre, p.nombre, c.puesto
-  `
+
+  geotypes := map[string]int{
+    "provincia":5, "departamento":4, "localidad":3,
+    "seccional":2, "local":1, "mesa":0}
+
+  for geotype, rank := range geotypes {
+
+    var g0, g1, g2, g3, g4, g5 string
+    if rank > geotypes["mesa"]         { g0 = "''" } else { g0 = "g0.nombre"}
+    if rank > geotypes["local"]        { g1 = "''" } else { g1 = "g1.nombre"}
+    if rank > geotypes["seccional"]    { g2 = "''" } else { g2 = "g2.nombre"}
+    if rank > geotypes["localidad"]    { g3 = "''" } else { g3 = "g3.nombre"}
+    if rank > geotypes["departamento"] { g4 = "''" } else { g4 = "g4.nombre"}
+    if rank > geotypes["provincia"]    { g5 = "''" } else { g5 = "g5.nombre"}
+
+    *sqlNivel[geotype] = fmt.Sprintf(`
+     select %v as Mesa,
+            %v as Local,
+            %v as Seccional,
+            %v as Localidad,
+            %v as Departamento,
+            %v as Provincia,
+            c.nombre as Candidato,
+            p.nombre as Partido,
+            c.puesto as Puesto,
+            sum(v.votos) as Cantidad
+       from geo g0, geo g1, geo g2, geo g3, geo g4, geo g5,
+            candidatos c, partidos p, votos v
+      where v.candidato_id = c.id and c.partido_id = p.id
+        and v.mesa_id = g0.id
+        and g0.contenedor_id = g1.id
+        and g1.contenedor_id = g2.id
+        and g2.contenedor_id = g3.id
+        and g3.contenedor_id = g4.id
+        and g4.contenedor_id = g5.id
+        and g0.id = %%v and c.puesto = '%%v'
+   group by Provincia, Departamento, Localidad, Seccional,
+            Local, Mesa, Candidato, Partido, Puesto
+    `, g0, g1, g2, g3, g4, g5)
+
+    log.Println(*sqlNivel[geotype])
+  }
 }
 
 /* map Geo ids to tree nodes */
@@ -275,7 +205,7 @@ func buildGeoTree() {
           Nombre: st.Column(1).(string),
           Tipo: geotype,
           Contenedor: container,
-          Subscriptions: make(map[*Subscription]bool) }
+          Subscriptions: map[string]map[*Subscription]bool{} }
         /* keep a mapping from name to id */
         geo2id[geotype][st.Column(1).(string)] = st.Column(0).(int64)
       }
@@ -283,8 +213,10 @@ func buildGeoTree() {
     } else {
       log.Fatalf("GeoTree construction failed. %v", err)
     }
+    /* keep a reference to upper level */
     prevLevel = geotype
   }
+  log.Println("GeoTree built.")
 }
 
 
@@ -296,6 +228,7 @@ func submitListener() {
   }
   defer db.Close()
 
+  log.Println("Now listening for new votes.")
   /* listen on chanel for updates */
   for s := range dbupdateChannel {
     for _, v := range s.Votos {
@@ -305,20 +238,19 @@ func submitListener() {
                            where c.nombre = '%v' and c.puesto = '%v'
       `, geo2id["mesa"][s.Mesa], v.Cantidad, v.Candidato, v.Puesto)
 
-      log.Println(sql)
-
-      if _, err := db.Execute(sql); err != nil {
-        log.Fatalf("Submission to DB failed. %v", err)
+      // TODO: this driver sucks and doesn't catch errors correctly
+      // duplicate votes will fail silently but will send an update message
+      if st, err := db.Prepare(sql); err == nil {
+        st.Step()
+        st.Finalize()
+        log.Println("Submited a vote")
       } else {
-        log.Println("Loaded a vote")
+        log.Fatalf("Submission to DB failed. %v", err)
       }
-      /* mark the tree dirty propagating upwards */
+
+      /* signal an update on the node */
       n := Geos["mesa"][ geo2id["mesa"][s.Mesa] ]
-      for n != nil {
-        // TODO: avoid crawling upwards here, do it in notificator ?
-        voteupdateChannel <- n
-        n = n.Contenedor
-      }
+      voteupdateChannel <- n
     }
   }
 }

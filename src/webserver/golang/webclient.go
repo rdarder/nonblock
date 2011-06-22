@@ -59,6 +59,10 @@ $(function() {
       return false;
     }
 
+    if (!puesto.val() || !nivel.val() || !alcance.val() || !lugar.val()) {
+      return false;
+    }
+
     var message = {
       "Name": "subscribe",
       "Id": "1",

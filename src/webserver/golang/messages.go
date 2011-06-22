@@ -29,7 +29,7 @@ type newDataBody struct {
   Candidato     string
   Partido       string
   Puesto        string
-  Cantidad      int
+  Cantidad      int64
 }
 
 type submitBody struct {
@@ -38,7 +38,7 @@ type submitBody struct {
     Puesto      string
     Candidato   string
     Partido     string
-    Cantidad    int
+    Cantidad    int64
   }
 }
 
@@ -83,17 +83,16 @@ func (m *Message)decodeSubmit() *submitBody {
   return b
 }
 
-
-func encodeNewData() []byte {
-  /*if j, err := json.Marshal(m.Data); err != nil {*/
-    /*log.Println("Failed to encode message: " + m)*/
-    /*return nil*/
-  /*}*/
-
-  /*if j, err := json.Marshal(m); err != nil {*/
-    /*log.Println("Failed to encode message: " + m)*/
-    /*return nil*/
-  /*}*/
-  /*return j*/
-  return []byte("")
+func (m *Message)encodeNewData(nd *newDataBody) []byte {
+  if j, err := json.Marshal(nd); err == nil {
+    i := json.RawMessage(j)
+    m.Data = &i
+    if k, err := json.Marshal(m); err == nil {
+      return k
+    }
+    log.Println("Failed to encode Message")
+    return nil
+  }
+  log.Println("Failed to encode newData")
+  return nil
 }
