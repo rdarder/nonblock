@@ -12,7 +12,7 @@ type Message struct {
   Data  *json.RawMessage
 }
 
-type suscribeBody struct {
+type subscribeBody struct {
   Puesto  string
   Nivel   string // nivel de agregacion
   Alcance string // altura en el arbol
@@ -20,7 +20,6 @@ type suscribeBody struct {
 }
 
 type newDataBody struct {
-  Puesto        string
   Mesa          string
   Local         string
   Seccional     string
@@ -29,6 +28,7 @@ type newDataBody struct {
   Provincia     string
   Candidato     string
   Partido       string
+  Puesto        string
   Cantidad      int
 }
 
@@ -52,14 +52,14 @@ func decodeMessage(m []byte) *Message {
   return r
 }
 
-func (m *Message)decodeSuscribe() *suscribeBody {
-  if m.Name != "suscribe" {
-    log.Println("Not a suscribe body.")
+func (m *Message)decodeSubscribe() *subscribeBody {
+  if m.Name != "subscribe" {
+    log.Println("Not a subscribe body.")
     return nil
   }
-  b := new(suscribeBody)
+  b := new(subscribeBody)
   if err := json.Unmarshal(*m.Data, b); err != nil {
-    log.Println("Failed to decode suscribe body: %v", m)
+    log.Println("Failed to decode subscribe body: %v", m)
     return nil
   }
   return b
@@ -83,7 +83,8 @@ func (m *Message)decodeSubmit() *submitBody {
   return b
 }
 
-/*func (m *Message)encodeJSON(any interface{}) []byte {*/
+
+func encodeNewData() []byte {
   /*if j, err := json.Marshal(m.Data); err != nil {*/
     /*log.Println("Failed to encode message: " + m)*/
     /*return nil*/
@@ -94,4 +95,5 @@ func (m *Message)decodeSubmit() *submitBody {
     /*return nil*/
   /*}*/
   /*return j*/
-/*}*/
+  return []byte("")
+}

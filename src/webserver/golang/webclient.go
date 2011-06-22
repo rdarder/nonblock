@@ -60,7 +60,7 @@ $(function() {
     }
 
     var message = {
-      "Name": "suscribe",
+      "Name": "subscribe",
       "Id": "1",
       "Ref": "0",
       "Data": {

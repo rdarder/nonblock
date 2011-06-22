@@ -34,50 +34,54 @@ func main() {
 }
 
 
-/* just a message to suscribe/unsuscribe */
-type wsSubscription struct {
-  ws        *websocket.Conn
-  subscribe bool
+type Subscription struct {
+  Subscribe bool
+  Ref       string
+  Request   *subscribeBody
+  Node      *GeoNode
+  Conn      *websocket.Conn
 }
-/* a channel to communicate the message */
-var subscriptionChannel = make(chan wsSubscription)
 
-/* a channel to communicate a DB update TODO: buffer ? */
-var dbupdateChannel = make(chan *submitBody)
+var subscriptionChannel = make(chan *Subscription, 10)
 
-/* Client notificator */
-func notificator() {
-}
+/* a channel to communicate a DB update, buffer upto 1024 reqs */
+var dbupdateChannel = make(chan *submitBody, 128)
+
+/* Subscriptions indexed by client, then by Ref */
+var ClientSubscriptions = map[*websocket.Conn]map[string]*Subscription{}
+
 
 /* listen for messages from clients */
 func clientListener(conn *websocket.Conn) {
   defer func() {
-    subscriptionChannel <- wsSubscription{conn, false}
+    // TODO: cleanup subscriptions
     conn.Close()
+    for _, subs := range ClientSubscriptions[conn] {
+      subs.Subscribe = false
+      subscriptionChannel <- subs
+    }
   }()
-  /* suscribe the websocket */
-  subscriptionChannel <- wsSubscription{conn, true}
 
   buf := make([]byte, 1024)
   for  {
     if n, err := conn.Read(buf); err != nil {
-      /* TODO: cancel registrations */
       break
     } else {
 
       if m := decodeMessage(buf[:n]); m != nil {
         switch m.Name {
-        case "suscribe":
-          if b := m.decodeSuscribe(); b != nil {
-            /* register */
-            //TODO: register
+        case "subscribe":
+          if b := m.decodeSubscribe(); b != nil {
+            subscriptionChannel <- &Subscription{
+              Subscribe: true, Conn: conn, Ref: m.Ref, Request: b }
           }
         case "cancel":
           /* unregister */
-          //TODO: cancel
-          log.Println("Cancel")
+          subscriptionChannel <- &Subscription{
+            Subscribe: false, Conn: conn, Ref: m.Ref }
         default:
           log.Println("Recieved unknown message: " + m.Name)
+          return
         }
       }
     }
@@ -99,7 +103,7 @@ func loadVotes(rw http.ResponseWriter, req *http.Request) {
         rw.WriteHeader(http.StatusOK)
         /* update votes */
         dbupdateChannel <- b
-        /*log.Println(b)*/
+        log.Println(b)
       } else {
         rw.WriteHeader(http.StatusBadRequest)
         log.Println("Couldn't decode submit.")
