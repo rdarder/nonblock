@@ -83,7 +83,7 @@ func (m *Message)decodeSubmit() *submitBody {
   return b
 }
 
-func (m *Message)encodeNewData(nd *newDataBody) []byte {
+func (m *Message)encodeNewData(nd []*newDataBody) []byte {
   if j, err := json.Marshal(nd); err == nil {
     i := json.RawMessage(j)
     m.Data = &i

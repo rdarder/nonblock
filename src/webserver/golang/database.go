@@ -59,41 +59,40 @@ func clientNotifier() {
 
   // TODO: delay response awaiting for a new notification ?
   for node := range voteupdateChannel {
-    for node != nil {
-      for nivel, subsmap := range node.Subscriptions {
-        for s, _ := range subsmap {
-          // TODO: this code sucks, rethink data structures
-          sql := fmt.Sprintf(*sqlNivel[nivel],
-                             geo2id[node.Tipo][node.Nombre],
-                             s.Request.Puesto)
+    for nivel, subsmap := range node.Subscriptions {
+      for s, _ := range subsmap {
+        // TODO: this code sucks, rethink data structures
+        sql := fmt.Sprintf(*sqlNivel[nivel], node.Tipo,
+                           geo2id[node.Tipo][node.Nombre],
+                           s.Request.Puesto)
 
-          var mess []byte
-          if st, err := db.Prepare(sql); err == nil {
-            for st.Step() != nil {
-              // TODO: concatenate each retrieved row, should be just one anyway
-              m := Message{Name: "newdata", Id: "481234", Ref: s.Ref}
-              mess = m.encodeNewData(&newDataBody{
-                              Mesa: st.Column(0).(string),
-                              Local: st.Column(1).(string),
-                              Seccional: st.Column(2).(string),
-                              Localidad: st.Column(3).(string),
-                              Departamento: st.Column(4).(string),
-                              Provincia: st.Column(5).(string),
-                              Candidato: st.Column(6).(string),
-                              Partido: st.Column(7).(string),
-                              Puesto: st.Column(8).(string),
-                              Cantidad: st.Column(9).(int64) })
-              if _, err := s.Conn.Write(mess); err != nil {
-                s.Conn.Close() // TODO: handle properly a write error
-              } else {
-                log.Println("Message sent.")
-              }
-            }
+        var data []*newDataBody
+
+        if st, err := db.Prepare(sql); err == nil {
+          log.Println(sql)
+          for st.Step() != nil {
+            data = append(data, &newDataBody{
+                            Mesa: st.Column(0).(string),
+                            Local: st.Column(1).(string),
+                            Seccional: st.Column(2).(string),
+                            Localidad: st.Column(3).(string),
+                            Departamento: st.Column(4).(string),
+                            Provincia: st.Column(5).(string),
+                            Candidato: st.Column(6).(string),
+                            Partido: st.Column(7).(string),
+                            Puesto: st.Column(8).(string),
+                            Cantidad: st.Column(9).(int64) })
           }
+          m := Message{Name: "newdata", Id: "481234", Ref: s.Ref}
+          mess := m.encodeNewData(data)
+          if _, err := s.Conn.Write(mess); err != nil {
+            s.Conn.Close() // TODO: handle properly a write error
+          } else {
+            log.Println("Message sent.")
+          }
+          data = nil
         }
       }
-      /* go to parent */
-      node = node.Contenedor
     }
   }
 }
@@ -118,12 +117,12 @@ func buildGeoQueries() {
   for geotype, rank := range geotypes {
 
     var g0, g1, g2, g3, g4, g5 string
-    if rank > geotypes["mesa"]         { g0 = "''" } else { g0 = "g0.nombre"}
-    if rank > geotypes["local"]        { g1 = "''" } else { g1 = "g1.nombre"}
-    if rank > geotypes["seccional"]    { g2 = "''" } else { g2 = "g2.nombre"}
-    if rank > geotypes["localidad"]    { g3 = "''" } else { g3 = "g3.nombre"}
-    if rank > geotypes["departamento"] { g4 = "''" } else { g4 = "g4.nombre"}
-    if rank > geotypes["provincia"]    { g5 = "''" } else { g5 = "g5.nombre"}
+    if rank > geotypes["mesa"]         { g0 = "''" } else { g0 = "mesa.nombre"}
+    if rank > geotypes["local"]        { g1 = "''" } else { g1 = "local.nombre"}
+    if rank > geotypes["seccional"]    { g2 = "''" } else { g2 = "seccional.nombre"}
+    if rank > geotypes["localidad"]    { g3 = "''" } else { g3 = "localidad.nombre"}
+    if rank > geotypes["departamento"] { g4 = "''" } else { g4 = "departamento.nombre"}
+    if rank > geotypes["provincia"]    { g5 = "''" } else { g5 = "provincia.nombre"}
 
     *sqlNivel[geotype] = fmt.Sprintf(`
      select %v as Mesa,
@@ -136,16 +135,17 @@ func buildGeoQueries() {
             p.nombre as Partido,
             c.puesto as Puesto,
             sum(v.votos) as Cantidad
-       from geo g0, geo g1, geo g2, geo g3, geo g4, geo g5,
+       from geo mesa, geo local, geo seccional,
+            geo localidad, geo departamento, geo provincia,
             candidatos c, partidos p, votos v
       where v.candidato_id = c.id and c.partido_id = p.id
-        and v.mesa_id = g0.id
-        and g0.contenedor_id = g1.id
-        and g1.contenedor_id = g2.id
-        and g2.contenedor_id = g3.id
-        and g3.contenedor_id = g4.id
-        and g4.contenedor_id = g5.id
-        and g0.id = %%v and c.puesto = '%%v'
+        and v.mesa_id = mesa.id
+        and mesa.contenedor_id = local.id
+        and local.contenedor_id = seccional.id
+        and seccional.contenedor_id = localidad.id
+        and localidad.contenedor_id = departamento.id
+        and departamento.contenedor_id = provincia.id
+        and %%v.id = %%v and c.puesto = '%%v'
    group by Provincia, Departamento, Localidad, Seccional,
             Local, Mesa, Candidato, Partido, Puesto
     `, g0, g1, g2, g3, g4, g5)
@@ -250,7 +250,10 @@ func submitListener() {
 
       /* signal an update on the node */
       n := Geos["mesa"][ geo2id["mesa"][s.Mesa] ]
-      voteupdateChannel <- n
+      for n != nil {
+        voteupdateChannel <- n
+        n = n.Contenedor
+      }
     }
   }
 }
