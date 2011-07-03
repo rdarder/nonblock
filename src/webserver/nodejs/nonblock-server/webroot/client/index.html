@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>index</title>
+		<meta name="generator" content="Studio 3 http://aptana.com/">
+		<meta name="author" content="Mauro Monti">
+		<!-- Date: 2011-06-04 -->
+		
+	    <link type="text/css" rel="stylesheet" href="./css/uniform.default.css" media="screen">
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/jquery.uniform.js"></script>
+    	<script type="text/javascript">
+			$(function(){
+	    		// Initialize on load.
+	    		$("input, textarea, select, button").uniform();
+			});
+    	</script>
+	
+		<script type="text/javascript" src="http://127.0.0.1:3000/socket.io/socket.io.js"></script> 
+		<script type="text/javascript"> 
+			var socket = new io.Socket('127.0.0.1', { 'port' : 3000 }); 
+
+			// = Server response handling.
+		 	socket.on('connect', function(){ 
+		 		$('#websocket-status').html('CONNECTED');
+		 	});
+		 	socket.on('disconnect', function(){ 
+		 		$('#websocket-status').html('DISCONNECTED');
+			}); 
+		 	socket.on('message', function(message){ 
+				$('#websocket-status').html('MESSAGE ARRIVED.');
+				
+				var response = "SessionID=" + message.sessionId + ", Response=" + message.response + ", Content=" + JSON.stringify(message.data); 
+				if (message.data.name == 'subscribe') {
+					// TODO: Handle subscribe response. 
+					$('#websocket-response').html(response);
+				}
+				if (message.data.name == 'cancel') {
+					// TODO: Handle cancel response.
+					$('#websocket-response').html(response);
+				}
+				if (message.data.name == 'newdata') {
+					// TODO: Handle newdata response.
+					$('#websocket-response').html(response);
+				}
+		 	});
+		 	
+		 	// == Connect.
+			function wsConnect() {
+				socket.connect();	
+			}
+		 	// == Disconnect.
+			function wsDisconnect() {
+				socket.disconnect();	
+			}
+		 	// == Subscribe Message.
+			function wsSubscribeClient() {
+				var message = {
+					name : 'subscribe',
+					data : {
+						puesto : 'Intendente',
+						alcance : 'localidad',
+						nivel : 'mesa',
+						valor_alc : 'PASO DE INDIOS',
+						valor_niv : '698'
+					}
+				};
+				socket.send(message);	
+			}
+		 	// == Cancel Subscription Message.
+			function wsCancelSubscription() {
+				var message = {
+					name : 'cancel',
+					data : {
+						puesto : 'xxx',
+						alcance : 'xxx',
+						nivel : 'xxx',
+						valor_alc : 'xxx',
+						valor_niv : 'xxx'
+					}
+				};
+				socket.send(message);
+			}
+		 	// == NewData Message.
+			function wsNewData() {
+				var message = {
+					name : 'newdata',
+					data : {
+						event : {
+							puesto : 'xxx',
+							alcance : 'xxx',
+							nivel : 'xxx',
+							valor_alc : 'xxx',
+							valor_niv : 'xxx',
+						},
+						data: [{
+							puesto : 'xxx',
+							candidato : 'xxx',
+							partido : 'xxx',
+							cant : 7
+						}]
+					}
+				};
+				socket.send(message);
+			}
+
+			// == Load the database.
+			function submmiter() {
+				var host = $("#jsonPost-host").val();
+
+				// = Submitter Message.
+				var message = { 
+					mesa: 758, 
+					data: [{
+						puesto : 'xxx',
+						candidato : 'xxx',
+						partido : 'xxx',
+						cant : 7
+					}]
+				};
+				// = Post JSON to load the database.
+				$.post(host, message);
+			}
+		</script>
+		
+		<style type="text/css">
+			body {
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+				color: #666;
+				padding: 40px;
+			}
+			h1 {
+				margin-top: 0;
+			}
+			ul {
+		        list-style: none;
+		        padding: 0;
+		        margin: 0;
+			}
+			li {
+		        margin-bottom: 20px;
+		        clear: both;
+			}
+			label {
+		        font-size: 10px;
+		        font-weight: bold;
+		        text-transform: uppercase;
+		        display: block;
+		        margin-bottom: 3px;
+		        clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Websocket</h2>
+		<div>
+			<span><label>Status:</label></span><span id="websocket-status"><label>DISCONNECTED</label></span>
+		</div>
+		
+		<span>
+			<input type="button" value="Connect" onclick="javascript: wsConnect();"/>
+		</span>
+		<span>
+			<input type="button" value="Disconnect" onclick="javascript: wsDisconnect();"/>
+		</span>
+		
+		<span>
+			<input type="button" value="Subscribe" onclick="javascript: wsSubscribeClient();"/>
+		</span>
+		<span>
+			<input type="button" value="Cancel Subscription" onclick="javascript: wsCancelSubscription();"/>
+		</span>
+		<span>
+			<input type="button" value="New Data" onclick="javascript: wsNewData();"/>
+		</span>
+		
+		<div id="websocket-response">&nbsp;</div>
+
+		<hr>
+	
+		<h2>JSON Post</h2>		
+		<input type="button" value="Post JSON" onclick="javascript: submmiter();"/>
+		<input type="text" id="jsonPost-host" value="http://127.0.0.1:3000/submitter" style="width: 350px;"/>
+	</body>
+</html>
