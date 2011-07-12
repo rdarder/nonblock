@@ -3,6 +3,8 @@ package main
 import (
   "fmt"
   "log"
+  "sync"
+  "time"
 )
 
 type GeoNode struct {
@@ -11,7 +13,8 @@ type GeoNode struct {
   Contenedor *GeoNode
   Subscriptions map[string]map[*Subscription]bool // subscriptions by Nivel
   Dirty  bool
-  Voteattrib []string // logging messages
+  VoteAttrib []string // logging messages
+  Mutex  *sync.RWMutex
 }
 
 type GeoTree struct {
@@ -32,7 +35,8 @@ type GeoTree struct {
   IDs             map[string]map[string]int64
 
   GeoContainer    map[string]string
-  SQLNivel        map[string]*string
+  /* queries indexable by alcance, nivel */
+  VoteQueries     map[string]string
 }
 
 
@@ -79,14 +83,7 @@ func NewGeoTree() (t GeoTree) {
     "mesa"         : "local",
   }
 
-  t.SQLNivel = map[string]*string{
-    "provincia"    : new(string),
-    "departamento" : new(string),
-    "localidad"    : new(string),
-    "seccional"    : new(string),
-    "local"        : new(string),
-    "mesa"         : new(string),
-  }
+  t.VoteQueries = map[string]string{}
 
   t.writeQueries()
   t.build()
@@ -102,7 +99,7 @@ func (t *GeoTree) build() {
 
     var resultset = make(chan []interface{})
 
-    dbworkChannel <- &DBJob{
+    dbWorkChannel <- &DBJob{
       SQL: fmt.Sprintf(`
               select g.id, g.nombre, g.contenedor_id
                 from geo g
@@ -135,6 +132,8 @@ func (t *GeoTree) makeNode(parent_id int64, id int64,
       Tipo: tipo,
       Contenedor: container,
       Subscriptions: map[string]map[*Subscription]bool{},
+      Mutex: &sync.RWMutex{},
+      Dirty: false,
     }
   /* keep a mapping from name to id */
   t.IDs[tipo][nombre] = id
@@ -146,7 +145,7 @@ func (t *GeoTree) writeQueries() {
     "provincia":5, "departamento":4, "localidad":3,
     "seccional":2, "local":1, "mesa":0}
 
-  for geotype, rank := range georanks {
+  for nivel, rank := range georanks {
     var g0, g1, g2, g3, g4, g5 string
     if rank > georanks["mesa"]         { g0 = "''" } else { g0 = "mesa.nombre"}
     if rank > georanks["local"]        { g1 = "''" } else { g1 = "local.nombre"}
@@ -155,33 +154,33 @@ func (t *GeoTree) writeQueries() {
     if rank > georanks["departamento"] { g4 = "''" } else { g4 = "departamento.nombre"}
     if rank > georanks["provincia"]    { g5 = "''" } else { g5 = "provincia.nombre"}
 
-    *t.SQLNivel[geotype] = fmt.Sprintf(`
-     select %v as Mesa,
-            %v as Local,
-            %v as Seccional,
-            %v as Localidad,
-            %v as Departamento,
-            %v as Provincia,
-            c.nombre as Candidato,
-            p.nombre as Partido,
-            c.puesto as Puesto,
-            sum(v.votos) as Cantidad
-       from geo mesa, geo local, geo seccional,
-            geo localidad, geo departamento, geo provincia,
-            candidatos c, partidos p, votos v
-      where v.candidato_id = c.id and c.partido_id = p.id
-        and v.mesa_id = mesa.id
-        and mesa.contenedor_id = local.id
-        and local.contenedor_id = seccional.id
-        and seccional.contenedor_id = localidad.id
-        and localidad.contenedor_id = departamento.id
-        and departamento.contenedor_id = provincia.id
-        and %%v.id = %%v and c.puesto = '%%v'
-   group by Provincia, Departamento, Localidad, Seccional,
-            Local, Mesa, Candidato, Partido, Puesto
-    `, g0, g1, g2, g3, g4, g5)
-
-    log.Println(*t.SQLNivel[geotype])
+    for alcance, _ := range georanks {
+      t.VoteQueries[nivel + alcance] = fmt.Sprintf(`
+       select %v as Mesa,
+              %v as Local,
+              %v as Seccional,
+              %v as Localidad,
+              %v as Departamento,
+              %v as Provincia,
+              c.nombre as Candidato,
+              p.nombre as Partido,
+              c.puesto as Puesto,
+              sum(v.votos) as Cantidad
+         from geo mesa, geo local, geo seccional,
+              geo localidad, geo departamento, geo provincia,
+              candidatos c, partidos p, votos v
+        where v.candidato_id = c.id and c.partido_id = p.id
+          and v.mesa_id = mesa.id
+          and mesa.contenedor_id = local.id
+          and local.contenedor_id = seccional.id
+          and seccional.contenedor_id = localidad.id
+          and localidad.contenedor_id = departamento.id
+          and departamento.contenedor_id = provincia.id
+          and %v.id = ? and c.puesto = ?
+     group by Provincia, Departamento, Localidad, Seccional,
+              Local, Mesa, Candidato, Partido, Puesto
+      `, g0, g1, g2, g3, g4, g5, alcance)
+    }
   }
 }
 
@@ -199,42 +198,157 @@ func (t *GeoTree) getNode(alcance string, nombre string) *GeoNode {
   return nil
 }
 
-func (t *GeoTree) geoSQL(nivel string, alcance string,
-                         lugar string, puesto string) string {
-  return fmt.Sprintf(*t.SQLNivel[nivel], alcance,
-                     t.geoID(alcance, lugar), puesto)
+func (t *GeoTree) geoSQL(nivel string, alcance string) string {
+  return t.VoteQueries[nivel + alcance]
 }
 
 func (n *GeoNode) subscribe(nivel string, subscription *Subscription) {
   // TODO: validate level
+  n.Mutex.Lock()
   if n.Subscriptions[nivel] == nil {
     n.Subscriptions[nivel] = map[*Subscription]bool{}
   }
   n.Subscriptions[nivel][subscription] = true, true
+  n.Mutex.Unlock()
 }
 
 func (n *GeoNode) unsubscribe(nivel string, subscription *Subscription) {
+  n.Mutex.Lock()
   n.Subscriptions[nivel][subscription] = false, false
+  n.Mutex.Unlock()
+}
+
+func (n *GeoNode) markDirty() {
+  for n != nil {
+    n.Dirty = true
+    n = n.Contenedor
+  }
+}
+
+func (n *GeoNode) unmarkDirty() {
+  n.Dirty = false
 }
 
 /* centralized tree listener for subscriptions */
-// TODO: this needs an rwlock for concurrent acces to geotree
-func (t *GeoTree) listenSubscriptions() {
+func (t *GeoTree) hooker() {
   for s := range subscriptionChannel {
     if s.Subscribe {
       s.Node = t.getNode(s.Request.Alcance, s.Request.Lugar)
       if s.Node != nil {
         s.Node.subscribe(s.Request.Nivel, s)
         // TODO: need to notify just this client, not the whole node
-        voteupdateChannel <- s.Node
-        log.Printf("Node subscriber: subscribed ref %v\n", s.Ref)
+        s.Node.markDirty()
       } else {
         s.Conn.Close()
         log.Printf("Node subscriber: bad geo %v\n", s.Request)
       }
     } else {
       s.Node.unsubscribe(s.Request.Nivel, s)
-      log.Printf("Node subscriber: unsubscribed %v\n", s.Ref)
     }
   }
+}
+
+
+/* walk the tree searching for dirty nodes */
+func (t *GeoTree) scanDirty(alcance string) {
+  var msgid = 0
+  for {
+    for _, node := range t.Geos[alcance] {
+      if node.Dirty == false {
+        time.Sleep(1e+8)
+        continue
+      }
+
+      /*myTransLog.Printf("transaction:%v:%v::%v\n", time.Nanoseconds(),*/
+                        /*txid, s.Ref)*/
+
+      for _, subs := range node.Subscriptions {
+        for s, _ := range subs {
+          var data []*NewdataBody
+          var resultset = make(chan []interface{})
+
+          voteQueryChannel <- &VoteQuery{
+            SubscribeBody: s.Request,
+            Result: resultset,
+          }
+          for row := range resultset {
+            data = append(data, &NewdataBody{
+              Mesa: row[0].(string),
+              Local: row[1].(string),
+              Seccional: row[2].(string),
+              Localidad: row[3].(string),
+              Departamento: row[4].(string),
+              Provincia: row[5].(string),
+              Candidato: row[6].(string),
+              Partido: row[7].(string),
+              Puesto: row[8].(string),
+              Cantidad: row[9].(int64) })
+          }
+
+          var m = Message{Name: "newdata", Id: string(msgid), Ref: s.Ref}
+          if _, e := s.Conn.Write(m.encodeNewData(data)); e != nil {
+            log.Println("Client notifier: send error.")
+            s.Conn.Close()
+          } else {
+            /*myLogger.Printf("newDataSend:%v:%v::%v\n", time.Nanoseconds(),*/
+                            /*txid, s.Ref)*/
+          }
+          msgid++
+          data = nil
+        }
+      }
+      node.Dirty = false
+    }
+  }
+}
+
+
+/* read only structure: safe to use unlocked */
+type Candidato struct {
+  Id        int64
+  Nombre    string
+  Puesto    string
+  Partido   string
+  Geo       int64
+}
+
+type Election struct {
+  Candidatos  map[string]*Candidato
+}
+
+func NewElection() (e Election) {
+  e.Candidatos = make(map[string]*Candidato)
+  e.loadCandidates()
+  return
+}
+
+func (e *Election) loadCandidates() {
+  var resultset = make(chan []interface{})
+  dbWorkChannel <- &DBJob{
+    SQL: fmt.Sprintf(`
+      select c.id, c.nombre, c.puesto, p.nombre, c.contenedor_id
+        from candidatos c, partidos p
+       where c.partido_id = p.id`),
+    Result: resultset }
+
+  for row := range resultset {
+    id := row[0].(int64)
+    nombre := row[1].(string)
+    puesto := row[2].(string)
+    partido := row[3].(string)
+    geoid := row[4].(int64)
+    e.Candidatos[nombre] =
+      &Candidato{
+        Id:       id,
+        Nombre:   nombre,
+        Puesto:   puesto,
+        Partido:  partido,
+        Geo:      geoid,
+      }
+  }
+  log.Println("Candidate loader: done.")
+}
+
+func (e *Election) getCandidato(nombre string) *Candidato {
+  return e.Candidatos[nombre]
 }

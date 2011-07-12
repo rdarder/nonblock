@@ -7,35 +7,41 @@ import (
   "websocket"
   "json"
   "os"
+  "time"
 )
 
 var addr = flag.String("addr", ":8080", "http service address")
-var NUM_DB_WORKERS = flag.Int("dbworkers", 10, "Number of DB workers")
-var NUM_NOTIFIERS = flag.Int("notifiers", 10, "Number of client notifiers")
-var NUM_SUSCRIBERS = flag.Int("suscribers", 2, "Number of client suscribers")
-var NUM_LISTENERS = flag.Int("listeners", 1, "Number of vote listeners")
 
-var geoTree GeoTree
+var myGeoTree GeoTree
+var myElection Election
+var myTransLog, myLogger *log.Logger
 
 func setup() {
-  for i := 0; i < *NUM_DB_WORKERS; i++ {
-    go DBWorker()
-  }
-  for i := 0; i < *NUM_NOTIFIERS; i++ {
-    go clientNotifier()
-  }
-  for i := 0; i < *NUM_SUSCRIBERS; i++ {
-    go submitListener()
-  }
-  geoTree = NewGeoTree()
-  for i := 0; i < *NUM_LISTENERS; i++ {
-    go geoTree.listenSubscriptions()
-  }
+  go DBWorker()
+  go VoteInserter()
+  go VoteFetcher()
+  go VoteFetcher()
+
+  myGeoTree = NewGeoTree()
+  myElection = NewElection()
+
+  go myGeoTree.hooker()
+  go myGeoTree.scanDirty("mesa")
+  go myGeoTree.scanDirty("local")
+  go myGeoTree.scanDirty("seccional")
+  go myGeoTree.scanDirty("localidad")
+  go myGeoTree.scanDirty("departamento")
+  go myGeoTree.scanDirty("provincia")
 }
 
 
 func main() {
   flag.Parse()
+
+  serverlog, _ := os.Create("server.log")
+  transclog, _ := os.Create("transaction.log")
+  myLogger = log.New(serverlog, "Goserver:", 0)
+  myTransLog = log.New(transclog, "Gotransactions:", 0)
 
   setup()
 
@@ -56,7 +62,7 @@ func main() {
         websocket.Draft75Handler(clientHandler).ServeHTTP(rw, r)
       }
     })
-
+  // TODO: put a rate limiter on Serve
   if err := http.ListenAndServe(*addr, nil); err != nil {
     log.Fatal("ListenAndServe:", err)
   }
@@ -71,7 +77,7 @@ type Subscription struct {
   Conn      *websocket.Conn
 }
 
-var subscriptionChannel = make(chan *Subscription, 32)
+var subscriptionChannel = make(chan *Subscription, 1024)
 
 /* handle each client individually */
 func clientHandler(conn *websocket.Conn) {
@@ -86,7 +92,6 @@ func clientHandler(conn *websocket.Conn) {
         subscriptionChannel <- s
       }
     }
-    log.Println("Client handler: cleanup done.")
   }()
   /* listen for client messages */
   decoder := json.NewDecoder(conn)
@@ -113,9 +118,13 @@ func clientHandler(conn *websocket.Conn) {
           Ref: message.Ref,
           Request: &subscribe,
         }
+      myLogger.Printf("subscribeRecieved:%v::%v:%v\n", time.Nanoseconds(),
+                      message.Id, message.Ref)
       subscriptionChannel <- subscriptions[message.Ref]
 
     case "cancel":
+      myLogger.Printf("cancelRecieved:%v::%v:%v\n", time.Nanoseconds(),
+                      message.Id, message.Ref)
       subscriptions[message.Ref].Subscribe = false
       subscriptionChannel <- subscriptions[message.Ref]
       /* delete subcription */
@@ -128,15 +137,10 @@ func clientHandler(conn *websocket.Conn) {
   }
 }
 
-
-/* the http module forks one goroutine per post,
-   have each gorouting wait until it can update the DB,
-   this means no buffering on the channel */
-var dbupdateChannel = make(chan *SubmitBody, 4)
-
 /* parse message votes and queue them to the DB updater */
 func loadVotes(rw http.ResponseWriter, req *http.Request) {
   var message Message
+  rw.Header().Set("Connection", "close")
   if e := json.NewDecoder(req.Body).Decode(&message); e != nil {
     rw.WriteHeader(http.StatusBadRequest)
     log.Printf("Vote loader: failed to parse message. %v\n", e)
@@ -150,7 +154,11 @@ func loadVotes(rw http.ResponseWriter, req *http.Request) {
   }
   rw.WriteHeader(http.StatusOK)
   if len(submit.Votos) > 0 {
-    dbupdateChannel <- &submit
+    myLogger.Printf("submitVotesRecieved:%v::%v:%v\n", time.Nanoseconds(),
+                    message.Id, message.Ref)
+    voteInsertChannel <- &submit
+    myLogger.Printf("submitVotesInsertedDB:%v::%v:%v\n", time.Nanoseconds(),
+                    message.Id, message.Ref)
   } else {
     log.Println("Vote loader: No vote data in message.")
   }

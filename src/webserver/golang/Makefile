@@ -9,7 +9,6 @@ GOFILES = \
 	webclient.go \
 	database.go \
 	messages.go \
-	geotree.go \
-	workers.go
+	election.go
 
 include $(GOROOT)/src/Make.cmd
