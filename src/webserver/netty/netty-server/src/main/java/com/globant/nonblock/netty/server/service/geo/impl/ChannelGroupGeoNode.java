@@ -1,5 +1,6 @@
 package com.globant.nonblock.netty.server.service.geo.impl;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.jboss.netty.channel.ChannelFutureListener;
 
 import com.globant.nonblock.netty.server.channel.ClientChannel;
 import com.globant.nonblock.netty.server.channel.impl.NettyClientChannelAdapter;
+import com.globant.nonblock.netty.server.message.loader.SubmitVotesMessage;
 import com.globant.nonblock.netty.server.message.subscription.SubscribeMessage;
 import com.globant.nonblock.netty.server.service.geo.GeoNode;
 import com.globant.nonblock.netty.server.service.geo.GeoTreeWalker;
@@ -30,6 +32,8 @@ public class ChannelGroupGeoNode implements GeoNode {
 
 	private final Map<SubscribeMessage, Set<SubscriptionEntry>> subscribersByNivel = new HashMap<SubscribeMessage, Set<SubscriptionEntry>>();
 
+	private final Set<SubmitVotesMessage> votesMessages = new HashSet<SubmitVotesMessage>();
+	
 	public ChannelGroupGeoNode(final GeoNode parent, final LocationType locationType, final String location) {
 		super();
 		this.parent = parent;
@@ -96,6 +100,17 @@ public class ChannelGroupGeoNode implements GeoNode {
 	@Override
 	public void clean() {
 		this.dirty.set(false);
+		this.votesMessages.clear();
+	}
+
+	@Override
+	public void addSubmitVoteMessage(SubmitVotesMessage message) {
+		this.votesMessages.add(message);
+	}
+
+	@Override
+	public Collection<SubmitVotesMessage> getAllMessages() {
+		return this.votesMessages;
 	}
 
 }

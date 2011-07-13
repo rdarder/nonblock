@@ -1,0 +1,14 @@
+#! /bin/sh
+
+buildCP()
+{
+        CP=""
+        CP="bin/nonblock-server.jar"
+
+        for a in bin/lib/*; do
+                CP="$CP":"$a"
+        done
+}
+buildCP
+JAVACMD="$JAVA_HOME/bin/java"
+$JAVACMD -cp "$CP" com.globant.nonblock.netty.server.ServerBootstrap

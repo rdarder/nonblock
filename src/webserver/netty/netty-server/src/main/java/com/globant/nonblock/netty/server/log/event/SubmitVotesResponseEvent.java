@@ -12,8 +12,8 @@ public class SubmitVotesResponseEvent implements Event {
 	}
 
 	@Override
-	public String getMessage() {
-		return "votes_proccesed," + System.currentTimeMillis() + "," + message.getId();
+	public String[] getMessages() {
+		return new String[] { "votes_proccesed," + System.currentTimeMillis() + "," + message.getId() };
 	}
 
 }

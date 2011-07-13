@@ -29,7 +29,7 @@ class VotesGenerator(object):
   def generate(self, election, i=0, parent_candidates={}):
     level = self.levels[i]
     title = self.titles[i]
-
+    msgId = 0;
     candidates = {}
     candidates.update(parent_candidates)
 
@@ -62,7 +62,10 @@ class VotesGenerator(object):
                                    'candidato': c['nombre'],
                                    'partido': c['partido'],
                                    'cant': votes })
-            yield { 'name': 'submitVotes',
+            
+	    msgId = msgId+1
+	    yield { 'name': 'submitVotes',
+		    'id'  : msgId,
                     'data': {
                       'mesa': voting_center_name,
                       'votos':vote_entries

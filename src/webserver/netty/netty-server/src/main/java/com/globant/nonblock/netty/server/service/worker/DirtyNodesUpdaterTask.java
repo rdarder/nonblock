@@ -1,9 +1,13 @@
 package com.globant.nonblock.netty.server.service.worker;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import javax.inject.Inject;
 
+import com.globant.nonblock.netty.server.log.EventLogger;
+import com.globant.nonblock.netty.server.log.event.NewDataSendEvent;
+import com.globant.nonblock.netty.server.log.event.TransactionStartEvent;
 import com.globant.nonblock.netty.server.message.newdata.NewDataMessage;
 import com.globant.nonblock.netty.server.message.subscription.SubscribeMessage;
 import com.globant.nonblock.netty.server.service.geo.GeoNode;
@@ -20,19 +24,24 @@ public class DirtyNodesUpdaterTask implements Runnable {
 
 	private final WorkerOptions options;
 
+	private final EventLogger eventLogger;
+	
+	private static final AtomicLong txCount = new AtomicLong();
+
 	@Inject
-	public DirtyNodesUpdaterTask(final VoteService voteService, final DirtyNodesQueue dirtyNodesQueue, final WorkerOptions options) {
+	public DirtyNodesUpdaterTask(final VoteService voteService, final DirtyNodesQueue dirtyNodesQueue, final WorkerOptions options, final EventLogger eventLogger) {
 		super();
 		this.voteService = voteService;
 		this.dirtyNodesQueue = dirtyNodesQueue;
 		this.options = options;
+		this.eventLogger = eventLogger;
 	}
 
 	@Override
 	public void run() {
 		try {
 			while (true) {
-				GeoNode n = this.dirtyNodesQueue.getDirtyTreeNodesQueue().take();
+				final GeoNode n = this.dirtyNodesQueue.getDirtyTreeNodesQueue().take();
 				synchronized (n) {
 					if (n.isDirty()) {
 						processNode(n);
@@ -40,19 +49,25 @@ public class DirtyNodesUpdaterTask implements Runnable {
 					n.clean();
 				}
 			}
-		} catch (InterruptedException e) {
+		} catch (final InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 
 	}
 
 	private void processNode(final GeoNode geoNode) {
-		for (final SubscribeMessage sm : geoNode.getAllSubscriberMessages()) {
-			List<Object[]> result = this.voteService.calculateStatus(sm);
-			for (SubscriptionEntry se : geoNode.getChannelGroup(sm)) {
-				NewDataMessage newDataMsg = NewDataMessageBuilder.buildFromQuery(result, se.originalSubscribeMessage);
-				se.clientChannel.write(newDataMsg.toJson() + "\n");
-			}
+		
+		if (!geoNode.getAllSubscriberMessages().isEmpty()) {
+			final Long txNumber = txCount.getAndIncrement();
+			this.eventLogger.process(new TransactionStartEvent(txNumber, geoNode.getAllMessages()));
+			for (final SubscribeMessage sm : geoNode.getAllSubscriberMessages()) {
+				List<Object[]> result = this.voteService.calculateStatus(sm);
+				for (final SubscriptionEntry se : geoNode.getChannelGroup(sm)) {
+					NewDataMessage newDataMsg = NewDataMessageBuilder.buildFromQuery(result, se.originalSubscribeMessage);
+					se.clientChannel.write(newDataMsg.toJson() + "\n");
+					this.eventLogger.process(new NewDataSendEvent(txNumber, se.originalSubscribeMessage));
+				}
+			}				
 		}
 	}
 

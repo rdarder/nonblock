@@ -6,6 +6,8 @@ import org.jboss.netty.channel.Channel;
 
 import com.globant.nonblock.netty.server.channel.ClientChannel;
 import com.globant.nonblock.netty.server.channel.impl.NettyClientChannelAdapter;
+import com.globant.nonblock.netty.server.log.EventLogger;
+import com.globant.nonblock.netty.server.log.event.SubscribeReceivedEvent;
 import com.globant.nonblock.netty.server.message.MessageParser;
 import com.globant.nonblock.netty.server.message.binding.Message;
 import com.globant.nonblock.netty.server.message.newdata.NewDataMessage;
@@ -20,14 +22,17 @@ public final class MessageManagerHandler extends StringMessageBaseHandler {
 	private final GeoTree geoTree;
 
 	private final VoteService voteService;
+	
+	private final EventLogger eventLogger;
 
 	private final MessageParser messageParser = new MessageParser();
 
 	@Inject
-	public MessageManagerHandler(final GeoTree geoTree, final VoteService voteService) {
+	public MessageManagerHandler(final GeoTree geoTree, final VoteService voteService, final EventLogger eventLogger) {
 		super();
 		this.geoTree = geoTree;
 		this.voteService = voteService;
+		this.eventLogger = eventLogger;
 	}
 
 	@Override
@@ -37,6 +42,7 @@ public final class MessageManagerHandler extends StringMessageBaseHandler {
 			return;
 		if (cm instanceof SubscribeMessage) {
 			SubscribeMessage sm = (SubscribeMessage) cm;
+			this.eventLogger.process(new SubscribeReceivedEvent(sm));
 			final GeoNode geoNode = this.geoTree.findGeoNode(sm.getAlcance(), sm.getLugar());
 			final ClientChannel clientChannel = new NettyClientChannelAdapter(c);
 			NewDataMessage msg = NewDataMessageBuilder.buildFromQuery(this.voteService.calculateStatus(sm), sm);

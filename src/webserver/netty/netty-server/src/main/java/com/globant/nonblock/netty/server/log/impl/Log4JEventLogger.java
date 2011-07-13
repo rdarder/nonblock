@@ -9,10 +9,12 @@ import com.globant.nonblock.netty.server.log.event.Event;
 public class Log4JEventLogger implements EventLogger {
 
 	private final static Logger logger = LoggerFactory.getLogger("events");
-	
+
 	@Override
 	public void process(final Event event) {
-		logger.info(event.getMessage());
+		for (String s : event.getMessages()) {
+			logger.info(s);
+		}
 	}
 
 }

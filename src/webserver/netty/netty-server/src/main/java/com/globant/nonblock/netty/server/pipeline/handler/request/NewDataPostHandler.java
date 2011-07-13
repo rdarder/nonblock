@@ -2,9 +2,9 @@ package com.globant.nonblock.netty.server.pipeline.handler.request;
 
 import javax.inject.Inject;
 
-import org.jboss.netty.channel.ChannelFuture;
 import org.jboss.netty.channel.ChannelFutureListener;
 import org.jboss.netty.channel.ChannelHandlerContext;
+import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
 import org.jboss.netty.handler.codec.http.DefaultHttpResponse;
@@ -15,8 +15,8 @@ import org.jboss.netty.handler.codec.http.HttpResponseStatus;
 import org.jboss.netty.handler.codec.http.HttpVersion;
 
 import com.globant.nonblock.netty.server.log.EventLogger;
+import com.globant.nonblock.netty.server.log.event.SubmitVotesInsertedDBEvent;
 import com.globant.nonblock.netty.server.log.event.SubmitVotesReceivedEvent;
-import com.globant.nonblock.netty.server.log.event.SubmitVotesResponseEvent;
 import com.globant.nonblock.netty.server.message.MessageParser;
 import com.globant.nonblock.netty.server.message.binding.Message;
 import com.globant.nonblock.netty.server.message.loader.SubmitVotesMessage;
@@ -64,8 +64,11 @@ public class NewDataPostHandler extends SimpleChannelUpstreamHandler {
 
 	private void processVotesResult(final SubmitVotesMessage vr) {
 		this.voteService.addVotes(vr);
+		this.eventLogger.process(new SubmitVotesInsertedDBEvent(vr));
 		GeoNode gn = this.geoTree.findGeoNode(LocationType.Mesa, vr.getMesa());
-		gn.traverse(this.walkerProvider.get());
+		NewDataDispatcherWalker walker = this.walkerProvider.get();
+		walker.setMessage(vr);
+		gn.traverse(walker);
 	}
 
 	private Message parseMessage(final String postContent) {
@@ -81,12 +84,12 @@ public class NewDataPostHandler extends SimpleChannelUpstreamHandler {
 		HttpResponse response = new DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
 		response.setHeader(HttpHeaders.Names.CONTENT_TYPE, "text/plain; charset=UTF-8");
 
-		ctx.getChannel().getCloseFuture().addListener(new ChannelFutureListener() {
-			@Override
-			public void operationComplete(final ChannelFuture future) throws Exception {
-				NewDataPostHandler.this.eventLogger.process(new SubmitVotesResponseEvent(cm));
-			}
-		});
+//		ctx.getChannel().getCloseFuture().addListener(new ChannelFutureListener() {
+//			@Override
+//			public void operationComplete(final ChannelFuture future) throws Exception {
+//				NewDataPostHandler.this.eventLogger.process(new SubmitVotesResponseEvent(cm));
+//			}
+//		});
 		ctx.getChannel().write(response).addListener(ChannelFutureListener.CLOSE);
 	}
 	
@@ -105,4 +108,8 @@ public class NewDataPostHandler extends SimpleChannelUpstreamHandler {
 		return postContent;
 	}
 
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
+	}
+	
 }

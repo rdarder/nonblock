@@ -32,6 +32,19 @@ public class JpaLocationService implements LocationService {
 	 */
 	private Map<String, Location> locationTree;
 
+	/**
+	 * Load locations HQL query.
+	 */
+	private static final String loadLocationsQuery = 
+		" select new com.globant.nonblock.netty.server.service.location.Location(name,		" +
+		"        parent.name,																" +
+		"	  	 parent.parent.name, 														" +
+		"		 parent.parent.parent.name, 												" +
+		"	  	 parent.parent.parent.parent.name,											" +
+		"		 parent.parent.parent.parent.parent.name)									" +
+		"   from geo 																		" +
+		"  where type = 'Mesa'																";
+
 	@Inject
 	public JpaLocationService(final Provider<EntityManager> entityManager) {
 		this.entityManager = entityManager;
@@ -52,10 +65,8 @@ public class JpaLocationService implements LocationService {
 
 	@SuppressWarnings("unchecked")
 	private List<Location> findLocations() {
-		final Query q = this.entityManager.get().createQuery(
-				"select new com.globant.nonblock.netty.server.service.location.Location(g.name, g.parent.name, g.parent.parent.name, g.parent.parent.parent.name, "
-						+ "g.parent.parent.parent.parent.name, g.parent.parent.parent.parent.parent.name) from" + " geo g where g.type = 'Mesa'");
-		List<Location> queryResult = q.getResultList();
+		final Query q = this.entityManager.get().createQuery(loadLocationsQuery);
+		final List<Location> queryResult = q.getResultList();
 		return queryResult;
 	}
 

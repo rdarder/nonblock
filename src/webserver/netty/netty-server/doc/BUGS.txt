@@ -1,0 +1,1 @@
+Al cerrar un channel, no se desregistra del geotree. (FIXED)

@@ -1,0 +1,3 @@
+No calcula las proyecciones dinamicamente - DONE
+Faltan logs de eventos - DONE
+POSIX command line parameters

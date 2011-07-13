@@ -12,7 +12,6 @@ public class ServerBootstrap {
 	private static final Logger logger = LoggerFactory.getLogger(ServerBootstrap.class);
 	
 	public static void main(final String[] cmdLine) {
-
 		BootstrapParameters.setArgs(cmdLine);
 
 		final Injector mainInjector = Guice.createInjector(new MainServerModule());

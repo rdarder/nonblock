@@ -40,10 +40,9 @@ public class Server {
 		this.httpPipelineFactory = httpPipelineFactory;
 		this.rawSocketpipelineFactory = rawSocketpipelineFactory;
 	}
-	
+
 	public void start() {
 		startCoreServices();
-
 		bindWithPipeline(this.httpPipelineFactory, httpOptions.port());
 		bindWithPipeline(this.rawSocketpipelineFactory, httpOptions.port() + 1);
 	}
